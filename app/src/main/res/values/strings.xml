@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BUYER</string>
+    <string name="verifytext">Please Enter The 4 Digit Code Sent To </string>
+    <string name="Forgotpasswordtext">Please Enter Your Email Address
+        To Recieve a Verification Code.  </string>
+    <string name="createnewpasswordtext">Your New Password Must Be Different From Previously Used Password </string>
+
+</resources>
