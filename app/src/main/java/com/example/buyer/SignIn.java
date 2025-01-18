@@ -2,6 +2,8 @@ package com.example.buyer;
 
 import static android.content.ContentValues.TAG;
 
+import static com.google.firebase.auth.FirebaseAuth.getInstance;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,15 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,26 +33,46 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class SignIn extends AppCompatActivity {
 
     private EditText editTextLoginEmail, editTextLoginPwd;
     private ProgressBar progressBar;
     private FirebaseAuth authProfile;
+    private TextView textViewSingUp;
+    private Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.signin);
+
+        textViewSingUp = findViewById(R.id.textViewSignup);
+        textViewSingUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignIn.this, SignUp.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
-        getSupportActionBar().setTitle("Login");
-
-        editTextLoginPwd = findViewById(R.id.editTextLoginPassword);
+       editTextLoginPwd = findViewById(R.id.editTextLoginPassword);
         editTextLoginEmail = findViewById(R.id.editTextSignInEmail);
         progressBar = findViewById(R.id.progressbarSignIn);
-
         authProfile = FirebaseAuth.getInstance();
+        login = findViewById(R.id.gggg);
+        TextView forgotPassword = findViewById(R.id.Forgot_password);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SignIn.this, "You can reset your password mow", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SignIn.this, ForgotPassword.class));
+            }
+        });
 
         ImageView imageViewShowGidePwd = findViewById(R.id.hide_showPwd);
         imageViewShowGidePwd.setImageResource(R.drawable.passwordhide);
@@ -69,9 +89,9 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
-        Button buttonLogin = findViewById(R.id.buttonLogin) ;
 
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+
+       login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String textEmail = editTextLoginEmail.getText().toString();
@@ -94,15 +114,15 @@ public class SignIn extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     loginUser(textEmail, textPwd);
                 }
-                    
+
             }
         });
 
 
 
 
-    }
 
+    }
     private void loginUser(String Email, String Pwd) {
         authProfile.signInWithEmailAndPassword(Email, Pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -114,6 +134,8 @@ public class SignIn extends AppCompatActivity {
                     // check if email is verified before user can access their profile
                     if (firebaseUser.isEmailVerified()){
                         Toast.makeText(SignIn.this, "You logged in now", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignIn.this, UserProfileActivity.class));
+                        finish();
                     } else {
                         firebaseUser.sendEmailVerification();
                         authProfile.signOut();
@@ -139,6 +161,8 @@ public class SignIn extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void showAlertDialog() {
         //set up alert
@@ -167,17 +191,19 @@ public class SignIn extends AppCompatActivity {
 
 
     }
-
+/*
     @Override
     protected void onStart() {
         super.onStart();
         if(authProfile.getCurrentUser() != null){
             Toast.makeText(this, "Already logged in!", Toast.LENGTH_SHORT).show();
-           // startActivity(new Intent(SignIn.this, UserProfileActivity.class));
+             startActivity(new Intent(SignIn.this, UserProfileActivity.class));
             finish();
 
         } else {
             Toast.makeText(this, "You can login now!", Toast.LENGTH_SHORT).show();
         }
-    }
+
+
+    }*/
 }

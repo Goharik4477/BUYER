@@ -188,14 +188,14 @@ private static final String TAG= "SignUpActivity";
                                      Toast.makeText(SignUp.this, "User registered successfully." +
                                              " Pleas verify your email", Toast.LENGTH_LONG).show();
 
-                       /* //open users profile
+                       //open users profile
 
                          Intent intent = new Intent(SignUp.this, UserProfileActivity.class);
                          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                  Intent.FLAG_ACTIVITY_NEW_TASK);
 
                          startActivity(intent);
-                         finish();*/
+                         finish();
 
                                  } else {
                                      Toast.makeText(SignUp.this, "User registered failed. Pleas try again",

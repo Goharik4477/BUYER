@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateProfileActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView_update_profile_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="55dp"
+            android:text="You can update your profile details now!"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/blue1"
+            android:textStyle="bold" />
+
+        <EditText
+
+            android:id="@+id/EditText_update_profile_name"
+            android:layout_below="@+id/textView_update_profile_head"
+            android:layout_width="345dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/oval_login_background"
+            android:hint="Enter Full Name"
+            android:inputType="textEmailAddress"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888" />
+
+        <Button
+            android:id="@+id/button_profile_update_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/EditText_update_profile_name"
+            android:text="UPDATE EMAIL"
+            android:backgroundTint="@color/blue1"/>
+
+        <Button
+            android:id="@+id/button_profile_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/button_profile_update_email"
+            android:text="UPDATE PROFILE"
+            android:backgroundTint="#009688"/>
+
+
+    </RelativeLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressbarUpdateProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-300dp"
+        android:visibility="gone"
+        android:elevation="10dp"/>
+</LinearLayout>
