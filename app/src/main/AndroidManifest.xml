@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-<uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,59 +15,74 @@
         android:theme="@style/Theme.BUYER"
         tools:targetApi="31">
         <activity
-            android:name=".DeleteProfileActivity"
+            android:name=".second_profile"
             android:exported="false" />
         <activity
-            android:name=".ChangePasswordActivity"
+            android:name=".add_new_ad"
             android:exported="false" />
         <activity
-            android:name=".UpdateEmailActivity"
+            android:name=".messenger"
             android:exported="false" />
         <activity
-            android:name=".UpdateProfileActivity"
+            android:name=".Home_for_ad"
             android:exported="false" />
         <activity
-            android:name=".UploadProfilePicActivity"
+            android:name=".bottomNavigation"
             android:exported="false" />
         <activity
-            android:name=".UserProfileActivity"
+            android:name="BUYER.DeleteProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".paypal"
+            android:name="BUYER.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateNewPassword"
+            android:name="BUYER.UpdateEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyEmail"
+            android:name="BUYER.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgotPassword"
+            android:name="BUYER.UploadProfilePicActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUp"
+            android:name="BUYER.UserProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".SignIn"
+            android:name="BUYER.paypal"
             android:exported="false" />
         <activity
-            android:name=".SignIn_or_SignUp"
+            android:name="BUYER.CreateNewPassword"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="BUYER.VerifyEmail"
+            android:exported="false" />
+        <activity
+            android:name="BUYER.ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name="BUYER.SignUp"
+            android:exported="false" />
+        <activity
+            android:name="BUYER.SignIn"
+            android:exported="false" />
+        <activity
+            android:name="BUYER.SignIn_or_SignUp"
+            android:exported="false" />
+        <activity
+            android:name="BUYER.MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".mess.MessagingService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
     </application>

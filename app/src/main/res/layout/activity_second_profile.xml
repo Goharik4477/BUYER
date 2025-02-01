@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/userProfile"
-    android:background="@drawable/gradient_background"
-    android:orientation="vertical"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="BUYER.UserProfileActivity"
-   >
+    tools:context=".second_profile">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:orientation="vertical">
 
         <RelativeLayout
@@ -101,31 +98,23 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/buyerandbag"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
-            android:layout_height="179dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg"
+            android:elevation="2dp"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@drawable/item_selector"
+            app:itemRippleColor="@android:color/transparent"
+            app:labelVisibilityMode="unlabeled"
+            app:menu="@menu/bottom_menu" />
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="146dp"
-                android:layout_height="116dp"
-
-                app:srcCompat="@drawable/buyerbag" />
-
-            <TextView
-                android:id="@+id/buyer_signin_or_signup_page_buyer"
-                android:layout_width="122dp"
-                android:layout_height="39dp"
-                android:layout_marginTop="-20dp"
-                android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="30dp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
     </LinearLayout>
     <ProgressBar
@@ -136,5 +125,4 @@
         android:visibility="gone"
         android:elevation="10dp"/>
 
-
-</LinearLayout>
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.buyer;
+package BUYER;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.buyer.R;
 
 public class SignIn_or_SignUp extends AppCompatActivity{
     private Button goSignIn;

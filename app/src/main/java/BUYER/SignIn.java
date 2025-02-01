@@ -1,4 +1,4 @@
-package com.example.buyer;
+package BUYER;
 
 import static android.content.ContentValues.TAG;
 
@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.buyer.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,8 +33,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Objects;
 
 public class SignIn extends AppCompatActivity {
 
@@ -191,7 +190,7 @@ public class SignIn extends AppCompatActivity {
 
 
     }
-/*
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -205,5 +204,5 @@ public class SignIn extends AppCompatActivity {
         }
 
 
-    }*/
+    }
 }

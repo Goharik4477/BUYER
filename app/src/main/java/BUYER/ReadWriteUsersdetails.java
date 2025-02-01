@@ -1,4 +1,4 @@
-package com.example.buyer;
+package BUYER;
 
 public class ReadWriteUsersdetails {
     public String name ;
