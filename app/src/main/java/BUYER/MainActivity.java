@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        new Handler().postDelayed(new Runnable() {
+  new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
          Intent intent = new Intent(MainActivity.this, SignIn_or_SignUp.class);

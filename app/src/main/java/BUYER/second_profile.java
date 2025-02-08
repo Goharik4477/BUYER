@@ -1,4 +1,4 @@
-package com.example.buyer;
+package BUYER;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.buyer.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,14 +28,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import BUYER.ChangePasswordActivity;
-import BUYER.DeleteProfileActivity;
-import BUYER.ReadWriteUsersdetails;
-import BUYER.SignIn_or_SignUp;
-import BUYER.UpdateEmailActivity;
-import BUYER.UpdateProfileActivity;
-import BUYER.UserProfileActivity;
 
 public class second_profile extends AppCompatActivity {
 
@@ -48,7 +41,7 @@ public class second_profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_second_profile);
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -76,27 +69,13 @@ public class second_profile extends AppCompatActivity {
         });
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.userProfile), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         TextViewWelcome = findViewById(R.id.textView_show_welcome);
         TextViewFFullName = findViewById(R.id.show_full_name);
         TextViewEmail = findViewById(R.id.show_email);
         progressBar = findViewById(R.id.progressbaruser);
 
-        //profile pic
 
-        imageView = findViewById(R.id.imageView_profile_dp);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(second_profile.this, UserProfileActivity.class);
-                startActivity(intent);
-            }
-        });
 
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
@@ -105,7 +84,6 @@ public class second_profile extends AppCompatActivity {
             Toast.makeText(this, "Something went wrong! User's details are not available at the moment",
                     Toast.LENGTH_LONG).show();
         }else {
-            checkIfEmailVerified(firebaseUser);
             progressBar.setVisibility(View.VISIBLE);
             showUserProfile(firebaseUser);
         }
@@ -175,7 +153,7 @@ public class second_profile extends AppCompatActivity {
         });
     }
 
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //inflate manu
         getMenuInflater().inflate(R.menu.common_menu,menu);
@@ -217,6 +195,6 @@ public class second_profile extends AppCompatActivity {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 }

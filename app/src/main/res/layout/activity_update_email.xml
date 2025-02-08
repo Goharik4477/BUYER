@@ -44,7 +44,7 @@
 
             <TextView
                 android:id="@+id/textView_update_email_old"
-                android:layout_width="365dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/textView_update_email"
                 android:layout_marginTop="-26dp"
@@ -70,7 +70,7 @@
 
             <EditText
                 android:id="@+id/editText_update_email_verify_password"
-                android:layout_width="365dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/textView_update_email_verify_password"
                 android:layout_marginTop="-26dp"
@@ -136,7 +136,7 @@
 
             <EditText
                 android:id="@+id/editText_update_email_new"
-                android:layout_width="365dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/textView_update_email_new"
                 android:layout_marginTop="-26dp"

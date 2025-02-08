@@ -45,7 +45,7 @@
 
             <EditText
                 android:id="@+id/editText_delete_user_pwd"
-                android:layout_width="365dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_below="@+id/textView_delete_user_pwd"
                 android:layout_marginTop="-26dp"

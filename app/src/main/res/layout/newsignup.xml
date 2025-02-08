@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient_background"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/buyerbag" />
+
+        <TextView
+            android:id="@+id/buyer_signin_or_signup_page_buyer"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:layout_marginTop="-15dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buyer_signin_or_signup_page_buyer"
+            android:text="Sign up "
+            android:textColor="@color/white"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/singup"
+            android:hint="Username"
+            android:inputType="text"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="25dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:background="@drawable/oval_login_background"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Email"
+            android:layout_below="@+id/editTextUsername"
+            android:inputType="textEmailAddress"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:background="@drawable/oval_login_background"
+            android:layout_marginBottom="16dp" />
+
+        <FrameLayout
+            android:id="@+id/frpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextEmail">
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_height="50dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#000000"
+                android:textColorHint="#888888"
+                android:background="@drawable/oval_login_background"
+                android:layout_marginBottom="16dp" />
+
+
+
+
+            <ImageView
+                android:id="@+id/signUpHideAndShow"
+                android:layout_width="79dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="250dp"
+
+                android:layout_marginTop="10dp"
+                 />
+
+            />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frpassword2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/frpassword">
+
+            <EditText
+                android:id="@+id/editTextPassword2"
+                android:layout_width="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="25dp"
+                android:hint="Confirm password"
+                android:inputType="textPassword"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#000000"
+                android:textColorHint="#888888"
+                android:background="@drawable/oval_login_background"
+                android:layout_marginBottom="16dp" />
+
+
+
+            <ImageView
+                android:id="@+id/signUpHideAndShow2"
+                android:layout_width="79dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="250dp"
+
+                android:layout_marginTop="10dp"
+                 />
+
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/buttonSignUp"
+            android:layout_width="match_parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/frpassword2"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#009688"
+            android:text="Sign up"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ProgressBar
+            android:id="@+id/progressbarsignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-300dp"
+            android:visibility="gone"
+            android:elevation="10dp"/>
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

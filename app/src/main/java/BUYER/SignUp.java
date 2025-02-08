@@ -39,7 +39,7 @@ private static final String TAG= "SignUpActivity";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.newsignup);
 
         //getSupportActionBar().setTitle("Sign up");
         Toast.makeText(this, "You can sign up now",Toast.LENGTH_LONG ).show();
@@ -148,6 +148,7 @@ private static final String TAG= "SignUpActivity";
 
     }
 
+
 // firebase
     private void SignupUser(String username, String email, String password, String repeatPassword) {
 
@@ -188,7 +189,7 @@ private static final String TAG= "SignUpActivity";
 
                        //open users profile
 
-                         Intent intent = new Intent(SignUp.this, UserProfileActivity.class);
+                         Intent intent = new Intent(SignUp.this, SignIn.class);
                          intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                  Intent.FLAG_ACTIVITY_NEW_TASK);
 

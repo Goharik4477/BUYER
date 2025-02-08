@@ -19,7 +19,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.buyer.Home_for_ad;
 import com.example.buyer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,6 +53,8 @@ public class UserProfileActivity extends AppCompatActivity {
         buyerBag =findViewById(R.id.imageView3);
 
 
+
+
         //profile pic
 
         imageView = findViewById(R.id.imageView_profile_dp);
@@ -68,14 +69,28 @@ public class UserProfileActivity extends AppCompatActivity {
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
-        if (firebaseUser == null){
+       if (firebaseUser == null){
             Toast.makeText(this, "Something went wrong! User's details are not available at the moment",
                     Toast.LENGTH_LONG).show();
         }else {
-            checkIfEmailVerified(firebaseUser);
             progressBar.setVisibility(View.VISIBLE);
             showUserProfile(firebaseUser);
-        }
+           buyerBag.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   startActivity(new Intent(UserProfileActivity.this, add_new_ad.class));
+                   finish();
+               }
+           });
+
+
+
+       }
+
+
+
+
+
     }
 //coming to usersProfile activity
     private void checkIfEmailVerified(FirebaseUser firebaseUser) {
@@ -97,6 +112,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 intent.addCategory(Intent.CATEGORY_APP_EMAIL);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+
             }
         });
 
@@ -107,15 +123,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
         // show alertdialog
 
-        alertDialog.show();
 
-        buyerBag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserProfileActivity.this, Home_for_ad.class);
-                startActivity(intent);
-            }
-        });
+            alertDialog.show();
+
 
 
     }
@@ -150,7 +160,7 @@ public class UserProfileActivity extends AppCompatActivity {
         });
     }
 
-    @Override
+  /*   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //inflate manu
         getMenuInflater().inflate(R.menu.common_menu,menu);
@@ -158,7 +168,7 @@ public class UserProfileActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
+   @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
@@ -194,5 +204,5 @@ public class UserProfileActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
 
-    }
+    }*/
 }

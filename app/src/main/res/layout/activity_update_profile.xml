@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="BUYER.UpdateProfileActivity">
@@ -31,7 +32,7 @@
 
             android:id="@+id/EditText_update_profile_name"
             android:layout_below="@+id/textView_update_profile_head"
-            android:layout_width="345dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/oval_login_background"
@@ -70,4 +71,4 @@
         android:layout_marginTop="-300dp"
         android:visibility="gone"
         android:elevation="10dp"/>
-</ScrollView>
+</LinearLayout>

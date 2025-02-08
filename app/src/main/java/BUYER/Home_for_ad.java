@@ -1,17 +1,12 @@
-package com.example.buyer;
+package BUYER;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.buyer.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import BUYER.UserProfileActivity;
 
 public class Home_for_ad extends AppCompatActivity {
 
@@ -19,11 +14,12 @@ public class Home_for_ad extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_bottom_navigation);
+            setContentView(R.layout.activity_home_for_ad);
             BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
             bottomNavigationView.setSelectedItemId(R.id.menu_bottom_home);
             bottomNavigationView.setOnItemSelectedListener(item -> {
                 if (item.getItemId() == R.id.menu_bottom_home) {
+
                     return true;
                 } else if (item.getItemId() == R.id.menu_bottom_messenger) {
                     startActivity(new Intent(getApplicationContext(), messenger.class));

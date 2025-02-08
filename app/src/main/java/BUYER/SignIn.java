@@ -46,7 +46,7 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.signin);
+        setContentView(R.layout.newsignin);
 
         textViewSingUp = findViewById(R.id.textViewSignup);
         textViewSingUp.setOnClickListener(new View.OnClickListener() {
