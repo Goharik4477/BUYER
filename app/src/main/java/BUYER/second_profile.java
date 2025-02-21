@@ -15,9 +15,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.buyer.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,12 +26,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import BUYER.Navigation.HomeActivity;
+import BUYER.SignInSignUp.ReadWriteUsersdetails;
+import BUYER.SignInSignUp.SignIn_or_SignUp;
+import BUYER.UserProfileSetting.ChangePasswordActivity;
+import BUYER.UserProfileSetting.DeleteProfileActivity;
+import BUYER.UserProfileSetting.UpdateEmailActivity;
+import BUYER.UserProfileSetting.UpdateProfileActivity;
+
 public class second_profile extends AppCompatActivity {
 
     private TextView TextViewWelcome, TextViewFFullName, TextViewEmail;
     private ProgressBar progressBar;
     private String fullName, email;
     private ImageView imageView;
+    DatabaseReference ProductsRef;
     private FirebaseAuth authProfile;
 
     @Override
@@ -48,7 +54,7 @@ public class second_profile extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.menu_bottom_profile);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.menu_bottom_home) {
-                startActivity(new Intent(getApplicationContext(), Home_for_ad.class));
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;
@@ -70,6 +76,8 @@ public class second_profile extends AppCompatActivity {
 
 
 
+
+
         TextViewWelcome = findViewById(R.id.textView_show_welcome);
         TextViewFFullName = findViewById(R.id.show_full_name);
         TextViewEmail = findViewById(R.id.show_email);
@@ -88,6 +96,9 @@ public class second_profile extends AppCompatActivity {
             showUserProfile(firebaseUser);
         }
     }
+
+
+
     //coming to usersProfile activity
     private void checkIfEmailVerified(FirebaseUser firebaseUser) {
         if(!firebaseUser.isEmailVerified()){
@@ -153,7 +164,7 @@ public class second_profile extends AppCompatActivity {
         });
     }
 
-  /*  @Override
+   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //inflate manu
         getMenuInflater().inflate(R.menu.common_menu,menu);
@@ -195,6 +206,6 @@ public class second_profile extends AppCompatActivity {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 
 }

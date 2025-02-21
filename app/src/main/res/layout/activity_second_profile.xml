@@ -8,9 +8,11 @@
     tools:context="BUYER.second_profile">
 
     <LinearLayout
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+
         android:orientation="vertical">
 
 

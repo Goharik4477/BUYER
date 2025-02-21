@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.buyer.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import BUYER.Navigation.HomeActivity;
+
 public class messenger extends AppCompatActivity {
 
     @Override
@@ -16,9 +18,10 @@ public class messenger extends AppCompatActivity {
         setContentView(R.layout.activity_messenger);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.menu_bottom_messenger);
+        getSupportActionBar().hide();
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.menu_bottom_home) {
-                startActivity(new Intent(getApplicationContext(), Home_for_ad.class));
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;
