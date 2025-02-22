@@ -14,12 +14,16 @@ import com.example.buyer.databinding.ItemConteinerUserBinding;
 import java.util.List;
 
 import BUYER.SignInSignUp.ReadWriteUsersdetails;
+import BUYER.listeners.UserListener;
 import BUYER.models.User;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder>{
     private  final List<User> users;
+    private final UserListener userListener;
 
-    public UserAdapter(List<User> users) {
+
+    public UserAdapter(List<User> users, UserListener userListener) {
+        this.userListener = userListener;
         this.users = users;
     }
 
@@ -53,6 +57,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             binding.textName.setText(user.name);
             binding.textEmail.setText(user.email);
             binding.imageProfile.setImageBitmap(getUserImage(user.image));
+            binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
         }
     }
     private Bitmap getUserImage (String encodedImage){
