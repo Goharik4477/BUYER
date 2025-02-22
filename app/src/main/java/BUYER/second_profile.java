@@ -25,6 +25,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 import BUYER.Navigation.HomeActivity;
 import BUYER.SignInSignUp.ReadWriteUsersdetails;
@@ -33,12 +38,15 @@ import BUYER.UserProfileSetting.ChangePasswordActivity;
 import BUYER.UserProfileSetting.DeleteProfileActivity;
 import BUYER.UserProfileSetting.UpdateEmailActivity;
 import BUYER.UserProfileSetting.UpdateProfileActivity;
+import BUYER.utilities.Constants;
+import BUYER.utilities.PreferenceManager;
 
 public class second_profile extends AppCompatActivity {
 
     private TextView TextViewWelcome, TextViewFFullName, TextViewEmail;
     private ProgressBar progressBar;
     private String fullName, email;
+    private PreferenceManager preferenceManager;
     private ImageView imageView;
     DatabaseReference ProductsRef;
     private FirebaseAuth authProfile;
@@ -50,6 +58,7 @@ public class second_profile extends AppCompatActivity {
         setContentView(R.layout.activity_second_profile);
 
 
+        preferenceManager = new PreferenceManager(getApplicationContext());
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.menu_bottom_profile);
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -98,41 +107,6 @@ public class second_profile extends AppCompatActivity {
     }
 
 
-
-    //coming to usersProfile activity
-    private void checkIfEmailVerified(FirebaseUser firebaseUser) {
-        if(!firebaseUser.isEmailVerified()){
-            showAlertDialog();
-        }
-    }
-
-    private void showAlertDialog() {
-        //set up alert
-        AlertDialog.Builder builder = new AlertDialog.Builder(second_profile.this);
-        builder.setTitle("Email not verified ");
-        builder.setMessage("Please verify your email now. You can not login without email verification next time. ");
-
-        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-
-        //create alertdialog
-
-        AlertDialog alertDialog = builder.create();
-
-
-        // show alertdialog
-
-        alertDialog.show();
-
-
-    }
 
     private void showUserProfile(FirebaseUser firebaseUser) {
         String userID = firebaseUser.getUid();
@@ -196,6 +170,7 @@ public class second_profile extends AppCompatActivity {
             startActivity(intent);
         }else if(id ==  R.id.menu_logout){
             authProfile.signOut();
+           signOut();
             Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(second_profile.this, SignIn_or_SignUp.class);
 
@@ -206,6 +181,20 @@ public class second_profile extends AppCompatActivity {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+    private void signOut(){
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference documentReference =
+                database.collection(Constants.KEY_COLLECTION_USERS).document(preferenceManager.getString(Constants.KEY_USER_ID));
+        HashMap<String, Object> updates = new HashMap<>();
+        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+        documentReference.update(updates).addOnSuccessListener(unused -> {
+            preferenceManager.clear();
+            startActivity(new Intent(getApplicationContext(), SignIn_or_SignUp.class));
+            finish();
+        }).addOnFailureListener(e -> Toast.makeText(this, "Unable sign out", Toast.LENGTH_SHORT).show());
+
+
     }
 
 }

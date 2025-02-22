@@ -33,11 +33,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import BUYER.Navigation.HomeActivity;
+import BUYER.utilities.Constants;
+import BUYER.utilities.PreferenceManager;
 
 public class SignIn extends AppCompatActivity {
 
     private EditText editTextLoginEmail, editTextLoginPwd;
     private ProgressBar progressBar;
+    private PreferenceManager preferenceManager;
     private FirebaseAuth authProfile;
     private TextView textViewSingUp;
     private Button login;
@@ -48,7 +55,7 @@ public class SignIn extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.newsignin);
         getSupportActionBar().hide();
-
+preferenceManager = new PreferenceManager(getApplicationContext());
         textViewSingUp = findViewById(R.id.textViewSignup);
         textViewSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +120,7 @@ public class SignIn extends AppCompatActivity {
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
                     loginUser(textEmail, textPwd);
+                    SignIn();
                 }
 
             }
@@ -204,6 +212,24 @@ public class SignIn extends AppCompatActivity {
             Toast.makeText(this, "You can login now!", Toast.LENGTH_SHORT).show();
         }
 
+
+    }
+    private  void SignIn(){
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .whereEqualTo(Constants.KEY_EMAIL, editTextLoginEmail.getText().toString()).
+                whereEqualTo(Constants.KEY_PASSWORD, editTextLoginPwd.getText().toString()).get().addOnCompleteListener( task -> {
+                    if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() >0){
+                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                        preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                        preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
+                        preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
+                        preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
+
+                     } else {
+                        Toast.makeText(this, "Unable to sign in", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 }

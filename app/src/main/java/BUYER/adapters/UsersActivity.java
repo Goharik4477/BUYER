@@ -1,9 +1,11 @@
 package BUYER.adapters;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.SyncStateContract;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +18,12 @@ import com.example.buyer.databinding.ActivityUsersBinding;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+
+import BUYER.messenger;
+
 public class UsersActivity extends AppCompatActivity {
-private ActivityUsersBinding binding;
+/*private ActivityUsersBinding binding;
    private PreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,13 @@ private ActivityUsersBinding binding;
         });
        // preferenceManager = new PreferenceManager(getApplicationContext());
         getSupportActionBar().hide();
+        binding.ImageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UsersActivity.this, messenger.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getUsers(){
@@ -50,4 +63,6 @@ private ActivityUsersBinding binding;
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
     }
+*/
+
 }

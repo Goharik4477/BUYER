@@ -30,11 +30,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 import BUYER.second_profile;
 import BUYER.SignInSignUp.MainActivity;
 import BUYER.SignInSignUp.SignIn_or_SignUp;
 import BUYER.SignInSignUp.UserProfileActivity;
+import BUYER.utilities.Constants;
+import BUYER.utilities.PreferenceManager;
 
 public class DeleteProfileActivity extends AppCompatActivity {
     private FirebaseAuth authProfile;
@@ -42,6 +49,7 @@ public class DeleteProfileActivity extends AppCompatActivity {
     private EditText editTextUserPwd;
     private TextView textViewAuthenticated;
     private ProgressBar progressBar;
+
     private String userPwd;
     private Button buttonReAuthenticate, buttonDeleteUser;
     private final static String TAG = "DeleteProfileActivity";
@@ -57,7 +65,6 @@ public class DeleteProfileActivity extends AppCompatActivity {
         textViewAuthenticated = findViewById(R.id.textView_delete_user_authenticated);
         buttonDeleteUser = findViewById(R.id.button_delete_user);
         buttonReAuthenticate = findViewById(R.id.button_delete_user_authenticate);
-
 
         //disable buttons
         buttonDeleteUser.setEnabled(false);
@@ -154,6 +161,7 @@ public class DeleteProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteUserData(firebaseUser);
+
             }
         });
 
@@ -277,4 +285,6 @@ public class DeleteProfileActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.util.Base64;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import BUYER.Navigation.HomeActivity;
 import BUYER.SignInSignUp.ReadWriteUsersdetails;
@@ -83,22 +81,39 @@ private TextView textName;
         //navigation end
 
        binding.fabNewChat.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
-        textName = findViewById(R.id.textName);
-        authProfile = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = authProfile.getCurrentUser();
-        showUserProfile(firebaseUser);
-      //  loadUserDetails();
+
+      loadUserDetails();
+      getToken();
 
     }
 
-  /*  private void loadUserDetails(){
-       textName.setText(preferenceManager.getString(Constants.KEY_NAME));
+    public Bitmap decodeBase64(String encodedImage) {
+        byte[] decodedBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+    }
+
+   private void loadUserDetails(){
+     binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
         byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-       profilePic.setImageBitmap(bitmap);
-    }*/
+         binding.imageProfile.setImageBitmap(bitmap);
+    }
 
-    private void showUserProfile(FirebaseUser firebaseUser) {
+    private void getToken(){
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(this::updateToken);
+    }
+    private void updateToken(String token){
+        FirebaseFirestore database =FirebaseFirestore.getInstance();
+        DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).
+                document(preferenceManager.getString(Constants.KEY_USER_ID));
+        documentReference.update(Constants.KEY_FCM_TOKEN, token).addOnSuccessListener(unused ->
+                Toast.makeText(this, "Token update successful", Toast.LENGTH_SHORT).show()).
+                        addOnFailureListener(e -> Toast.makeText(this, "Unable to update token", Toast.LENGTH_SHORT).show());
+    }
+
+
+
+   /* private void showUserProfile(FirebaseUser firebaseUser) {
         String userID = firebaseUser.getUid();
 
 
@@ -112,6 +127,8 @@ private TextView textName;
                 if(readUsersdetails != null){
                     fullName = firebaseUser.getDisplayName();
                     textName.setText(fullName);
+
+
                 }
 
 
@@ -123,5 +140,7 @@ private TextView textName;
 
             }
         });
-    }
+    }*/
+
+
 }
