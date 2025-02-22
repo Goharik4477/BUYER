@@ -106,8 +106,7 @@ private TextView textName;
         FirebaseFirestore database =FirebaseFirestore.getInstance();
         DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).
                 document(preferenceManager.getString(Constants.KEY_USER_ID));
-        documentReference.update(Constants.KEY_FCM_TOKEN, token).addOnSuccessListener(unused ->
-                Toast.makeText(this, "Token update successful", Toast.LENGTH_SHORT).show()).
+        documentReference.update(Constants.KEY_FCM_TOKEN, token).
                         addOnFailureListener(e -> Toast.makeText(this, "Unable to update token", Toast.LENGTH_SHORT).show());
     }
 
