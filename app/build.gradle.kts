@@ -16,6 +16,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,14 +55,18 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.sdp.android)
+    implementation(libs.ssp.android)
     //  implementation(libs.lifecycle.livedata.ktx)
 //  implementation(libs.lifecycle.viewmodel.ktx)
 //    implementation(libs.navigation.fragment)
 //    implementation(libs.navigation.ui)
+    implementation(libs.rounded.image.view)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
+    implementation(libs.multidex)
+    implementation(libs.glide)
 
 
 }

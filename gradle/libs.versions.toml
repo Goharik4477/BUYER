@@ -23,7 +23,9 @@ navigationUi = "2.8.6"
 
 
 [libraries]
-
+sdp-android = { group = "com.intuit.sdp", name = "sdp-android", version = "1.0.6" }
+ssp-android = { group = "com.intuit.ssp", name = "ssp-android", version = "1.0.6" }
+rounded-image-view = { group = "com.makeramen", name = "roundedimageview", version = "2.3.0" }
 firebase-ui-database = { group = "com.firebaseui", name = "firebase-ui-database", version = "8.0.2" }
 circle-image-view = "de.hdodenhof:circleimageview:3.1.0"
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -42,7 +44,8 @@ lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-lived
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
-
+multidex = { group = "androidx.multidex", name = "multidex", version = "2.0.1" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version = "4.15.1" }
 
 
 [plugins]

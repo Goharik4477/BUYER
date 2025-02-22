@@ -9,25 +9,38 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/buyerbag" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:id="@+id/layoutImage"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25sdp">
 
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="@dimen/_80sdp"
+                android:id="@+id/newImageProfile"
+                android:layout_height="@dimen/_80sdp"
+                android:background="@drawable/backgrund_icon"
+                app:riv_oval="true"
+                android:scaleType="centerCrop"/>
         <TextView
-            android:id="@+id/buyer_signin_or_signup_page_buyer"
+            android:id="@+id/textAddImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Image"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:layout_gravity="center"/>
+        </FrameLayout>
+        <TextView
+            android:id="@+id/buyer_signup_page_buyer"
             android:layout_width="match_parent"
             android:layout_height="39dp"
             android:gravity="center"
-            android:text="@string/app_name"
-            android:layout_marginTop="-15dp"
+            android:text="Select image"
+            android:layout_marginTop="10dp"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <TextView
