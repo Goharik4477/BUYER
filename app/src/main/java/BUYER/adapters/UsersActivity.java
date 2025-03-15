@@ -19,6 +19,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import BUYER.BaseActivity;
 import BUYER.ChatActivity;
 import BUYER.listeners.UserListener;
 import BUYER.messenger;
@@ -26,7 +27,7 @@ import BUYER.models.User;
 import BUYER.utilities.Constants;
 import BUYER.utilities.PreferenceManager;
 
-public class UsersActivity extends AppCompatActivity implements UserListener {
+public class UsersActivity extends BaseActivity implements UserListener {
 private ActivityUsersBinding binding;
  private PreferenceManager preferenceManager;
     @Override

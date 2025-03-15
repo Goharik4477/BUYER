@@ -7,7 +7,7 @@ public class SaveProduct {
     public String ownerUID;
 
 
-    public SaveProduct() {}
+
 
 
     public SaveProduct(String FirstCountry, String SecondCounty, String Description, String address,

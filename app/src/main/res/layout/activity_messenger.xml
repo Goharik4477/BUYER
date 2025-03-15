@@ -17,7 +17,6 @@
         android:padding="@dimen/_6sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white"
         android:layout_height="@dimen/_30sdp"/>
 
     <TextView

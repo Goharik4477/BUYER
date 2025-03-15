@@ -39,11 +39,13 @@ import BUYER.Navigation.HomeActivity;
 import BUYER.SignInSignUp.ReadWriteUsersdetails;
 import BUYER.adapters.RecentConversationsAdapter;
 import BUYER.adapters.UsersActivity;
+import BUYER.listeners.ConversionListener;
 import BUYER.models.ChatMessage;
+import BUYER.models.User;
 import BUYER.utilities.Constants;
 import BUYER.utilities.PreferenceManager;
 
-public class messenger extends AppCompatActivity {
+public class messenger extends BaseActivity implements ConversionListener {
 private ActivityMessengerBinding binding;
 
     private PreferenceManager preferenceManager;
@@ -99,7 +101,7 @@ private ActivityMessengerBinding binding;
 
     private void init(){
         conversations = new ArrayList<>();
-        conversationsAdapter = new RecentConversationsAdapter(conversations);
+        conversationsAdapter = new RecentConversationsAdapter(conversations, this);
         binding.conversationRecyclerView.setAdapter(conversationsAdapter);
         database = FirebaseFirestore.getInstance();
     }
@@ -111,10 +113,11 @@ private ActivityMessengerBinding binding;
 
    private void loadUserDetails(){
      binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
-        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+       byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+       Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
          binding.imageProfile.setImageBitmap(bitmap);
     }
+
 
     private  void listenConversions(){
         database.collection(Constants.KEY_COLLECTION_CONVERSATION)
@@ -136,7 +139,7 @@ private ActivityMessengerBinding binding;
                     String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
                     ChatMessage chatMessage = new ChatMessage();
                     chatMessage.senderId = senderId;
-                    chatMessage.receiverId =receiverId;
+                    chatMessage.receiverId = receiverId;
 
                     if(preferenceManager.getString(Constants.KEY_USER_ID).equals(senderId)){
                         chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_RECEIVER_IMAGE);
@@ -151,7 +154,7 @@ private ActivityMessengerBinding binding;
                     chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
                     conversations.add(chatMessage);
                 } else if (documentChange.getType() == DocumentChange.Type.MODIFIED) {
-                    for(int i = 0; i<conversations.size(); i++){
+                    for(int i = 0; i < conversations.size(); i++){
                         String senderId =documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                         String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
                         if(conversations.get(i).senderId.equals(senderId) && conversations.get(i).receiverId.equals(receiverId)){
@@ -181,9 +184,15 @@ private ActivityMessengerBinding binding;
                         addOnFailureListener(e -> Toast.makeText(this, "Unable to update token", Toast.LENGTH_SHORT).show());
     }
 
+    @Override
+    public void onConversionClicked(User user) {
+        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER, user);
+        startActivity(intent);
+    }
 
 
-   /* private void showUserProfile(FirebaseUser firebaseUser) {
+    /* private void showUserProfile(FirebaseUser firebaseUser) {
         String userID = firebaseUser.getUid();
 
 

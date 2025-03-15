@@ -1,5 +1,6 @@
 package BUYER.ViewHolder;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 import BUYER.Navigation.HomeActivity;
@@ -149,7 +151,7 @@ private DatabaseReference ProductsRef;
                 });
     }
 
-  /*  private void saveProductInfoToDatabase() {
+ /*private void saveProductInfoToDatabase() {
         if (TextUtils.isEmpty(DescriptionNew) || TextUtils.isEmpty(priceNew)) {
             Toast.makeText(this, "Please fill in all required fields!", Toast.LENGTH_SHORT).show();
             return;
@@ -174,7 +176,7 @@ private DatabaseReference ProductsRef;
             progressDialog.dismiss();
             if (task.isSuccessful()) {
                 Toast.makeText(this, "The ad is posted", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, Home_for_ad.class));
+                startActivity(new Intent(this, Home.class));
                 finish();
             } else {
                 Log.e("FirebaseError", "Error saving product", task.getException());

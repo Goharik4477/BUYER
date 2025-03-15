@@ -2,7 +2,10 @@ package BUYER;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buyer.R;
+import com.example.buyer.databinding.ActivitySecondProfileBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,14 +52,17 @@ public class second_profile extends AppCompatActivity {
     private String fullName, email;
     private PreferenceManager preferenceManager;
     private ImageView imageView;
+     private ActivitySecondProfileBinding binding;
+
     DatabaseReference ProductsRef;
     private FirebaseAuth authProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivitySecondProfileBinding.inflate(getLayoutInflater());
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_second_profile);
+        setContentView(binding.getRoot());
 
 
         preferenceManager = new PreferenceManager(getApplicationContext());
@@ -103,6 +110,7 @@ public class second_profile extends AppCompatActivity {
         }else {
             progressBar.setVisibility(View.VISIBLE);
             showUserProfile(firebaseUser);
+            loadUserDetails();
         }
     }
 
@@ -125,6 +133,7 @@ public class second_profile extends AppCompatActivity {
                     TextViewWelcome.setText(fullName);
                     TextViewFFullName.setText(fullName);
                     TextViewEmail.setText(email);
+
                 }
                 progressBar.setVisibility(View.GONE);
 
@@ -195,6 +204,12 @@ public class second_profile extends AppCompatActivity {
         }).addOnFailureListener(e -> Toast.makeText(this, "Unable sign out", Toast.LENGTH_SHORT).show());
 
 
+    }
+    private void loadUserDetails(){
+
+        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        binding.imageViewProfileDp.setImageBitmap(bitmap);
     }
 
 }

@@ -3,7 +3,7 @@ package BUYER;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.ConditionVariable;
+
 import android.util.Base64;
 import android.view.View;
 
@@ -30,6 +30,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import BUYER.adapters.ChatAdapter;
 import BUYER.models.ChatMessage;
@@ -37,13 +38,14 @@ import BUYER.models.User;
 import BUYER.utilities.Constants;
 import BUYER.utilities.PreferenceManager;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends BaseActivity {
 private ActivityChatBinding binding;
 private List<ChatMessage> chatMessages;
 private ChatAdapter chatAdapter;
 private PreferenceManager preferenceManager;
 private FirebaseFirestore database;
 private User receiverUser;
+private  Boolean isReceiverAvailable = false;
 private String conversionId = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,31 @@ private String conversionId = null;
             addConversion(conversion);
         }
         binding.inputMessage.setText(null);
+    }
+    private void  listenAvailabilityOfReceiver(){
+        database.collection(Constants.KEY_COLLECTION_USERS).document(
+                receiverUser.id
+        ).addSnapshotListener(ChatActivity.this, (value, error) -> {
+            if(error != null){
+                return;
+            }
+            if(value != null){
+                if(value.getLong(Constants.KEY_AVAILABILITY) != null){
+                    int availability = Objects.requireNonNull(
+                            value.getLong(Constants.KEY_AVAILABILITY)
+                    ).intValue();
+                    isReceiverAvailable = availability == 1;
+                }
+                receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
+            }
+            if(isReceiverAvailable){
+                binding.textAvailability.setVisibility(View.VISIBLE);
+            }else{
+                binding.textAvailability.setVisibility(View.GONE);
+            }
+
+        });
+
     }
 
     private void listenMessages(){
@@ -199,4 +226,11 @@ private String conversionId = null;
             conversionId = documentSnapshot.getId();
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listenAvailabilityOfReceiver();
+
+    }
 }

@@ -67,6 +67,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.multidex)
     implementation(libs.glide)
+    implementation(libs.retrofit)
+    implementation(libs.scalarsConverter)
 
 
 }
