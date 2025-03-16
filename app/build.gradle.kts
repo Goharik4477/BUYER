@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.retrofit)
     implementation(libs.scalarsConverter)
+    implementation(libs.ccp)
 
 
 }

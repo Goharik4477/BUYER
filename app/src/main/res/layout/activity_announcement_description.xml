@@ -52,6 +52,7 @@
     android:textColor="@color/green"
     android:textStyle="bold"
     />
+
 <EditText
     android:layout_width="match_parent"
     android:id="@+id/firstCounty"
