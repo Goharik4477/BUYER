@@ -108,6 +108,7 @@ private DatabaseReference ProductsRef;
             link.requestFocus();
         }else{
             storeProductInfo();
+
         }
 
     }
@@ -176,7 +177,7 @@ private DatabaseReference ProductsRef;
             progressDialog.dismiss();
             if (task.isSuccessful()) {
                 Toast.makeText(this, "The ad is posted", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, Home.class));
+                startActivity(new Intent(this, HomeActivity.class));
                 finish();
             } else {
                 Log.e("FirebaseError", "Error saving product", task.getException());
