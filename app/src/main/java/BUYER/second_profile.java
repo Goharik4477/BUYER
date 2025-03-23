@@ -92,7 +92,14 @@ public class second_profile extends AppCompatActivity {
 
 
 
-
+binding.plus.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(second_profile.this, SignIn_or_SignUp.class);
+        startActivity(intent);
+        finish();
+    }
+});
 
         TextViewWelcome = findViewById(R.id.textView_show_welcome);
         TextViewFFullName = findViewById(R.id.show_full_name);

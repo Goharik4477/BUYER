@@ -9,47 +9,59 @@
     tools:context="BUYER.second_profile">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lin"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linley">
-
-        <TextView
-            android:id="@+id/textView_show_welcome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:hint="Username"
-
-            android:layout_marginTop="@dimen/_70sdp"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/white"
-            android:textSize="40dp" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linley"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_content_bottom"
+        android:background="@drawable/oval_login_background"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintTop_toTopOf="@id/lin"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
 
-        <ImageView
-            android:id="@+id/imageView_profile_dp"
-            android:layout_width="178dp"
-            android:layout_height="180dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            >
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView_profile_dp"-->
+        <!--            android:layout_width="@dimen/_150sdp"-->
+        <!--            android:layout_height="@dimen/_150sdp"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginTop="80dp">-->
+        <!---->
+        <!--        </ImageView>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_40ssp"
+            android:orientation="horizontal">
 
-        </ImageView>
+            <com.makeramen.roundedimageview.RoundedImageView
+
+                android:id="@+id/imageView_profile_dp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="left"
+                android:layout_marginStart="@dimen/_10ssp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/baseline_account_circle_24"
+                android:padding="@dimen/_6sdp"
+                android:scaleType="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_oval="true" />
+
+            <TextView
+                android:id="@+id/textView_show_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="@dimen/_50ssp"
+                android:hint="Username"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/blue1"
+                android:textSize="40dp" />
+
+
+        </LinearLayout>
 
 
         <RelativeLayout
@@ -99,6 +111,21 @@
 
 
         </RelativeLayout>
+        <com.makeramen.roundedimageview.RoundedImageView
+
+            android:id="@+id/plus"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="left"
+            android:layout_marginStart="@dimen/_10ssp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/ic_add"
+            android:backgroundTint="@color/blue1"
+            android:padding="@dimen/_6sdp"
+            android:scaleType="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_oval="true" />
 
 
         <ProgressBar
@@ -108,6 +135,7 @@
             android:layout_marginTop="-300dp"
             android:elevation="10dp"
             android:visibility="gone" />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

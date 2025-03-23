@@ -2,7 +2,10 @@ package BUYER.SignInSignUp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,11 +31,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import BUYER.Navigation.HomeActivity;
+import BUYER.utilities.Constants;
+import BUYER.utilities.PreferenceManager;
 
 public class UserProfileActivity extends AppCompatActivity {
     private TextView TextViewWelcome, TextViewFFullName, TextViewEmail;
     private ProgressBar progressBar;
     private String fullName, email;
+    private PreferenceManager preferenceManager;
     private ImageView imageView, buyerBag;
     private FirebaseAuth authProfile;
 
@@ -53,7 +59,7 @@ public class UserProfileActivity extends AppCompatActivity {
         TextViewEmail = findViewById(R.id.show_email);
         progressBar = findViewById(R.id.progressbaruser);
         buyerBag =findViewById(R.id.imageView3);
-
+        preferenceManager = new PreferenceManager(getApplicationContext());
 
 
 
@@ -77,7 +83,9 @@ public class UserProfileActivity extends AppCompatActivity {
         }else {
            checkIfEmailVerified(firebaseUser);
             progressBar.setVisibility(View.VISIBLE);
+           loadUserDetails();
             showUserProfile(firebaseUser);
+
            buyerBag.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -169,6 +177,12 @@ public class UserProfileActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.common_menu,menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+    private void loadUserDetails(){
+
+        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        imageView.setImageBitmap(bitmap);
     }
 
   /* @Override

@@ -4,10 +4,9 @@ public class Products {
     private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew, linkNew, saveCurrentTime, saveCurrentDate;
 
     public Products() {
-        // Пустой конструктор
+
     }
 
-    // Конструктор с параметрами
     public Products(String firstCountryNew, String secondCountyNew, String descriptionNew,
                     String addressNew, String priceNew, String linkNew, String saveCurrentTime, String saveCurrentDate) {
         FirstCountryNew = firstCountryNew;

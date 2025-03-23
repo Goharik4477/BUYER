@@ -2,6 +2,7 @@ package BUYER.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,8 +25,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
 import BUYER.ViewHolder.ProductViewHolder;
@@ -84,13 +88,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home)
                 .setOpenableLayout(drawer)
                 .build();
         recyclerView = findViewById(R.id.recycle_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(HomeActivity.this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
         recyclerView.setLayoutManager(layoutManager);
+
 
     }
 
@@ -114,16 +120,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 holder.ProductLink.setText("Link: " + model.getLinkNew());
                 holder.ProductPrice.setText("Price: " + model.getPriceNew() + " $");
             }
+
             @NonNull
-            @NotNull
             @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items, parent, false);
-                ProductViewHolder holder = new ProductViewHolder(view);
-                return holder;
+                return new ProductViewHolder(view);
             }
         };
-
         recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
