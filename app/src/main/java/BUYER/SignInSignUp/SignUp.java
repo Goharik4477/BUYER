@@ -920,7 +920,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.renderscript.ScriptGroup;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -942,7 +941,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buyer.R;
-import com.example.buyer.databinding.ActivitySignInOrSignUpBinding;
 import com.example.buyer.databinding.NewsignupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -957,13 +955,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-import BUYER.Navigation.HomeActivity;
+import BUYER.home_ads;
 import BUYER.utilities.Constants;
 import BUYER.utilities.PreferenceManager;
 
@@ -1100,6 +1097,7 @@ public class SignUp extends AppCompatActivity {
                     SignupUser(username, email, password, repeat_password,image);
                     signUp();
 
+
                 }
 
 
@@ -1126,7 +1124,7 @@ public class SignUp extends AppCompatActivity {
                     preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManager.putString(Constants.KEY_NAME, Username.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
-                    Intent intent = new Intent(SignUp.this, HomeActivity.class);
+                    Intent intent = new Intent(SignUp.this, home_ads.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 })
@@ -1135,6 +1133,8 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
+
 
     private void loading(Boolean isLoading){
         if(isLoading){

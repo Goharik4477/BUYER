@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.buyer.R;
 
-import BUYER.Navigation.HomeActivity;
+import BUYER.home_ads;
 
 public class RulesForPublishingAnnouncements extends AppCompatActivity {
 Button agree, disagree;
@@ -42,7 +42,7 @@ Button agree, disagree;
         disagree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RulesForPublishingAnnouncements.this, HomeActivity.class));
+                startActivity(new Intent(RulesForPublishingAnnouncements.this, home_ads.class));
                 finish();
             }
         });

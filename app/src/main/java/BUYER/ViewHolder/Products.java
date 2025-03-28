@@ -1,17 +1,26 @@
 package BUYER.ViewHolder;
 
 public class Products {
-    private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew, linkNew, saveCurrentTime, saveCurrentDate;
+    private String firstCountryNew;
+    private String secondCountyNew;
+    private String descriptionNew;
+    private String addressNew;
+    private String priceNew;
+    private String linkNew;
+    private String saveCurrentTime;
+    private String saveCurrentDate;
+
 
     public Products() {
 
     }
 
+
     public Products(String firstCountryNew, String secondCountyNew, String descriptionNew,
                     String addressNew, String priceNew, String linkNew, String saveCurrentTime, String saveCurrentDate) {
-        FirstCountryNew = firstCountryNew;
-        SecondCountyNew = secondCountyNew;
-        DescriptionNew = descriptionNew;
+        this.firstCountryNew = firstCountryNew;
+        this.secondCountyNew = secondCountyNew;
+        this.descriptionNew = descriptionNew;
         this.addressNew = addressNew;
         this.priceNew = priceNew;
         this.linkNew = linkNew;
@@ -21,27 +30,27 @@ public class Products {
 
 
     public String getFirstCountryNew() {
-        return FirstCountryNew;
+        return firstCountryNew;
     }
 
     public void setFirstCountryNew(String firstCountryNew) {
-        FirstCountryNew = firstCountryNew;
+        this.firstCountryNew = firstCountryNew;
     }
 
     public String getSecondCountyNew() {
-        return SecondCountyNew;
+        return secondCountyNew;
     }
 
     public void setSecondCountyNew(String secondCountyNew) {
-        SecondCountyNew = secondCountyNew;
+        this.secondCountyNew = secondCountyNew;
     }
 
     public String getDescriptionNew() {
-        return DescriptionNew;
+        return descriptionNew;
     }
 
     public void setDescriptionNew(String descriptionNew) {
-        DescriptionNew = descriptionNew;
+        this.descriptionNew = descriptionNew;
     }
 
     public String getAddressNew() {

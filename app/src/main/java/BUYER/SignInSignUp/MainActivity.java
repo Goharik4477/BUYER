@@ -11,7 +11,7 @@ import com.example.buyer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import BUYER.Navigation.HomeActivity;
+import BUYER.home_ads;
 
 public class MainActivity extends AppCompatActivity {
 private FirebaseAuth authProfile;
@@ -39,7 +39,7 @@ private FirebaseAuth authProfile;
                 new Handler().postDelayed(new Runnable() {
                  @Override
                  public void run() {
-                     startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                     startActivity(new Intent(MainActivity.this, home_ads.class));
                      finish();
                  }
              },3000);

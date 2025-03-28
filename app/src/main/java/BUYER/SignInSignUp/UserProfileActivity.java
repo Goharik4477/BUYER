@@ -30,7 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import BUYER.Navigation.HomeActivity;
+import BUYER.home_ads;
 import BUYER.utilities.Constants;
 import BUYER.utilities.PreferenceManager;
 
@@ -89,7 +89,7 @@ public class UserProfileActivity extends AppCompatActivity {
            buyerBag.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                   startActivity(new Intent(UserProfileActivity.this, HomeActivity.class));
+                   startActivity(new Intent(UserProfileActivity.this, home_ads.class));
                    finish();
                }
            });

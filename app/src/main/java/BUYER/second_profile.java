@@ -1,6 +1,5 @@
 package BUYER;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buyer.R;
@@ -35,7 +33,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
-import BUYER.Navigation.HomeActivity;
 import BUYER.SignInSignUp.ReadWriteUsersdetails;
 import BUYER.SignInSignUp.SignIn_or_SignUp;
 import BUYER.UserProfileSetting.ChangePasswordActivity;
@@ -54,7 +51,7 @@ public class second_profile extends AppCompatActivity {
     private ImageView imageView;
      private ActivitySecondProfileBinding binding;
 
-    DatabaseReference ProductsRef;
+
     private FirebaseAuth authProfile;
 
     @Override
@@ -70,7 +67,7 @@ public class second_profile extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.menu_bottom_profile);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.menu_bottom_home) {
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), home_ads.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;
@@ -82,9 +79,12 @@ public class second_profile extends AppCompatActivity {
             } else if (item.getItemId() == R.id.menu_bottom_new_ad) {
                 startActivity(new Intent(getApplicationContext(), add_new_ad.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();}
+            else if (item.getItemId() == R.id.menu_bottom_notification) {
+                startActivity(new Intent(getApplicationContext(), notifications.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
-                return true;
-            } else if (item.getItemId() == R.id.menu_bottom_profile) {
+                return true;} else if (item.getItemId() == R.id.menu_bottom_profile) {
                 return true;
             }
             return false;

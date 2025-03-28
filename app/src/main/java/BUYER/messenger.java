@@ -6,24 +6,12 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buyer.R;
 import com.example.buyer.databinding.ActivityMessengerBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -35,8 +23,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import BUYER.Navigation.HomeActivity;
-import BUYER.SignInSignUp.ReadWriteUsersdetails;
 import BUYER.adapters.RecentConversationsAdapter;
 import BUYER.adapters.UsersActivity;
 import BUYER.listeners.ConversionListener;
@@ -52,6 +38,7 @@ private ActivityMessengerBinding binding;
    private List<ChatMessage> conversations;
    private RecentConversationsAdapter conversationsAdapter;
    private FirebaseFirestore database;
+    private FirebaseAuth authProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +54,7 @@ private ActivityMessengerBinding binding;
         getSupportActionBar().hide();
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.menu_bottom_home) {
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), home_ads.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;
@@ -83,7 +70,11 @@ private ActivityMessengerBinding binding;
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;
-            }
+            }else if (item.getItemId() == R.id.menu_bottom_notification) {
+                startActivity(new Intent(getApplicationContext(), notifications.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;}
             return false;
         });
 
@@ -101,9 +92,11 @@ private ActivityMessengerBinding binding;
 
     private void init(){
         conversations = new ArrayList<>();
+
         conversationsAdapter = new RecentConversationsAdapter(conversations, this);
         binding.conversationRecyclerView.setAdapter(conversationsAdapter);
         database = FirebaseFirestore.getInstance();
+
     }
 
     public Bitmap decodeBase64(String encodedImage) {

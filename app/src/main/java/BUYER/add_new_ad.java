@@ -15,21 +15,15 @@ import com.example.buyer.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.api.Authentication;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.hbb20.CountryCodePicker;
 
-import java.net.Authenticator;
 import java.util.concurrent.TimeUnit;
 
-import BUYER.Navigation.HomeActivity;
 import BUYER.ViewHolder.RulesForPublishingAnnouncements;
 
 public class add_new_ad extends AppCompatActivity {
@@ -52,7 +46,7 @@ public class add_new_ad extends AppCompatActivity {
         getSupportActionBar().hide();
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.menu_bottom_home) {
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), home_ads.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;
@@ -68,7 +62,11 @@ public class add_new_ad extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;
-            }
+            }   else if (item.getItemId() == R.id.menu_bottom_notification) {
+                startActivity(new Intent(getApplicationContext(), notifications.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;}
             return false;
         });
         mAuth = FirebaseAuth.getInstance();
