@@ -132,8 +132,9 @@ private DatabaseReference ProductsRef;
             return;
         }
 
+      //  saveProductInfoToDatabase();
 
-        SaveProduct saveProduct = new SaveProduct(
+  SaveProduct saveProduct = new SaveProduct(
                 FirstCountryNew, SecondCountyNew, DescriptionNew,
                 addressNew, priceNew, linkNew, saveCurrentTime, saveCurrentDate, productRandomKey
         );
@@ -152,7 +153,7 @@ private DatabaseReference ProductsRef;
                 });
     }
 
- /*private void saveProductInfoToDatabase() {
+/* private void saveProductInfoToDatabase() {
         if (TextUtils.isEmpty(DescriptionNew) || TextUtils.isEmpty(priceNew)) {
             Toast.makeText(this, "Please fill in all required fields!", Toast.LENGTH_SHORT).show();
             return;
@@ -185,4 +186,57 @@ private DatabaseReference ProductsRef;
             }
         });
     }*/
+/*private void saveProductInfoToDatabase() {
+    if (TextUtils.isEmpty(DescriptionNew) || TextUtils.isEmpty(priceNew)) {
+        Toast.makeText(this, "Please fill in all required fields!", Toast.LENGTH_SHORT).show();
+        return;
+    }
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = auth.getCurrentUser();
+
+    if (currentUser != null) {
+        String userId = currentUser.getUid();
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference("Products");
+
+        HashMap<String, Object> productMap = new HashMap<>();
+        productMap.put("productID", productRandomKey);
+        productMap.put("productDate", saveCurrentDate);
+        productMap.put("productTime", saveCurrentTime);
+        productMap.put("productDescription", DescriptionNew);
+        productMap.put("productFirsCountry", FirstCountryNew);
+        productMap.put("productSecondCountry", SecondCountyNew);
+        productMap.put("productAddress", addressNew);
+        productMap.put("productPrice", priceNew);
+        productMap.put("productLink", linkNew);
+
+        productsRef.child(productRandomKey).setValue(productMap)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(this, "The ad is posted", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Failed to post the ad. Try again!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+    ProgressDialog progressDialog = new ProgressDialog(this);
+    progressDialog.setMessage("Posting your ad...");
+    progressDialog.setCancelable(false);  // Prevent cancellation
+    progressDialog.show();
+
+    HashMap<String, Object> productMap = new HashMap<>();
+    productMap.put("productID", productRandomKey);
+
+
+    ProductsRef.child(productRandomKey).setValue(productMap).addOnCompleteListener(task -> {
+        progressDialog.dismiss();
+        if (task.isSuccessful()) {
+            Toast.makeText(this, "The ad is posted", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        } else {
+            Log.e("FirebaseError", "Error saving product", task.getException());
+            Toast.makeText(this, "Failed to post the ad. Try again!", Toast.LENGTH_SHORT).show();
+        }
+    });
+}*/
 }

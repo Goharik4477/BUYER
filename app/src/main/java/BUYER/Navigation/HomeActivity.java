@@ -94,7 +94,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         recyclerView = findViewById(R.id.recycle_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(HomeActivity.this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
         recyclerView.setLayoutManager(layoutManager);
 
 
