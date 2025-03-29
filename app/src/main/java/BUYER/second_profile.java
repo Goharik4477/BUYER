@@ -3,6 +3,7 @@ package BUYER;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
@@ -15,10 +16,12 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.buyer.R;
 import com.example.buyer.databinding.ActivitySecondProfileBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +33,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
@@ -44,11 +51,13 @@ import BUYER.utilities.PreferenceManager;
 
 public class second_profile extends AppCompatActivity {
 
-    private TextView TextViewWelcome, TextViewFFullName, TextViewEmail;
+    private TextView TextViewWelcome, TextViewFFullName, TextViewEmail, TextViewPosts;
     private ProgressBar progressBar;
     private String fullName, email;
     private PreferenceManager preferenceManager;
     private ImageView imageView;
+    FirebaseStorage storage;
+    FirebaseDatabase database;
      private ActivitySecondProfileBinding binding;
 
 
@@ -60,7 +69,7 @@ public class second_profile extends AppCompatActivity {
         binding = ActivitySecondProfileBinding.inflate(getLayoutInflater());
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
-
+database = FirebaseDatabase.getInstance();
 
         preferenceManager = new PreferenceManager(getApplicationContext());
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -105,9 +114,8 @@ binding.plus.setOnClickListener(new View.OnClickListener() {
         TextViewFFullName = findViewById(R.id.show_full_name);
         TextViewEmail = findViewById(R.id.show_email);
         progressBar = findViewById(R.id.progressbaruser);
-
-
-
+        TextViewPosts = findViewById(R.id.show_posts);
+TextViewPosts.setText(" posts");
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
@@ -119,9 +127,42 @@ binding.plus.setOnClickListener(new View.OnClickListener() {
             showUserProfile(firebaseUser);
             loadUserDetails();
         }
+
+// storage =FirebaseStorage.getInstance();
+
+      /*  binding.ChangeCoverPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, 11);
+            }
+        });
+*/
     }
 
+ /*   @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data.getData() != null );
+        Uri uri = data.getData();
+        binding.imageViewProfileDp.setImageURI(uri);
+        final StorageReference reference = storage.getReference().child("cover_photo").child(FirebaseAuth.getInstance().getUid());
 
+        reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(second_profile.this, "PhotoSaved", Toast.LENGTH_SHORT).show();
+                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        database.getReference().child("Users").child(authProfile.getUid()).child("coverPhoto").setValue(uri.toString());
+                    }
+                });
+            }
+        });
+    }*/
 
     private void showUserProfile(FirebaseUser firebaseUser) {
         String userID = firebaseUser.getUid();

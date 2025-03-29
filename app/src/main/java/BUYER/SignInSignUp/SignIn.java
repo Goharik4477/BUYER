@@ -81,16 +81,16 @@ preferenceManager = new PreferenceManager(getApplicationContext());
         });
 
         ImageView imageViewShowGidePwd = findViewById(R.id.hide_showPwd);
-        imageViewShowGidePwd.setImageResource(R.drawable.passwordhide);
+        imageViewShowGidePwd.setImageResource(R.drawable.outline_visibility_off_24);
         imageViewShowGidePwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(editTextLoginPwd.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
                     editTextLoginPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    imageViewShowGidePwd.setImageResource(R.drawable.passwordhide);
+                    imageViewShowGidePwd.setImageResource(R.drawable.outline_visibility_off_24);
                 } else {
                     editTextLoginPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    imageViewShowGidePwd.setImageResource(R.drawable.passwordshow);
+                    imageViewShowGidePwd.setImageResource(R.drawable.outline_visibility_24);
                 }
             }
         });

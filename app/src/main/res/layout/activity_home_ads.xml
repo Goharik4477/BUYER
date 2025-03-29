@@ -8,95 +8,146 @@
     android:layout_height="match_parent"
     tools:context="BUYER.home_ads">
 
-    <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp">
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/imageProfile"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/baseline_account_circle_24"
-                android:scaleType="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:riv_oval="true" />
-
-            <TextView
-                android:id="@+id/textName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_80sdp"
-                android:layout_marginEnd="@dimen/_80sdp"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageProfile" />
-
-            <TextView
-                android:id="@+id/textHome"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:ellipsize="end"
-                android:gravity="left"
-
-                android:text="Home"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_20ssp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textName" />
-
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_16sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageProfile">
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/dashboard"
-
-                    android:clipToPadding="false"
-                    android:overScrollMode="never"
-                    android:padding="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textName"
-
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-
-            </FrameLayout>
+<!--    <ScrollView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+<!---->
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_10sdp">-->
+<!---->
+<!--            <com.makeramen.roundedimageview.RoundedImageView-->
+<!--                android:id="@+id/imageProfile"-->
+<!--                android:layout_width="@dimen/_35sdp"-->
+<!--                android:layout_height="@dimen/_35sdp"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:background="@drawable/baseline_account_circle_24"-->
+<!--                android:scaleType="center"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:riv_oval="true" />-->
+<!---->
+<!--            <TextView-->
+<!--                android:id="@+id/textName"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/_80sdp"-->
+<!--                android:layout_marginEnd="@dimen/_80sdp"-->
+<!--                android:ellipsize="end"-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="@dimen/_14ssp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/imageProfile"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/imageProfile" />-->
+<!---->
+<!--            <TextView-->
+<!--                android:id="@+id/textHome"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/_10sdp"-->
+<!--                android:ellipsize="end"-->
+<!--                android:gravity="left"-->
+<!---->
+<!--                android:text="Home"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="@dimen/_20ssp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/textName"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/textName" />-->
+<!---->
+<!---->
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/dashboard"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="@dimen/_50ssp"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:orientation="vertical"-->
+<!--                android:overScrollMode="never"-->
+<!--                android:padding="@dimen/_20sdp"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/textHome"-->
+<!--                app:layout_constraintVertical_bias="0.0"-->
+<!--                tools:ignore="NotSibling"-->
+<!--                tools:layout_editor_absoluteX="0dp" />-->
+<!---->
+<!---->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!---->
+<!---->
+<!---->
+<!--</ScrollView>-->
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/baseline_account_circle_24"
+        android:scaleType="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_oval="true" />
+
+    <ImageView
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/baseline_search_24"
+android:id="@+id/search"
+        app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
+
+        app:layout_constraintEnd_toStartOf="@+id/imageProfile"
+        app:layout_constraintTop_toTopOf="@+id/imageProfile" />
 
 
+    <TextView
+        android:id="@+id/textHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:text="Home"
 
-</ScrollView>
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageProfile"
+        app:layout_constraintVertical_bias="0.6" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-
+        android:layout_marginTop="@dimen/_50ssp"
+        android:layout_marginBottom="@dimen/_80ssp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:paddingTop="@dimen/_10ssp"
+        android:paddingBottom="@dimen/_40ssp"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingEnd="@dimen/_5sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintTop_toBottomOf="@+id/textHome"
+        app:layout_constraintVertical_bias="0.457"
+        tools:layout_editor_absoluteX="0dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -105,7 +156,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="-2dp"
-        android:background="@color/blue1"
+        android:background="@drawable/singin_green_color"
         android:elevation="2dp"
         app:itemIconSize="25dp"
         app:itemIconTint="@drawable/item_selector"

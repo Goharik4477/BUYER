@@ -1,26 +1,40 @@
 package BUYER;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buyer.R;
 import com.example.buyer.databinding.ActivityNotificationsBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class notifications extends AppCompatActivity {
+import java.util.ArrayList;
 
+import BUYER.Adapter.NotificationAdapter;
+import BUYER.Model.NotificationModel;
+import BUYER.utilities.Constants;
+import BUYER.utilities.PreferenceManager;
+
+public class notifications extends AppCompatActivity {
+    private ActivityNotificationsBinding binding;
+RecyclerView recyclerView;
+ArrayList<NotificationModel> list;
+    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_notifications);
+        binding = ActivityNotificationsBinding.inflate(getLayoutInflater());
+        preferenceManager = new PreferenceManager(getApplicationContext());
+        setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -50,5 +64,37 @@ public class notifications extends AppCompatActivity {
             }
             return false;
         });
+
+        recyclerView = findViewById(R.id.NotificationsRecyclerView);
+        list = new ArrayList<>();
+
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        list.add(new NotificationModel(R.drawable.baseline_sentiment_satisfied_alt_24, "Alooo", "now"));
+        NotificationAdapter adapter = new NotificationAdapter(list, getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        loadUserDetails();
+    }
+
+    private void loadUserDetails(){
+
+        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        binding.imageProfile.setImageBitmap(bitmap);
     }
 }

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="BUYER.CommentActivity">
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="48dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_background">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+
+                android:id="@+id/imageView_profile_dp_comment"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="left"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="68dp"
+                android:layout_marginBottom="@dimen/_10ssp"
+                android:background="@drawable/baseline_account_circle_24"
+                android:padding="@dimen/_6sdp"
+                android:scaleType="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_oval="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/oval_login_background"
+                android:paddingStart="@dimen/_10ssp"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingEnd="@dimen/_10ssp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:text="name"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintBottom_toBottomOf="@id/imageView_profile_dp_comment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_profile_dp_comment"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.885" />
+
+
+            <TextView
+                android:id="@+id/descriptionComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10ssp"
+                android:gravity="left"
+                android:text="text descrip"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_profile_dp_comment" />
+
+            <LinearLayout
+                android:id="@+id/commentCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionComment">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/outline_add_comment_24"
+                    android:backgroundTint="@color/blue1" />
+
+                <TextView
+                    android:id="@+id/CommentCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:paddingTop="@dimen/_10ssp"
+                    android:text="25"
+                    android:textSize="@dimen/_15sdp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RVComments"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10ssp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_40ssp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/commentCount" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/oval_login_background"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:orientation="horizontal">
+
+    <EditText
+        android:layout_width="311dp"
+        android:layout_height="@dimen/_40ssp"
+        android:layout_margin="@dimen/_10ssp"
+        android:layout_marginEnd="@dimen/_50ssp"
+        android:layout_marginBottom="@dimen/_10ssp"
+        android:background="@drawable/oval_login_background"
+        android:hint="commnet"
+        android:id="@+id/writeComment"
+        android:padding="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+    <ImageView
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40ssp"
+        android:id="@+id/send_comment"
+        android:background="@drawable/ic_send"
+        android:backgroundTint="@color/blue1"
+        android:layout_margin="@dimen/_10ssp"/>
+</LinearLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

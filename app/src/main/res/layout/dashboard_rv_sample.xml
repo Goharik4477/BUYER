@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    android:layout_marginBottom="@dimen/_10ssp"
+             android:layout_height="wrap_content">
     <ScrollView
         android:layout_width="match_parent"
         android:background="@drawable/oval_public"
@@ -23,10 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/ImageIconDash"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
 
                 <TextView
                     android:id="@+id/textNameDash"
@@ -35,31 +32,66 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/app_name"
-
+                    android:layout_marginBottom="@dimen/_10ssp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:textSize="20dp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/FCounty"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_15ssp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Product Country"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                />
 
             <TextView
                 android:id="@+id/SCountry"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_15ssp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Buyer Country"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                />
+            <TextView
+                android:id="@+id/Category"
+                android:textSize="@dimen/_15ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Category"
+                android:textColor="@color/white"
+                />
 
+
+
+            <TextView
+                android:id="@+id/productAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="address"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/productLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="link"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/white"
+                />
             <TextView
                 android:id="@+id/ProductDescription"
                 android:textSize="@dimen/_15ssp"
@@ -69,29 +101,8 @@
                 android:layout_marginTop="10dp"
                 android:text="Description"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+               />
 
-            <TextView
-                android:id="@+id/productAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="address"
-                android:textSize="@dimen/_20ssp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/productLink"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="link"
-                android:textSize="@dimen/_20ssp"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/ProductPrice"
@@ -101,17 +112,26 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="price"
-                android:textSize="@dimen/_25ssp"
+                android:textSize="@dimen/_15ssp"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:gravity="right"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="@dimen/_25ssp"
-                android:layout_height="@dimen/_25ssp"
-                android:layout_marginEnd="@dimen/_25ssp"
-                android:src="@drawable/outline_add_comment_24"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_20sdp"/>
+    <ImageView
+        android:layout_width="@dimen/_25ssp"
+        android:layout_height="@dimen/_25ssp"
+        android:id="@+id/postMessage"
+        android:layout_marginEnd="@dimen/_15ssp"
+        android:src="@drawable/outline_add_comment_24"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_20sdp"/>
+</LinearLayout>
+
 
 
 
