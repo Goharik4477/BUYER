@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,48 +9,200 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Verify the authenticity of your number before posting an ad."
+    android:text="Post Example"
     android:textColor="@color/blue1"
     android:textStyle="bold"
+    android:id="@+id/example"
+    app:layout_constraintTop_toTopOf="parent"
     android:textSize="@dimen/_20ssp"
     android:textAlignment="center"
-    android:padding="@dimen/_25ssp"/>
+    android:padding="@dimen/_2ssp"/>
+<!---->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_margin="@dimen/_15ssp"-->
+<!--        android:padding="@dimen/_8ssp"-->
+<!--        android:gravity="center"-->
+<!--        android:background="@drawable/oval_login_background"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:id="@+id/layout_1">-->
+<!--        <com.hbb20.CountryCodePicker-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/ccp"-->
+<!--            android:gravity="center"/>-->
+<!--        <EditText-->
+<!--            android:layout_width="@dimen/_150sdp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/phone_no"-->
+<!--            android:inputType="number"/>-->
+<!---->
+<!---->
+<!--    </LinearLayout>-->
+<!--    <Button-->
+<!--        android:id="@+id/submit_btn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_above="@+id/add_new"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_marginStart="113dp"-->
+<!--        android:layout_marginEnd="100dp"-->
+<!--        android:layout_marginBottom="23dp"-->
+<!--        android:backgroundTint="@color/blue1"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:text="Send" />-->
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
+        android:background="@drawable/oval_public"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/_15ssp"
-        android:padding="@dimen/_8ssp"
-        android:gravity="center"
-        android:background="@drawable/oval_login_background"
-        android:orientation="horizontal"
-        android:id="@+id/layout_1">
-        <com.hbb20.CountryCodePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ccp"
-            android:gravity="center"/>
-        <EditText
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="wrap_content"
-            android:id="@+id/phone_no"
-            android:inputType="number"/>
+        android:padding="10dp"
+        android:layout_marginTop="@dimen/_10ssp"
+        app:layout_constraintTop_toBottomOf="@+id/example"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="76dp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+
+                    android:id="@+id/imageView_profile_dp_post"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="left"
+                    android:layout_marginStart="@dimen/_10ssp"
+                    android:layout_marginTop="80dp"
+                    android:background="@drawable/baseline_account_circle_24"
+                    android:padding="@dimen/_6sdp"
+                    android:scaleType="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_oval="true" />
+
+                <TextView
+                    android:id="@+id/textNameDash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Username"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/FCounty"
+                android:textSize="@dimen/_15ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Product Country"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/SCountry"
+                android:textSize="@dimen/_15ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Buyer Country"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:id="@+id/Category"
+                android:textSize="@dimen/_15ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Category"
+                android:textColor="@color/white"
+                />
 
 
-    </LinearLayout>
-    <Button
-        android:id="@+id/submit_btn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_above="@+id/add_new"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="113dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="23dp"
-        android:backgroundTint="@color/blue1"
-        android:textColor="@color/white"
-        android:text="Send" />
+
+            <TextView
+                android:id="@+id/productAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="address"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/productLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="link"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:id="@+id/ProductDescription"
+                android:textSize="@dimen/_15ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Description"
+                android:textColor="@color/white"
+                />
+
+
+            <TextView
+                android:id="@+id/ProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="price"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/_25ssp"
+                    android:layout_height="@dimen/_25ssp"
+                    android:id="@+id/postMessage"
+                    android:layout_marginEnd="@dimen/_15ssp"
+                    android:src="@drawable/outline_add_comment_24"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_20sdp"/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/add_new"
@@ -58,25 +210,30 @@
         android:layout_height="50dp"
         android:layout_above="@+id/bottomNavigation"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="113dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="23dp"
         android:backgroundTint="@color/blue1"
-        android:text="add" />
+        android:text="add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="437dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="-2dp"
-        android:background="@drawable/singin_green_color"
+        android:background="@color/blue1"
         android:elevation="2dp"
         app:itemIconSize="25dp"
         app:itemIconTint="@drawable/item_selector"
         app:itemRippleColor="@android:color/transparent"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_menu" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_menu"
+        tools:layout_editor_absoluteX="16dp" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

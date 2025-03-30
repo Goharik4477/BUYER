@@ -28,10 +28,10 @@ import BUYER.ViewHolder.RulesForPublishingAnnouncements;
 
 public class add_new_ad extends AppCompatActivity {
     Button add;
-    private Button submitButton;
-    private EditText phone_txt;
+  //  private Button submitButton;
+  //  private EditText phone_txt;
     private FirebaseAuth mAuth;
-    private CountryCodePicker ccp;
+ //   private CountryCodePicker ccp;
 
 
 
@@ -70,22 +70,22 @@ public class add_new_ad extends AppCompatActivity {
             return false;
         });
         mAuth = FirebaseAuth.getInstance();
-        submitButton = findViewById(R.id.submit_btn);
-        phone_txt = findViewById(R.id.phone_no);
-        ccp = findViewById(R.id.ccp);
-        ccp.registerCarrierNumberEditText(phone_txt);
-
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(TextUtils.isEmpty(phone_txt.getText().toString().trim())){
-                    Toast.makeText(add_new_ad.this, "Please enter phone number", Toast.LENGTH_SHORT).show();
-                } else {
-                    String  getNo =ccp.getFullNumberWithPlus().replace(" ", "");
-                    Authentication(getNo);
-                }
-            }
-        });
+//        submitButton = findViewById(R.id.submit_btn);
+//        phone_txt = findViewById(R.id.phone_no);
+//        ccp = findViewById(R.id.ccp);
+//        ccp.registerCarrierNumberEditText(phone_txt);
+//
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(TextUtils.isEmpty(phone_txt.getText().toString().trim())){
+//                    Toast.makeText(add_new_ad.this, "Please enter phone number", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    String  getNo =ccp.getFullNumberWithPlus().replace(" ", "");
+//                    Authentication(getNo);
+//                }
+//            }
+//        });
 
 
 

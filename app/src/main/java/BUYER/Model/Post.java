@@ -3,7 +3,7 @@ package BUYER.Model;
 public class Post {
     private String postId;
     private String postedBy;
-    private  String postDescription, FirsCountry, SecondCountry, Address, Link, Price, category ;
+    private  String postDescription, FirsCountry, SecondCountry, Address, Link, Price, category, username  ;
     private long postedAt;
     private int PostMessage;
 
@@ -14,7 +14,8 @@ public class Post {
 
 
 
-    public Post(String postId, String postedBy, String postDescription, String firsCountry, String secondCountry, String address, String link, String price, long postedAt, String category) {
+
+    public Post(String postId, String postedBy, String postDescription, String firsCountry, String secondCountry, String address, String link, String price, long postedAt, String category, String username) {
         this.postId = postId;
         this.postedBy = postedBy;
         this.postDescription = postDescription;
@@ -22,9 +23,17 @@ public class Post {
         SecondCountry = secondCountry;
         Address = address;
         Link = link;
+        this.username = username;
         Price = price;
         this.postedAt = postedAt;
         this.category = category;
+    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getCategory() {

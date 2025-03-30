@@ -57,32 +57,33 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
 
         Post model = list.get(position);
         holder.binding.ProductDescription.setText(model.getPostDescription());
-        holder.binding.FCounty.setText(model.getFirsCountry());
+        holder.binding.FCounty.setText("To: "+ model.getFirsCountry());
         holder.binding.ProductDescription.setText(model.getPostDescription());
-        holder.binding.SCountry.setText(model.getSecondCountry());
-        holder.binding.productAddress.setText(model.getAddress());
-        holder.binding.productLink.setText(model.getLink());
+        holder.binding.SCountry.setText("From: "+model.getSecondCountry());
+        holder.binding.productAddress.setText("Address: " +model.getAddress());
+        holder.binding.productLink.setText("Link: "+model.getLink());
         holder.binding.ProductPrice.setText(model.getPrice() + " $");
         holder.binding.Category.setText(model.getCategory());
+        holder.binding.textNameDash.setText(model.getUsername());
 
-        FirebaseDatabase.getInstance().getReference().child("Users")
-               .child(model.getPostedBy()).addListenerForSingleValueEvent(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-                       UserNot user = snapshot.getValue(UserNot.class);
-
-
-                       if (user != null) {
-                            holder.binding.textNameDash.setText(user.getName());
-
-                      }
-                    }
-
-                   @Override
-                  public void onCancelled(@NonNull DatabaseError error) {
-
-                   }
-                });
+//        FirebaseDatabase.getInstance().getReference().child("Users")
+//               .child(model.getPostedBy()).addListenerForSingleValueEvent(new ValueEventListener() {
+//                   @Override
+//                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                       UserNot user = snapshot.getValue(UserNot.class);
+//
+//
+//                       if (user != null) {
+//                            holder.binding.textNameDash.setText(user.getName());
+//
+//                      }
+//                    }
+//
+//                   @Override
+//                  public void onCancelled(@NonNull DatabaseError error) {
+//
+//                   }
+//                });
 //                holder.binding.postMessage.setOnClickListener(new View.OnClickListener() {
 //    @Override
 //    public void onClick(View v) {

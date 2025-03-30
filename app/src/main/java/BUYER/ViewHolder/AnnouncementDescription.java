@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,14 +38,19 @@ import java.util.Locale;
 import BUYER.ChatActivity;
 import BUYER.Model.Post;
 import BUYER.SignInSignUp.SignIn;
+import BUYER.SignInSignUp.UserNot;
 import BUYER.home_ads;
 import BUYER.models.User;
 import BUYER.utilities.Constants;
+import BUYER.utilities.PreferenceManager;
+
 public class AnnouncementDescription extends AppCompatActivity {
     private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew, linkNew;
     private EditText Category, FirstCountry, SecondCounty, Description, address, price, link;
     private Button Public;
+    private PreferenceManager preferenceManager;
     FirebaseDatabase database;
+    ImageView imageView;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseUser user = auth.getCurrentUser();
 
@@ -54,7 +60,7 @@ public class AnnouncementDescription extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_announcement_description);
         getSupportActionBar().hide();
-
+        preferenceManager = new PreferenceManager(getApplicationContext());
         Category = findViewById(R.id.Category);
         FirstCountry = findViewById(R.id.firstCounty);
         SecondCounty = findViewById(R.id.SecondCountry);
@@ -76,7 +82,10 @@ public class AnnouncementDescription extends AppCompatActivity {
             String categoryName = getIntent().getExtras().get("Category").toString();
             Toast.makeText(this, "Select Category " + categoryName, Toast.LENGTH_SHORT).show();
             Category.setText("Category: " + categoryName);
+
+
         }
+
 
         Public.setOnClickListener(v -> {
             ValidateProductData();
@@ -88,6 +97,8 @@ public class AnnouncementDescription extends AppCompatActivity {
             post.setPrice(priceNew);
             post.setLink(linkNew);
             post.setCategory(Category.getText().toString());
+            post.setUsername(preferenceManager.getString(Constants.KEY_NAME));
+
 
             post.setPostedBy(FirebaseAuth.getInstance().getUid());
             post.setPostedAt(new Date().getTime());
