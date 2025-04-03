@@ -62,9 +62,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
         holder.binding.SCountry.setText("From: "+model.getSecondCountry());
         holder.binding.productAddress.setText("Address: " +model.getAddress());
         holder.binding.productLink.setText("Link: "+model.getLink());
-        holder.binding.ProductPrice.setText(model.getPrice() + " $");
+        holder.binding.ProductPrice.setText("Product Price: "+model.getPrice() + " $");
         holder.binding.Category.setText(model.getCategory());
         holder.binding.textNameDash.setText(model.getUsername());
+        holder.binding.ServicePrice.setText("Service Price: "+model.getPriceForService());
 
 //        FirebaseDatabase.getInstance().getReference().child("Users")
 //               .child(model.getPostedBy()).addListenerForSingleValueEvent(new ValueEventListener() {

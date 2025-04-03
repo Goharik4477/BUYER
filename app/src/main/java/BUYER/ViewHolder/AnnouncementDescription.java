@@ -45,8 +45,8 @@ import BUYER.utilities.Constants;
 import BUYER.utilities.PreferenceManager;
 
 public class AnnouncementDescription extends AppCompatActivity {
-    private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew, linkNew;
-    private EditText Category, FirstCountry, SecondCounty, Description, address, price, link;
+    private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew,PriceNewService, linkNew;
+    private EditText Category, FirstCountry, SecondCounty, Description, address, price, link, priceForService;
     private Button Public;
     private PreferenceManager preferenceManager;
     FirebaseDatabase database;
@@ -69,7 +69,7 @@ public class AnnouncementDescription extends AppCompatActivity {
         price = findViewById(R.id.price);
         link = findViewById(R.id.link);
         Public = findViewById(R.id.buttonPublic);
-
+        priceForService = findViewById(R.id.priceForService);
         database = FirebaseDatabase.getInstance();
 
         if (user == null) {
@@ -98,7 +98,7 @@ public class AnnouncementDescription extends AppCompatActivity {
             post.setLink(linkNew);
             post.setCategory(Category.getText().toString());
             post.setUsername(preferenceManager.getString(Constants.KEY_NAME));
-
+            post.setPriceForService(PriceNewService);
 
             post.setPostedBy(FirebaseAuth.getInstance().getUid());
             post.setPostedAt(new Date().getTime());
@@ -123,6 +123,7 @@ public class AnnouncementDescription extends AppCompatActivity {
         addressNew = address.getText().toString();
         priceNew = price.getText().toString();
         linkNew = link.getText().toString();
+        PriceNewService = priceForService.getText().toString();
 
 
         if (TextUtils.isEmpty(DescriptionNew)) {
@@ -155,7 +156,12 @@ public class AnnouncementDescription extends AppCompatActivity {
             link.setError("Add a link");
             link.requestFocus();
             return;
-        }
+        } else if (TextUtils.isEmpty(PriceNewService)) {
+            Toast.makeText(this, "Add a price for service", Toast.LENGTH_SHORT).show();
+            priceForService.setError("Add a price");
+            priceForService.requestFocus();
+            return;
+    }
     }
 
 }
