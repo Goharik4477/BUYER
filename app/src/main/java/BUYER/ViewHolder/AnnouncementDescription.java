@@ -28,8 +28,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,18 +41,21 @@ import BUYER.ChatActivity;
 import BUYER.Model.Post;
 import BUYER.SignInSignUp.SignIn;
 import BUYER.SignInSignUp.UserNot;
+import BUYER.adapters.ChatAdapter;
 import BUYER.home_ads;
 import BUYER.models.User;
 import BUYER.utilities.Constants;
 import BUYER.utilities.PreferenceManager;
 
 public class AnnouncementDescription extends AppCompatActivity {
-    private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew,PriceNewService, linkNew;
+    private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew,PriceNewService, linkNew, id;
     private EditText Category, FirstCountry, SecondCounty, Description, address, price, link, priceForService;
     private Button Public;
     private PreferenceManager preferenceManager;
     FirebaseDatabase database;
     ImageView imageView;
+
+    private FirebaseFirestore FStoreDatabase;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseUser user = auth.getCurrentUser();
 
@@ -60,6 +65,13 @@ public class AnnouncementDescription extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_announcement_description);
         getSupportActionBar().hide();
+
+        preferenceManager = new PreferenceManager(getApplicationContext());
+     id = preferenceManager.getString(Constants.KEY_USER_ID);
+
+
+
+        FStoreDatabase = FirebaseFirestore.getInstance();
         preferenceManager = new PreferenceManager(getApplicationContext());
         Category = findViewById(R.id.Category);
         FirstCountry = findViewById(R.id.firstCounty);
@@ -99,11 +111,12 @@ public class AnnouncementDescription extends AppCompatActivity {
             post.setCategory(Category.getText().toString());
             post.setUsername(preferenceManager.getString(Constants.KEY_NAME));
             post.setPriceForService(PriceNewService);
+            post.setUserId(id);
 
             post.setPostedBy(FirebaseAuth.getInstance().getUid());
             post.setPostedAt(new Date().getTime());
 
-            // Публикация в Firebase
+
             database.getReference().child("posts").push().setValue(post)
                     .addOnSuccessListener(unused -> {
                         Toast.makeText(AnnouncementDescription.this, "Posted", Toast.LENGTH_SHORT).show();

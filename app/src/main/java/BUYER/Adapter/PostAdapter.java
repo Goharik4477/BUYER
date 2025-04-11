@@ -14,29 +14,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buyer.R;
 import com.example.buyer.databinding.DashboardRvSampleBinding;
-import com.example.buyer.databinding.ItemConteinerUserBinding;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
+import java.util.List;
 
 import BUYER.ChatActivity;
 import BUYER.CommentActivity;
 import BUYER.Model.Post;
-import BUYER.SignInSignUp.UserNot;
-import BUYER.listeners.MessageListener;
 import BUYER.listeners.UserListener;
-import BUYER.messenger;
 import BUYER.models.User;
-import BUYER.second_profile;
 import BUYER.utilities.Constants;
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
+
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>  {
 
     ArrayList<Post> list;
     Context context;
+
+
+
 
 
     public PostAdapter(ArrayList<Post> list, Context context) {
@@ -44,6 +41,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
         this.context = context;
 
     }
+
 
     @NonNull
     @Override
@@ -67,31 +65,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
         holder.binding.textNameDash.setText(model.getUsername());
         holder.binding.ServicePrice.setText("Service Price: "+model.getPriceForService());
 
-//        FirebaseDatabase.getInstance().getReference().child("Users")
-//               .child(model.getPostedBy()).addListenerForSingleValueEvent(new ValueEventListener() {
-//                   @Override
-//                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                       UserNot user = snapshot.getValue(UserNot.class);
-//
-//
-//                       if (user != null) {
-//                            holder.binding.textNameDash.setText(user.getName());
-//
-//                      }
-//                    }
-//
-//                   @Override
-//                  public void onCancelled(@NonNull DatabaseError error) {
-//
-//                   }
-//                });
-//                holder.binding.postMessage.setOnClickListener(new View.OnClickListener() {
-//    @Override
-//    public void onClick(View v) {
-//        Intent intent = new Intent(context, CommentActivity.class);
-//        context.startActivity(intent);
-//    }
-//});
 
     }
 
@@ -99,6 +72,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
     public int getItemCount() {
         return list.size();
     }
+
+
 
     public class viewHolder extends RecyclerView.ViewHolder{
         DashboardRvSampleBinding binding;

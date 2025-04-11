@@ -139,6 +139,16 @@
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginBottom="@dimen/_10ssp"
         android:layout_marginTop="@dimen/_20sdp"/>
+
+    <ImageView
+        android:layout_width="@dimen/_25ssp"
+        android:layout_height="@dimen/_25ssp"
+        android:id="@+id/Message"
+        android:layout_marginEnd="@dimen/_15ssp"
+        android:src="@drawable/outline_add_comment_24"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_20sdp"/>
 </LinearLayout>
 
 
