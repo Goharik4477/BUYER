@@ -1,6 +1,7 @@
 package BUYER.ViewHolder;
 
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -48,11 +50,14 @@ import BUYER.utilities.Constants;
 import BUYER.utilities.PreferenceManager;
 
 public class AnnouncementDescription extends AppCompatActivity {
-    private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew,PriceNewService, linkNew, id;
-    private EditText Category, FirstCountry, SecondCounty, Description, address, price, link, priceForService;
-    private Button Public;
+    private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew,PriceNewService, linkNew, id, until;
+    DatePicker datePicker;
+    private EditText Category, FirstCountry, SecondCounty, Description, address, price, link, priceForService, EditUntil;
+    private Button Public, select;
     private PreferenceManager preferenceManager;
     FirebaseDatabase database;
+
+    private Button dateButton;
     ImageView imageView;
 
     private FirebaseFirestore FStoreDatabase;
@@ -67,10 +72,11 @@ public class AnnouncementDescription extends AppCompatActivity {
         getSupportActionBar().hide();
 
         preferenceManager = new PreferenceManager(getApplicationContext());
-     id = preferenceManager.getString(Constants.KEY_USER_ID);
+        id = preferenceManager.getString(Constants.KEY_USER_ID);
 
-
-
+        datePicker = findViewById(R.id.datePicker);
+        select = findViewById(R.id.select);
+EditUntil = findViewById(R.id.editUntil);
         FStoreDatabase = FirebaseFirestore.getInstance();
         preferenceManager = new PreferenceManager(getApplicationContext());
         Category = findViewById(R.id.Category);
@@ -80,6 +86,7 @@ public class AnnouncementDescription extends AppCompatActivity {
         address = findViewById(R.id.address);
         price = findViewById(R.id.price);
         link = findViewById(R.id.link);
+
         Public = findViewById(R.id.buttonPublic);
         priceForService = findViewById(R.id.priceForService);
         database = FirebaseDatabase.getInstance();
@@ -98,6 +105,17 @@ public class AnnouncementDescription extends AppCompatActivity {
 
         }
 
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int day = datePicker.getDayOfMonth();
+                int month = datePicker.getMonth()+1;
+                int year =datePicker.getYear();
+
+                EditUntil.setText( day + "/" + month + "/" + year);
+            }
+        });
+
 
         Public.setOnClickListener(v -> {
             ValidateProductData();
@@ -112,6 +130,7 @@ public class AnnouncementDescription extends AppCompatActivity {
             post.setUsername(preferenceManager.getString(Constants.KEY_NAME));
             post.setPriceForService(PriceNewService);
             post.setUserId(id);
+            post.setUntil(until);
 
             post.setPostedBy(FirebaseAuth.getInstance().getUid());
             post.setPostedAt(new Date().getTime());
@@ -137,7 +156,7 @@ public class AnnouncementDescription extends AppCompatActivity {
         priceNew = price.getText().toString();
         linkNew = link.getText().toString();
         PriceNewService = priceForService.getText().toString();
-
+until = EditUntil.getText().toString();
 
         if (TextUtils.isEmpty(DescriptionNew)) {
             Toast.makeText(this, "Add a description", Toast.LENGTH_SHORT).show();
@@ -175,6 +194,12 @@ public class AnnouncementDescription extends AppCompatActivity {
             priceForService.requestFocus();
             return;
     }
+        else if (TextUtils.isEmpty(until)) {
+            Toast.makeText(this, "Add a date", Toast.LENGTH_SHORT).show();
+            EditUntil.setError("Add a date");
+           EditUntil.requestFocus();
+            return;
+        }
     }
 
 }

@@ -64,7 +64,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>  {
         holder.binding.Category.setText(model.getCategory());
         holder.binding.textNameDash.setText(model.getUsername());
         holder.binding.ServicePrice.setText("Service Price: "+model.getPriceForService());
-
+holder.binding.Until.setText("Until: "+ model.getUntil());
 
     }
 

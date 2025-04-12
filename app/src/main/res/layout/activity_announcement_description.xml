@@ -3,26 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="BUYER.ViewHolder.AnnouncementDescription">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_40sdp"
         android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        android:text="Announcement Description"
-        android:textStyle="bold"
-        android:textSize="35dp"
-        android:paddingStart="15dp"
-        android:textColor="@color/blue1"
+            android:text="Announcement Description"
+            android:textStyle="bold"
+            android:textSize="35dp"
+            android:paddingStart="15dp"
+            android:textColor="@color/blue1"
 
-        />
+            />
+
 
         <!--        1st country-->
         <EditText
@@ -220,6 +224,52 @@
                 android:maxLength="500" />
         </LinearLayout>
 
+        <!--until-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="15dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Until"
+                android:textSize="20dp"
+                android:textColor="@color/green"
+                android:textStyle="bold"
+                />
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:spinnersShown="true"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue1"
+                android:text="Select"
+                android:id="@+id/select"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_40sdp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editUntil"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:paddingStart="10dp"
+                android:background="@drawable/oval_login_background"
+                android:inputType="text"
+                android:maxLength="500" />
+        </LinearLayout>
+
 
 <!--link-->
         <LinearLayout
@@ -227,6 +277,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_marginStart="15dp"
             android:orientation="vertical">
             <TextView
@@ -250,8 +301,6 @@
                 android:maxLength="500" />
         </LinearLayout>
 
-
-
         <Button
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
@@ -259,10 +308,14 @@
             android:text="Public"
             android:id="@+id/buttonPublic"
             android:textStyle="bold"
+            android:layout_marginBottom="@dimen/_40sdp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:backgroundTint="@color/blue1"
             />
+
+
+
 
     </LinearLayout>
 </ScrollView>

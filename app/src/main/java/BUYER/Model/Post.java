@@ -3,7 +3,7 @@ package BUYER.Model;
 public class Post {
     private String postId;
     private String postedBy;
-    private  String postDescription, FirsCountry, SecondCountry, Address, Link, Price, category, username, priceForService, userId  ;
+    private  String postDescription, FirsCountry, SecondCountry, Address, Link, Price, category, username, priceForService, userId, until  ;
     private long postedAt;
     private int PostMessage;
 
@@ -17,7 +17,7 @@ public class Post {
 
     public Post(String postId, String postedBy,
                 String postDescription, String firsCountry, String secondCountry, String address, String link,
-                String price, long postedAt, String category, String username, String priceForService, String userId) {
+                String price, long postedAt, String category, String username, String priceForService, String userId, String Until) {
         this.postId = postId;
         this.postedBy = postedBy;
         this.postDescription = postDescription;
@@ -25,12 +25,20 @@ public class Post {
         SecondCountry = secondCountry;
         Address = address;
         Link = link;
+        this.until = Until;
         this.priceForService =priceForService;
         this.username = username;
         Price = price;
         this.userId = userId;
         this.postedAt = postedAt;
         this.category = category;
+    }
+    public String getUntil() {
+        return until;
+    }
+
+    public void setUntil(String until) {
+        this.until = until;
     }
     public String getUserId() {
         return userId;
