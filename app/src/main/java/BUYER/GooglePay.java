@@ -85,7 +85,7 @@ if (isAppInstalled(this, GOOGLE_PAY_PACKAGE_NAME)){
             status = data.getStringExtra("Status").toLowerCase();
 
         }
-//
+
 //        if ((RESULT_OK = resultCode) && status.equals("success")){
 //            Toast.makeText(this, "Transaction successful", Toast.LENGTH_SHORT).show();
 //        }else{
