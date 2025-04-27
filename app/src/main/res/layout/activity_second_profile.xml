@@ -6,7 +6,7 @@
     android:background="@drawable/gradient_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="BUYER.second_profile">
+    tools:context="com.example.buyer.BUYER.second_profile">
 
     <LinearLayout
         android:id="@+id/linley"

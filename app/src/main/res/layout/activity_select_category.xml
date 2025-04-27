@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="BUYER.ViewHolder.SelectCategory">
+    tools:context="com.example.buyer.BUYER.ViewHolder.SelectCategory">
 
  <TextView
      android:id="@+id/textView3"

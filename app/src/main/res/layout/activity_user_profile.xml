@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="BUYER.SignInSignUp.UserProfileActivity"
+    tools:context="com.example.buyer.BUYER.SignInSignUp.UserProfileActivity"
    >
     <LinearLayout
         android:layout_marginTop="20dp"

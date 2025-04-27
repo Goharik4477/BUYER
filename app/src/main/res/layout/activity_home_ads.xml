@@ -6,7 +6,7 @@
     android:background="@color/blue4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="BUYER.home_ads">
+    tools:context="com.example.buyer.BUYER.home_ads">
 
 <!--    <ScrollView-->
 <!--    android:layout_width="match_parent"-->

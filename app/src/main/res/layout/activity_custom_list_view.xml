@@ -6,7 +6,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="BUYER.ViewHolder.CustomListView">
+    tools:context="com.example.buyer.BUYER.ViewHolder.CustomListView">
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
