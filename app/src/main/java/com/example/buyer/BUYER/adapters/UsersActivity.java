@@ -6,10 +6,13 @@ import android.provider.SyncStateContract;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buyer.BUYER.BaseActivity;
 import com.example.buyer.BUYER.ChatActivity;
@@ -20,6 +23,13 @@ import com.example.buyer.BUYER.utilities.Constants;
 import com.example.buyer.BUYER.utilities.PreferenceManager;
 import com.example.buyer.R;
 import com.example.buyer.databinding.ActivityUsersBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -29,6 +39,10 @@ import java.util.List;
 
 public class UsersActivity extends BaseActivity implements UserListener {
 private ActivityUsersBinding binding;
+
+private RecyclerView recyclerView;
+private UserAdapter userAdapter;
+private List<User> mUsers;
  private PreferenceManager preferenceManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +62,25 @@ private ActivityUsersBinding binding;
                 startActivity(intent);
             }
         });
+
+        recyclerView = findViewById(R.id.usersRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        mUsers = new ArrayList<>();
+
+
+
+
+
+
+
+
+
         getUsers();
     }
+
+
 
 
 

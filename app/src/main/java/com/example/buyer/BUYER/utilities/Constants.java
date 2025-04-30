@@ -26,5 +26,5 @@ public class Constants {
     public static final String REMOTE_MSG_AUTHORIZATION = "Authorization";
     public static final String REMOTE_MSG_CONTENT_TYPE = "Content-Type";
 
-
+    public static final String KEY_RECEIVER_USER_ID = "receiverUserId";
 }

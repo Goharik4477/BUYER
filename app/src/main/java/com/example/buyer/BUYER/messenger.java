@@ -56,6 +56,9 @@ private ActivityMessengerBinding binding;
         preferenceManager = new PreferenceManager(getApplicationContext());
         setContentView(binding.getRoot());
 
+
+        authProfile = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = authProfile.getCurrentUser();
         init();
         //navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -92,7 +95,7 @@ private ActivityMessengerBinding binding;
         //navigation end
 
        binding.fabNewChat.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
-
+        showUserProfile(firebaseUser);
       loadUserDetails();
       getToken();
       listenConversions();
@@ -114,7 +117,7 @@ private ActivityMessengerBinding binding;
     }
 
    private void loadUserDetails(){
-     binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
+     //binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
          binding.imageProfile.setImageBitmap(bitmap);
@@ -193,7 +196,32 @@ private ActivityMessengerBinding binding;
         startActivity(intent);
     }
 
+    private void showUserProfile(FirebaseUser firebaseUser) {
+        String userID = firebaseUser.getUid();
 
+
+        //database for "registered user"
+
+        DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
+        referenceProfile.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ReadWriteUsersdetails readUsersdetails = snapshot.getValue(ReadWriteUsersdetails.class);
+                if(readUsersdetails != null){
+                    binding.textName.setText(firebaseUser.getDisplayName());
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(messenger.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
 
 
 }

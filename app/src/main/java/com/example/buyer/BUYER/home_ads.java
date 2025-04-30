@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.buyer.BUYER.Adapter.PostAdapter;
 import com.example.buyer.BUYER.Model.Post;
 import com.example.buyer.BUYER.SignInSignUp.SignIn;
+import com.example.buyer.BUYER.listeners.PostListener;
 import com.example.buyer.BUYER.utilities.Constants;
 import com.example.buyer.BUYER.utilities.PreferenceManager;
 import com.example.buyer.R;
@@ -29,12 +30,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 
 
-public class home_ads extends AppCompatActivity {
+public class home_ads extends AppCompatActivity implements PostListener {
     private ActivityHomeAdsBinding binding;
     RecyclerView dashboardRV;
 ArrayList<Post> postList;
@@ -128,28 +130,87 @@ auth = FirebaseAuth.getInstance();
     }
 
 
+//    private void loadData() {
+//        FirebaseAuth auth = FirebaseAuth.getInstance();
+//        FirebaseUser currentUser = auth.getCurrentUser();
+//
+//        if (currentUser != null) {
+//            dashboardRV =findViewById(R.id.dashboard);
+//            postList = new ArrayList<>();
+//
+//
+//            PostAdapter postAdapter = new PostAdapter(postList,this);
+//            LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+//            dashboardRV.setLayoutManager(layoutManager);
+//            dashboardRV.setNestedScrollingEnabled(false);
+//            dashboardRV.setAdapter(postAdapter);
+//            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//            database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                        Post post = dataSnapshot.getValue(Post.class);
+//                        postList.add(post);
+//                    }
+//                    postAdapter.notifyDataSetChanged();
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                    Log.e("FirebaseError", "Failed to load data: " + error.getMessage());
+//                    Toast.makeText(getApplicationContext(), "Error loading posts: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        } else {
+//
+//            Intent intent = new Intent(home_ads.this, SignIn.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//    }
+
     private void loadData() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
 
         if (currentUser != null) {
-            dashboardRV =findViewById(R.id.dashboard);
+            dashboardRV = findViewById(R.id.dashboard);
             postList = new ArrayList<>();
 
-
-            PostAdapter postAdapter = new PostAdapter(postList,getApplicationContext());
+            PostAdapter postAdapter = new PostAdapter(this, postList,this);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
             dashboardRV.setLayoutManager(layoutManager);
             dashboardRV.setNestedScrollingEnabled(false);
             dashboardRV.setAdapter(postAdapter);
+
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+            database.getReference().child("posts").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Post post = dataSnapshot.getValue(Post.class);
-                        postList.add(post);
+                        if (post != null) {
+                            postList.add(post);
+                            // Сохраняем в Firestore, если еще не сохранено
+                            String postId = post.getPostId();
+                            if (postId == null || postId.isEmpty()) {
+                                postId = dataSnapshot.getKey(); // генерируем postId, если его нет
+                                post.setPostId(postId);
+                            }
+
+                            // Проверим Firestore, чтобы не дублировать
+                            firestore.collection("posts").document(postId).get()
+                                    .addOnSuccessListener(doc -> {
+                                        if (!doc.exists()) {
+                                            firestore.collection("posts").document(dataSnapshot.getKey()).set(post)
+                                                    .addOnSuccessListener(aVoid -> Log.d("FirestoreSync", "Post saved: " + dataSnapshot.getKey()))
+                                                    .addOnFailureListener(e -> Log.e("FirestoreSync", "Error saving post: " + e.getMessage()));
+                                        }
+                                    });
+                        }
                     }
                     postAdapter.notifyDataSetChanged();
                 }
@@ -161,12 +222,17 @@ auth = FirebaseAuth.getInstance();
                 }
             });
         } else {
-
             Intent intent = new Intent(home_ads.this, SignIn.class);
             startActivity(intent);
             finish();
         }
     }
 
-
+    @Override
+    public void onPostClicked(Post post) {
+        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        intent.putExtra(Constants.KEY_RECEIVER_ID, post);
+        startActivity(intent);
+        finish();
+    }
 }
