@@ -18,98 +18,93 @@
         android:theme="@style/Theme.BUYER"
         tools:targetApi="31">
         <activity
-            android:name=".Messanger2"
+            android:name=".BUYER.b.UsersPosts"
             android:exported="false" />
         <activity
-            android:name=".Messanger"
+            android:name=".BUYER.b.GooglePay"
             android:exported="false" />
         <activity
-            android:name=".BUYER.GooglePay"
+            android:name=".BUYER.b.CommentActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.CommentActivity"
+            android:name=".BUYER.b.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.SearchActivity"
+            android:name=".BUYER.b.notifications"
             android:exported="false" />
         <activity
-            android:name=".BUYER.notifications"
+            android:name=".BUYER.b.home_ads"
             android:exported="false" />
         <activity
-            android:name=".BUYER.home_ads"
-            android:exported="false" />
-        <activity
-            android:name=".BUYER.ChatActivity"
+            android:name=".BUYER.b.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".BUYER.adapters.UsersActivity"
+            android:name=".BUYER.b.adapters.UsersActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.ViewHolder.RulesForPublishingAnnouncements"
+            android:name=".BUYER.b.ViewHolder.RulesForPublishingAnnouncements"
             android:exported="false" />
         <activity
-            android:name=".BUYER.ViewHolder.AnnouncementDescription"
+            android:name=".BUYER.b.ViewHolder.AnnouncementDescription"
             android:exported="false" />
         <activity
-            android:name=".BUYER.ViewHolder.CustomListView"
+            android:name=".BUYER.b.ViewHolder.CustomListView"
             android:exported="false" />
         <activity
-            android:name=".BUYER.ViewHolder.SelectCategory"
+            android:name=".BUYER.b.ViewHolder.SelectCategory"
             android:exported="false" />
         <activity
-            android:name=".BUYER.second_profile"
+            android:name=".BUYER.b.second_profile"
             android:exported="false" />
         <activity
-            android:name=".BUYER.add_new_ad"
+            android:name=".BUYER.b.add_new_ad"
             android:exported="false" />
         <activity
-            android:name=".BUYER.messenger"
+            android:name=".BUYER.b.messenger"
             android:exported="false" />
         <activity
-            android:name=".BUYER.Navigation.bottomNavigation"
+            android:name=".BUYER.b.Navigation.bottomNavigation"
             android:exported="false" />
         <activity
-            android:name=".BUYER.UserProfileSetting.DeleteProfileActivity"
+            android:name=".BUYER.b.UserProfileSetting.DeleteProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.UserProfileSetting.ChangePasswordActivity"
+            android:name=".BUYER.b.UserProfileSetting.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.UserProfileSetting.UpdateEmailActivity"
+            android:name=".BUYER.b.UserProfileSetting.UpdateEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.UserProfileSetting.UpdateProfileActivity"
+            android:name=".BUYER.b.UserProfileSetting.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.SignInSignUp.UploadProfilePicActivity"
+            android:name=".BUYER.b.SignInSignUp.UploadProfilePicActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.SignInSignUp.UserProfileActivity"
+            android:name=".BUYER.b.SignInSignUp.UserProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".BUYER.paypal"
+            android:name=".BUYER.b.paypal"
             android:exported="false" />
         <activity
-            android:name=".BUYER.UserProfileSetting.CreateNewPassword"
+            android:name=".BUYER.b.UserProfileSetting.CreateNewPassword"
+            android:exported="false" />
+
+        <activity
+            android:name=".BUYER.b.SignInSignUp.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".BUYER.SignInSignUp.VerifyEmail"
+            android:name=".BUYER.b.SignInSignUp.SignUp"
             android:exported="false" />
         <activity
-            android:name=".BUYER.SignInSignUp.ForgotPassword"
+            android:name=".BUYER.b.SignInSignUp.SignIn"
             android:exported="false" />
         <activity
-            android:name=".BUYER.SignInSignUp.SignUp"
+            android:name=".BUYER.b.SignInSignUp.SignIn_or_SignUp"
             android:exported="false" />
         <activity
-            android:name=".BUYER.SignInSignUp.SignIn"
-            android:exported="false" />
-        <activity
-            android:name=".BUYER.SignInSignUp.SignIn_or_SignUp"
-            android:exported="false" />
-        <activity
-            android:name=".BUYER.SignInSignUp.MainActivity"
+            android:name=".BUYER.b.SignInSignUp.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -119,7 +114,7 @@
         </activity>
 
         <service
-            android:name=".BUYER.mess.MessagingService"
+            android:name=".BUYER.b.mess.MessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

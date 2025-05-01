@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.buyer.BUYER.add_new_ad">
+    tools:context="com.example.buyer.BUYER.b.add_new_ad">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -375,9 +375,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/blue1"
+        android:background="@drawable/singin_green_color"
         android:elevation="2dp"
         app:itemIconSize="25dp"
+
         app:itemIconTint="@drawable/item_selector"
         app:itemRippleColor="@android:color/transparent"
         app:labelVisibilityMode="unlabeled"

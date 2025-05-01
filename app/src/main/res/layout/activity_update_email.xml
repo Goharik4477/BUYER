@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue1"
-    tools:context="com.example.buyer.BUYER.UserProfileSetting.UpdateEmailActivity">
+    tools:context="com.example.buyer.BUYER.b.UserProfileSetting.UpdateEmailActivity">
     <LinearLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"

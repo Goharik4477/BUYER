@@ -10,7 +10,7 @@
     android:layerType="software"
     android:background="@drawable/gradient_background"
     app:layoutDescription="@xml/activity_main_scene"
-    tools:context="com.example.buyer.BUYER.SignInSignUp.MainActivity">
+    tools:context="com.example.buyer.BUYER.b.SignInSignUp.MainActivity">
 
     <TextView
         android:id="@+id/textView"

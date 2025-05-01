@@ -6,7 +6,7 @@
     android:background="@drawable/gradient_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.buyer.BUYER.second_profile">
+    tools:context="com.example.buyer.BUYER.b.second_profile">
 
     <LinearLayout
         android:id="@+id/linley"
@@ -47,11 +47,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:riv_oval="true" />
-            <ImageView
-                android:layout_width="@dimen/_15sdp"
-                android:id="@+id/ChangeCoverPhoto"
-                android:layout_height="@dimen/_15sdp"
-                android:background="@drawable/outline_image_24"/>
+<!--            <ImageView-->
+<!--                android:layout_width="@dimen/_15sdp"-->
+<!--                android:id="@+id/ChangeCoverPhoto"-->
+<!--                android:layout_height="@dimen/_15sdp"-->
+<!--                android:background="@drawable/outline_image_24"/>-->
 
             <TextView
                 android:id="@+id/textView_show_welcome"
@@ -139,21 +139,21 @@
 
 
         </RelativeLayout>
-        <ImageView
+<!--        <ImageView-->
 
-            android:id="@+id/pay"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_30ssp"
-            android:layout_gravity="left"
-            android:layout_marginStart="@dimen/_10ssp"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/googlepay_button_content"
-            android:backgroundTint="@color/blue1"
-            android:padding="@dimen/_6sdp"
-            android:scaleType="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:riv_oval="true" />
+<!--            android:id="@+id/pay"-->
+<!--            android:layout_width="@dimen/_70sdp"-->
+<!--            android:layout_height="@dimen/_30ssp"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:layout_marginStart="@dimen/_10ssp"-->
+<!--            android:layout_marginTop="80dp"-->
+<!--            android:background="@drawable/googlepay_button_content"-->
+<!--            android:backgroundTint="@color/blue1"-->
+<!--            android:padding="@dimen/_6sdp"-->
+<!--            android:scaleType="center"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:riv_oval="true" />-->
 
 
         <ProgressBar
