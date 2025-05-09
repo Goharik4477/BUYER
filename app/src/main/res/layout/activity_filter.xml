@@ -129,8 +129,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/useFilter"
     android:layout_marginTop="@dimen/_10ssp"
-    android:background="@drawable/posts_b"
-    android:text="use"/>
+    android:backgroundTint="@color/blue1"
+    android:text="USE"/>
 
 
     </LinearLayout>
