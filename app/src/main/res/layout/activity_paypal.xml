@@ -33,4 +33,17 @@
         android:text="Sign in"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
+
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/ccp"
+        android:paddingStart="@dimen/_40ssp"
+        android:layout_margin="@dimen/_40sdp"
+        android:paddingEnd="@dimen/_40sdp"
+        app:ccp_textGravity="LEFT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ccp_showFullName="true"
+        app:ccp_showNameCode="false"
+        app:ccp_showPhoneCode="false" />
 </LinearLayout>

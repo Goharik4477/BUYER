@@ -33,6 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 
 
@@ -43,8 +45,10 @@ public class home_ads extends AppCompatActivity {
     ArrayList<Post> postList;
     FirebaseDatabase database;
     FirebaseAuth auth;
+    private String countryFrom = null;
+    private String countryTo = null;
     private PreferenceManager preferenceManager;
-    private String filterCategory = null; // Переменная для категории фильтра
+    private String filterCategory = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,18 +86,27 @@ public class home_ads extends AppCompatActivity {
 
         loadUserDetails();
 
-
         filterCategory = getIntent().getStringExtra("Category");
-        Log.d("CATEGORY_FILTER", "Selected category: " + filterCategory);
+        countryFrom = getIntent().getStringExtra("countryFrom");
+        countryTo = getIntent().getStringExtra("countryTo");
 
+        Log.d("FILTERS", "Category: " + filterCategory + ", From: " + countryFrom + ", To: " + countryTo);
 
         binding.search.setOnClickListener(v -> {
             Intent intent = new Intent(home_ads.this, FilterActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 100); // Код запроса
         });
+
+
+//        binding.search.setOnClickListener(v -> {
+//            Intent intent = new Intent(home_ads.this, FilterActivity.class);
+//            startActivity(intent);
+//        });
 
         binding.clearFilterButton.setOnClickListener(v -> {
             filterCategory = null;
+            countryFrom = null;
+            countryTo = null;
             loadData();
         });
 
@@ -127,13 +140,27 @@ public class home_ads extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Post post = dataSnapshot.getValue(Post.class);
 
-                        if (post.getCategory() != null) {
+                        if (post != null && post.getCategory() != null) {
                             String cleanCategory = post.getCategory().replace("Category: ", "");
+                            String from = post.getFirsCountry();
+                            String to = post.getSecondCountry();
 
-                            if (filterCategory == null || cleanCategory.equals(filterCategory)) {
+                            boolean categoryMatches = filterCategory == null || cleanCategory.equals(filterCategory);
+                            boolean fromMatches = countryFrom == null || from.equals(countryFrom);
+                            boolean toMatches = countryTo == null || to.equals(countryTo);
+
+                            if (categoryMatches && fromMatches && toMatches) {
                                 postList.add(post);
                             }
                         }
+
+//                        if (post.getCategory() != null) {
+//                            String cleanCategory = post.getCategory().replace("Category: ", "");
+//
+//                            if (filterCategory == null || cleanCategory.equals(filterCategory)) {
+//                                postList.add(post);
+//                            }
+//                        }
                     }
                     postAdapter.notifyDataSetChanged();
                 }
@@ -148,6 +175,21 @@ public class home_ads extends AppCompatActivity {
             Intent intent = new Intent(home_ads.this, SignIn.class);
             startActivity(intent);
             finish();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
+            filterCategory = data.getStringExtra("category");
+            countryFrom = data.getStringExtra("fromCountry");
+            countryTo = data.getStringExtra("toCountry");
+
+            Log.d("FILTERS", "Category: " + filterCategory + ", From: " + countryFrom + ", To: " + countryTo);
+
+            loadData();
         }
     }
 }

@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.buyer.BUYER.b.messenger;
 import com.example.buyer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,18 +23,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
 
-import com.example.buyer.BUYER.b.ChatActivity;
 import com.example.buyer.BUYER.b.Model.Post;
 import com.example.buyer.BUYER.b.SignInSignUp.SignIn;
 import com.example.buyer.BUYER.b.home_ads;
-import com.example.buyer.BUYER.b.utilities.Constants;
 import com.example.buyer.BUYER.b.utilities.PreferenceManager;
+import com.hbb20.CountryCodePicker;
 
 public class AnnouncementDescription extends AppCompatActivity {
     private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew,PriceNewService, linkNew, id, until;
     DatePicker datePicker;
+
     private EditText Category, FirstCountry, SecondCounty, Description, address, price, link, priceForService, EditUntil;
     private Button Public, select;
+
     private PreferenceManager preferenceManager;
     FirebaseDatabase database;
 
@@ -57,6 +57,7 @@ public class AnnouncementDescription extends AppCompatActivity {
 
 
         datePicker = findViewById(R.id.datePicker);
+
         select = findViewById(R.id.select);
         EditUntil = findViewById(R.id.editUntil);
         FStoreDatabase = FirebaseFirestore.getInstance();
@@ -87,6 +88,7 @@ public class AnnouncementDescription extends AppCompatActivity {
 
         }
 
+
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +98,18 @@ public class AnnouncementDescription extends AppCompatActivity {
 
                 EditUntil.setText( day + "/" + month + "/" + year);
             }
+        });
+        CountryCodePicker ccp = findViewById(R.id.ccp);
+        CountryCodePicker ccp2 = findViewById(R.id.ccp2);
+
+        ccp.setOnCountryChangeListener(() -> {
+            String selectedCountry = ccp.getSelectedCountryName();
+            FirstCountry.setText(selectedCountry);
+        });
+
+        ccp2.setOnCountryChangeListener(() -> {
+            String selectedCountry = ccp2.getSelectedCountryName();
+            SecondCounty.setText(selectedCountry);
         });
 
 
