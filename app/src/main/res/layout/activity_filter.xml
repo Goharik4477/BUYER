@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:gravity="center"
     android:background="@color/blue1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,15 +11,22 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_40sdp"
-        android:layout_marginTop="8dp"
-        android:padding="@dimen/_40sdp"
-        android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
 
+        android:layout_margin="@dimen/_20sdp"
+
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginBottom="156dp"
         android:background="@drawable/posts_b"
-
+        android:orientation="vertical"
+        android:padding="@dimen/_40sdp"
         tools:layout_editor_absoluteX="52dp">
 
         <TextView
@@ -32,105 +40,106 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25dp"
-            android:textStyle="bold"
- />
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:background="@drawable/posts_b"
+            android:id="@id/Category"
             android:layout_width="match_parent"
-            android:padding="@dimen/_10ssp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
 
+            android:background="@drawable/posts_b"
             android:orientation="horizontal"
-            android:id="@id/Category"
-            android:layout_height="wrap_content">
+            android:padding="@dimen/_10ssp">
+
             <ImageView
                 android:id="@+id/ic_category"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
 
                 android:layout_marginEnd="@dimen/_10ssp"
-                android:backgroundTint="@color/white"
-                android:background="@drawable/category" />
+                android:background="@drawable/category"
+                android:backgroundTint="@color/white" />
 
             <TextView
                 android:id="@+id/Category_t"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category"
                 android:layout_alignParentEnd="true"
-
-                android:textColor="@color/white"
                 android:layout_toEndOf="@+id/ic_category"
+
+                android:text="Category"
+                android:textColor="@color/white"
                 android:textSize="25dp" />
         </LinearLayout>
 
 
-
         <LinearLayout
-            android:background="@drawable/posts_b"
+            android:id="@+id/Fcountry"
             android:layout_width="match_parent"
-            android:padding="@dimen/_10ssp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
 
+            android:background="@drawable/posts_b"
             android:orientation="horizontal"
-           android:id="@+id/Fcountry"
-            android:layout_height="wrap_content">
+            android:padding="@dimen/_10ssp">
+
             <ImageView
                 android:id="@+id/ic_country"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
 
                 android:layout_marginEnd="@dimen/_10ssp"
-                android:backgroundTint="@color/white"
-                android:background="@drawable/category" />
+                android:background="@drawable/category"
+                android:backgroundTint="@color/white" />
 
             <TextView
                 android:id="@+id/f_country_t"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="To"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/white"
                 android:layout_toEndOf="@+id/ic_category"
+                android:text="To"
+                android:textColor="@color/white"
                 android:textSize="25dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:background="@drawable/posts_b"
-            android:padding="@dimen/_10ssp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
             android:id="@+id/s_country"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/posts_b"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10ssp">
+
             <ImageView
                 android:id="@+id/ic_country_s"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginEnd="@dimen/_10ssp"
-                android:backgroundTint="@color/white"
-                android:background="@drawable/category" />
+                android:background="@drawable/category"
+                android:backgroundTint="@color/white" />
 
             <TextView
                 android:id="@+id/s_country_t"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="From"
                 android:layout_alignParentEnd="true"
-
-                android:textColor="@color/white"
                 android:layout_toEndOf="@+id/ic_category"
+
+                android:text="From"
+                android:textColor="@color/white"
                 android:textSize="25dp" />
         </LinearLayout>
 
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/useFilter"
-    android:layout_marginTop="@dimen/_10ssp"
-    android:backgroundTint="@color/blue1"
-    android:text="USE"/>
+        <Button
+            android:id="@+id/useFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:backgroundTint="@color/blue1"
+            android:text="USE" />
 
 
     </LinearLayout>

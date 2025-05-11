@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_10sdp"
 
    >
     <com.makeramen.roundedimageview.RoundedImageView

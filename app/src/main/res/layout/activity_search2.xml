@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:background="@drawable/gradient_background"
-    tools:context="com.example.buyer.BUYER.b.adapters.UsersActivity">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/gradient_background"
+        tools:context=".BUYER.b.adapters.SearchActivity">
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ImageBack"
         android:layout_width="@dimen/_30sdp"
@@ -17,24 +17,29 @@
         android:background="@drawable/backgrund_icon"
         android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_back"
-android:paddingStart="@dimen/_10ssp"
+        android:paddingStart="@dimen/_10ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white"
 
         android:layout_height="@dimen/_30sdp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select User"
-        android:textColor="@color/white"
+        android:background="@drawable/oval_login_background"
+        android:inputType="textEmailAddress"
+        android:layout_marginEnd="@dimen/_50ssp"
+        android:layout_marginStart="@dimen/_50ssp"
+        android:textColor="@color/blue1"
+        android:padding="@dimen/_10ssp"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
+        android:id="@+id/inputEmail"
         app:layout_constraintBottom_toBottomOf="@+id/ImageBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ImageBack"/>
+        app:layout_constraintEnd_toStartOf="@+id/ImageSearch"
+        app:layout_constraintStart_toEndOf="@+id/ImageBack"
+        app:layout_constraintTop_toTopOf="@+id/ImageBack" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ImageSearch"
@@ -77,10 +82,26 @@ android:paddingStart="@dimen/_10ssp"
             android:layout_gravity="center"
             android:layout_height="@dimen/_25sdp"/>
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20ssp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:id="@+id/text_click"
+            android:text="Click on user to start chat"
+            android:layout_marginBottom="@dimen/_50ssp"
+            android:textColor="@color/blue1"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/textErrorMessage"
             android:layout_width="match_parent"
             android:layout_gravity="center"
+            android:textAlignment="center"
             android:layout_marginStart="@dimen/_24sdp"
             android:layout_marginEnd="@dimen/_24sdp"
             android:textColor="@color/red"
@@ -88,6 +109,5 @@ android:paddingStart="@dimen/_10ssp"
             android:visibility="gone"
             android:layout_height="wrap_content"/>
     </FrameLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

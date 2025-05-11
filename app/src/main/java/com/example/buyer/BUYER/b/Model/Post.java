@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Post  implements Serializable{
     private String postId;
+
+
     private String postedBy;
     private  String postDescription, FirsCountry, SecondCountry, Address, Link, Price, category, username, priceForService, userId, until  ;
     private long postedAt;

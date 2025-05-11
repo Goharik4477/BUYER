@@ -37,7 +37,12 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    dataBinding{
+        enable = true
+    }
 }
+
 
 dependencies {
 
@@ -70,6 +75,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.scalarsConverter)
     implementation(libs.ccp)
+    implementation(libs.circular.image.view)
 
 
 

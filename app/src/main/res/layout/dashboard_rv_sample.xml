@@ -151,13 +151,23 @@
         android:layout_width="@dimen/_25ssp"
         android:layout_height="@dimen/_25ssp"
         android:id="@+id/postMessage"
+
         android:layout_marginEnd="@dimen/_15ssp"
-        android:src="@drawable/outline_add_comment_24"
+        android:src="@drawable/mmm"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginBottom="@dimen/_10ssp"
         android:layout_marginTop="@dimen/_20sdp"
 
         />
+    <Button
+        android:id="@+id/button_chat"
+        android:layout_marginTop="@dimen/_10ssp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/blue1"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:text="Chat" />
 
 
 

@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -16,10 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buyer.BUYER.b.Adapter.PostAdapter;
+import com.example.buyer.BUYER.b.Chat.ChatMain;
 import com.example.buyer.BUYER.b.Model.Post;
 import com.example.buyer.BUYER.b.SignInSignUp.SignIn;
-import com.example.buyer.BUYER.b.ViewHolder.SelectCategory;
-import com.example.buyer.BUYER.b.listeners.PostListener;
 import com.example.buyer.BUYER.b.utilities.Constants;
 import com.example.buyer.BUYER.b.utilities.PreferenceManager;
 import com.example.buyer.R;
@@ -31,7 +29,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.Nullable;
 

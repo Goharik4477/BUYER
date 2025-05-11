@@ -20,12 +20,15 @@ navigationFragment = "2.8.6"
 navigationUi = "2.8.6"
 retrofit = "2.9.0"
 scalarsConverter = "2.9.0"
+circularImageView = "4.3.1"
 
 ccp = "2.7.3"
 
 
 
 [libraries]
+circular-image-view = { module = "com.mikhaellopez:circularimageview", version.ref = "circularImageView" }
+
 ccp = { module = "com.hbb20:ccp", version.ref = "ccp" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 scalarsConverter = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "scalarsConverter" }
