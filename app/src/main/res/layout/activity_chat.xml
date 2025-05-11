@@ -72,6 +72,24 @@
         app:layout_constraintBottom_toBottomOf="@+id/ImageBack"
         app:layout_constraintStart_toEndOf="@+id/ImageBack"
         app:layout_constraintTop_toTopOf="@+id/ImageBack"
+        app:layout_constraintEnd_toStartOf="@+id/textRating"/>
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textRating"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:textColor="@color/blue3"
+        app:layout_constraintBottom_toBottomOf="@+id/ImageBack"
+        app:layout_constraintStart_toEndOf="@+id/textName"
+        app:layout_constraintTop_toTopOf="@+id/ImageBack"
         app:layout_constraintEnd_toStartOf="@+id/imageInfo"/>
 
     <View

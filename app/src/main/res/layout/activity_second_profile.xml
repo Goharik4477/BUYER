@@ -138,22 +138,30 @@
                 android:textSize="25dp" />
 
 
-        </RelativeLayout>
-<!--        <ImageView-->
+            <ImageView
+                android:id="@+id/ic_rat"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_below="@id/ic_post"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/grey"
+                android:background="@drawable/baseline_auto_awesome_24" />
 
-<!--            android:id="@+id/pay"-->
-<!--            android:layout_width="@dimen/_70sdp"-->
-<!--            android:layout_height="@dimen/_30ssp"-->
-<!--            android:layout_gravity="left"-->
-<!--            android:layout_marginStart="@dimen/_10ssp"-->
-<!--            android:layout_marginTop="80dp"-->
-<!--            android:background="@drawable/googlepay_button_content"-->
-<!--            android:backgroundTint="@color/blue1"-->
-<!--            android:padding="@dimen/_6sdp"-->
-<!--            android:scaleType="center"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:riv_oval="true" />-->
+            <TextView
+                android:id="@+id/show_rat"
+                android:layout_width="221dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/show_posts"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_toEndOf="@+id/ic_rat"
+                android:hint="rating "
+                android:textSize="25dp" />
+
+
+        </RelativeLayout>
+
 
 
         <ProgressBar

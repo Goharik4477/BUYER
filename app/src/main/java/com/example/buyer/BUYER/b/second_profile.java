@@ -34,6 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 import com.example.buyer.BUYER.b.SignInSignUp.ReadWriteUsersdetails;
 import com.example.buyer.BUYER.b.SignInSignUp.SignIn_or_SignUp;
@@ -84,13 +85,7 @@ database = FirebaseDatabase.getInstance();
                 startActivity(new Intent(getApplicationContext(), add_new_ad.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();}
-//            else if (item.getItemId() == R.id.menu_bottom_notification) {
-//                startActivity(new Intent(getApplicationContext(), notifications.class));
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                finish();
-//                return true;} else if (item.getItemId() == R.id.menu_bottom_profile) {
-//                return true;
-//            }
+
             return false;
         });
 
@@ -247,6 +242,31 @@ binding.showPosts.setOnClickListener(new View.OnClickListener() {
         byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
         binding.imageViewProfileDp.setImageBitmap(bitmap);
+
+
+
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        String userId = preferenceManager.getString(Constants.KEY_USER_ID);
+
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        Long totalRating = documentSnapshot.getLong("totalRating");
+                        Long ratingCount = documentSnapshot.getLong("ratingCount");
+
+                        if (totalRating != null && ratingCount != null && ratingCount > 0) {
+                            double average = (double) totalRating / ratingCount;
+                            binding.showRat.setText(String.format(Locale.getDefault(), "Rating: %.1f ★", average));
+                        } else {
+                            binding.showRat.setText("Rating: N/A");
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    binding.showRat.setText("Rating: N/A");
+                });
     }
 
 }
