@@ -152,6 +152,7 @@
         android:orientation="vertical"
         android:overScrollMode="never"
         android:paddingStart="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_50ssp"
 
         android:paddingTop="@dimen/_10ssp"
         android:paddingEnd="@dimen/_5sdp"

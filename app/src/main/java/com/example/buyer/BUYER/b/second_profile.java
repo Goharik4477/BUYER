@@ -211,10 +211,10 @@ binding.showPosts.setOnClickListener(new View.OnClickListener() {
             startActivity(intent);
         }else if(id ==  R.id.menu_logout){
             authProfile.signOut();
-           signOut();
+
             Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(second_profile.this, SignIn_or_SignUp.class);
-
+            signOut();
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();

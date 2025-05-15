@@ -47,6 +47,7 @@ public class SignIn extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private TextView textViewSingUp;
     private Button login;
+    private Button test2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,22 @@ preferenceManager = new PreferenceManager(getApplicationContext());
                 }
             }
         });
+
+        test2 = findViewById(R.id.TestUser2);
+
+
+
+        test2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editTextLoginEmail.setText("ttesttuuser2@gmail.com");
+                editTextLoginPwd.setText("12345678");
+
+
+            }
+        });
+
+
 
 
 

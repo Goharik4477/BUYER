@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BUYER"
         tools:targetApi="31">
+
         <activity
             android:name=".BUYER.b.RatingActivity"
             android:exported="false" />

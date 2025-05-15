@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.buyer.R;
 
 public class SignIn_or_SignUp extends AppCompatActivity{
-    private Button goSignIn;
+    private Button goSignIn, testUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,12 @@ public class SignIn_or_SignUp extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+
+
     }
+
+
 
 
 
