@@ -29,17 +29,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUsersPosts"
-        android:layout_width="374dp"
-        android:layout_height="552dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/_20ssp"
         android:layout_marginTop="4dp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
+        android:paddingBottom="@dimen/_90sdp"
 
-        android:paddingStart="@dimen/_5sdp"
-        android:paddingTop="@dimen/_10ssp"
-        android:paddingEnd="@dimen/_5sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.buyer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -115,6 +116,10 @@ public class AnnouncementDescription extends AppCompatActivity {
 
         Public.setOnClickListener(v -> {
             ValidateProductData();
+
+            DatabaseReference postsRef = FirebaseDatabase.getInstance().getReference().child("posts");
+            String postId = postsRef.push().getKey();
+
             Post post = new Post();
             post.setFirsCountry(FirstCountryNew);
             post.setSecondCountry(SecondCountyNew);
@@ -127,20 +132,19 @@ public class AnnouncementDescription extends AppCompatActivity {
             post.setPriceForService(PriceNewService);
             post.setUserId(FirebaseAuth.getInstance().getCurrentUser().getUid());
             post.setUntil(until);
-
-
             post.setPostedBy(FirebaseAuth.getInstance().getCurrentUser().getEmail());
             post.setPostedAt(new Date().getTime());
+            post.setPostId(postId); // сохраняем postId
 
-
-            database.getReference().child("posts").push().setValue(post)
-                    .addOnSuccessListener(unused -> {
-                        Toast.makeText(AnnouncementDescription.this, "Posted", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AnnouncementDescription.this, home_ads.class));
+            postsRef.child(postId).setValue(post)
+                    .addOnSuccessListener(aVoid -> {
+                        Intent intent = new Intent(this, home_ads.class);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(), "Post published", Toast.LENGTH_SHORT).show();
                         finish();
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(AnnouncementDescription.this, "Failed to post: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Failed to publish post", Toast.LENGTH_SHORT).show();
                     });
         });
     }

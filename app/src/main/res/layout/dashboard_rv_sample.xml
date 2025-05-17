@@ -160,6 +160,16 @@
 
         />
     <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/_10ssp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:backgroundTint="@color/red"
+        android:textColor="@android:color/white"/>
+    <Button
         android:id="@+id/button_chat"
         android:layout_marginTop="@dimen/_10ssp"
         android:layout_width="wrap_content"
@@ -168,6 +178,7 @@
         android:backgroundTint="@color/blue1"
         android:layout_marginEnd="@dimen/_20sdp"
         android:text="Chat" />
+
 
 
 

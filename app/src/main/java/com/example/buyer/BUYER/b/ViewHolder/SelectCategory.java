@@ -45,6 +45,7 @@ public class SelectCategory extends AppCompatActivity {
                 Intent intent = new Intent(SelectCategory.this, AnnouncementDescription.class);
                 intent.putExtra("Category", categoryList[position]);
                 startActivity(intent);
+                finish();
 
             }
         });

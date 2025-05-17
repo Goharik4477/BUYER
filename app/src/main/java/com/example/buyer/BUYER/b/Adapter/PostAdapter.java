@@ -1,10 +1,12 @@
 package com.example.buyer.BUYER.b.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,11 @@ import com.example.buyer.BUYER.b.Model.Post;
 import com.example.buyer.BUYER.b.adapters.SearchActivity;
 import com.example.buyer.R;
 import com.example.buyer.databinding.DashboardRvSampleBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
@@ -22,6 +29,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>  {
 
     ArrayList<Post> list;
     Context context;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    String currentUserEmail = auth.getCurrentUser() != null ? auth.getCurrentUser().getEmail() : "";
 
 
 
@@ -66,16 +75,33 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>  {
             }
         });
 
+        if (model.getPostedBy() != null && model.getPostedBy().equals(currentUserEmail)) {
+            holder.binding.buttonDelete.setVisibility(View.VISIBLE);
+        } else {
+            holder.binding.buttonDelete.setVisibility(View.GONE);
+        }
 
 
+        holder.binding.buttonDelete.setOnClickListener(v -> {
 
+                        if (model.getPostId() != null) {
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("posts")
+                                    .child(model.getPostId())
+                                    .removeValue()
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(context, "Пост удалён", Toast.LENGTH_SHORT).show();
+                                        list.remove(position);
+                                        notifyItemRemoved(position);
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(context, "Ошибка удаления: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            Toast.makeText(context, "postId не найден", Toast.LENGTH_SHORT).show();
+                        }
 
-
-
-
-
-
-
+        });
 
 
     }
