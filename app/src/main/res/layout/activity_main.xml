@@ -1,31 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/newpassword"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:accessibilityLiveRegion="none"
-    android:backgroundTintMode="src_atop"
-    android:layerType="software"
-    android:background="@drawable/gradient_background"
-    app:layoutDescription="@xml/activity_main_scene"
-    tools:context="com.example.buyer.BUYER.b.SignInSignUp.MainActivity">
+    android:background="@android:color/transparent"
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textColorLink="#FAF7F7"
-        android:textSize="44dp"
-        android:textStyle="bold"
+    tools:context="com.example.buyer.BUYER.b.SignInSignUp.MainActivity">
+    <ImageView
+        android:id="@+id/bigBag"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_gravity="center"
+        android:background="@drawable/green_bag"
+        android:backgroundTint="@color/blue1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/smallBag"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:visibility="gone"
+        android:background="@drawable/white_bag"
+        android:backgroundTint="@color/white"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"/>
 
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+    <TextView
+        android:id="@+id/buyerText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="BUYER"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="50sp"
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toBottomOf="@id/smallBag"
+        app:layout_constraintStart_toEndOf="@id/smallBag"
+        app:layout_constraintTop_toTopOf="@id/smallBag"
+        android:alpha="0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

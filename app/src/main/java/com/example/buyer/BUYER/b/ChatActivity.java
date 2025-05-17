@@ -224,7 +224,7 @@ public class ChatActivity extends BaseActivity {
             }
 
 
-            if (chatMessages.size() >= 10) {
+            if (chatMessages.size() >= 2) {
                 binding.imageInfo.setEnabled(true);
             }
             binding.chatRecyclerView.setVisibility(View.VISIBLE);
