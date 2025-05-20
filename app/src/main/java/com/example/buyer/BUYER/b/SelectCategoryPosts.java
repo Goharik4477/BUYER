@@ -44,10 +44,6 @@ public class SelectCategoryPosts extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(SelectCategoryPosts.this, home_ads.class);
-//                intent.putExtra("Category", categoryList[position]);
-//                startActivity(intent);
-
 
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("Category", categoryList[position]);

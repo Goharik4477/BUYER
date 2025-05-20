@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +19,7 @@ import com.example.buyer.BUYER.b.Adapter.PostAdapter;
 import com.example.buyer.BUYER.b.Chat.ChatMain;
 import com.example.buyer.BUYER.b.Model.Post;
 import com.example.buyer.BUYER.b.SignInSignUp.SignIn;
+import com.example.buyer.BUYER.b.ViewHolder.RulesForPublishingAnnouncements;
 import com.example.buyer.BUYER.b.utilities.Constants;
 import com.example.buyer.BUYER.b.utilities.PreferenceManager;
 import com.example.buyer.R;
@@ -83,29 +85,38 @@ public class home_ads extends AppCompatActivity {
 
         loadUserDetails();
 
+        String[] categoryList = {"Shoes", "Clothes", "For children", "Home", "Beauty", "Accessories",
+                "Electronics", "Toys", "Products", "Household appliances", "Pet supplies",
+                "Sport", "Automotive goods", "Books", "Jewelry", "For repair", "Garden", "Health", "Stationery"};
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewCategories);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)); // Или FlexboxLayoutManager если хочешь перенос
+
+        CategoryChipAdapter adapter = new CategoryChipAdapter(categoryList, selectedCategories -> {
+            filterCategory = selectedCategories;
+            loadData();
+        });
+        recyclerView.setAdapter(adapter);
+
         filterCategory = getIntent().getStringExtra("Category");
         countryFrom = getIntent().getStringExtra("countryFrom");
         countryTo = getIntent().getStringExtra("countryTo");
 
         Log.d("FILTERS", "Category: " + filterCategory + ", From: " + countryFrom + ", To: " + countryTo);
 
-        binding.search.setOnClickListener(v -> {
-            Intent intent = new Intent(home_ads.this, FilterActivity.class);
-            startActivityForResult(intent, 100); // Код запроса
+
+        binding.fabCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(home_ads.this, FilterActivity.class);
+                startActivityForResult(intent, 100);
+            }
         });
 
 
-//        binding.search.setOnClickListener(v -> {
-//            Intent intent = new Intent(home_ads.this, FilterActivity.class);
-//            startActivity(intent);
-//        });
 
-        binding.clearFilterButton.setOnClickListener(v -> {
-            filterCategory = null;
-            countryFrom = null;
-            countryTo = null;
-            loadData();
-        });
+
+
 
         loadData();
     }

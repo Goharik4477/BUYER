@@ -140,6 +140,13 @@
             android:layout_marginTop="@dimen/_10ssp"
             android:backgroundTint="@color/blue1"
             android:text="USE" />
+        <Button
+            android:id="@+id/clearFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:backgroundTint="@color/blue3"
+            android:text="CLEAR" />
 
 
     </LinearLayout>

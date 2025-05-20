@@ -3,6 +3,8 @@ package com.example.buyer.BUYER.b;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -33,7 +35,7 @@ public class UsersPosts extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<Post> postList;
     private PostAdapter postAdapter;
-
+private ImageView back;
     FirebaseDatabase database;
     FirebaseAuth auth;
 
@@ -54,7 +56,15 @@ public class UsersPosts extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
-
+back = findViewById(R.id.back);
+back.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(UsersPosts.this, second_profile.class);
+        startActivity(intent);
+        finish();
+    }
+});
 
         loadData();
     }

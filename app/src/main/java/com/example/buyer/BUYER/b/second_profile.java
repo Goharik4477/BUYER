@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,7 +66,9 @@ public class second_profile extends AppCompatActivity {
         binding = ActivitySecondProfileBinding.inflate(getLayoutInflater());
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
+
 database = FirebaseDatabase.getInstance();
+getSupportActionBar().hide();
 
         preferenceManager = new PreferenceManager(getApplicationContext());
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -104,7 +107,7 @@ binding.icPost.setOnClickListener(new View.OnClickListener() {
         TextViewEmail = findViewById(R.id.show_email);
         progressBar = findViewById(R.id.progressbaruser);
         TextViewPosts = findViewById(R.id.show_posts);
-binding.showPosts.setOnClickListener(new View.OnClickListener() {
+binding.editPosts.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(second_profile.this, UsersPosts.class);
@@ -122,6 +125,56 @@ binding.showPosts.setOnClickListener(new View.OnClickListener() {
             showUserProfile(firebaseUser);
             loadUserDetails();
         }
+
+
+        binding.changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(second_profile.this, ChangePasswordActivity.class);
+                   startActivity(intent);
+            }
+        });
+
+        binding.editEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(second_profile.this, UpdateEmailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        binding.editUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(second_profile.this, UpdateProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.logOutText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                authProfile.signOut();
+
+            Toast.makeText(second_profile.this, "Logged Out", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(second_profile.this, SignIn_or_SignUp.class);
+            signOut();
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            }
+        });
+
+
+        binding.delText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(second_profile.this, DeleteProfileActivity.class);
+            startActivity(intent);
+            }
+        });
+
 
 
     }
@@ -163,7 +216,7 @@ binding.showPosts.setOnClickListener(new View.OnClickListener() {
                     fullName = firebaseUser.getDisplayName();
                     email =firebaseUser.getEmail();
                     TextViewWelcome.setText(fullName);
-                    TextViewFFullName.setText(fullName);
+//                    TextViewFFullName.setText(fullName);
                     TextViewEmail.setText(email);
 
                 }
@@ -178,51 +231,51 @@ binding.showPosts.setOnClickListener(new View.OnClickListener() {
             }
         });
     }
-
-   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //inflate manu
-        getMenuInflater().inflate(R.menu.common_menu,menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == R.id.menu_refresh){
-            startActivity(getIntent());
-            finish();
-            overridePendingTransition(0,0);
-        } else if(id ==  R.id.menu_update_profile){
-            Intent intent = new Intent(second_profile.this, UpdateProfileActivity.class);
-            startActivity(intent);
-        }else if(id ==  R.id.menu_update_email){
-            Intent intent = new Intent(second_profile.this, UpdateEmailActivity.class);
-            startActivity(intent);
-        }else if(id ==  R.id.menu_settings){
-            Toast.makeText(this, "menu settings", Toast.LENGTH_SHORT).show();
-        }else if(id ==  R.id.menu_change_password){
-            Intent intent = new Intent(second_profile.this, ChangePasswordActivity.class);
-            startActivity(intent);
-        }else if(id ==  R.id.menu_delete_profile){
-            Intent intent = new Intent(second_profile.this, DeleteProfileActivity.class);
-            startActivity(intent);
-        }else if(id ==  R.id.menu_logout){
-            authProfile.signOut();
-
-            Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(second_profile.this, SignIn_or_SignUp.class);
-            signOut();
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        }else {
-            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//
+//   @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        //inflate manu
+//        getMenuInflater().inflate(R.menu.common_menu,menu);
+//
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if(id == R.id.menu_refresh){
+//            startActivity(getIntent());
+//            finish();
+//            overridePendingTransition(0,0);
+//        } else if(id ==  R.id.menu_update_profile){
+//            Intent intent = new Intent(second_profile.this, UpdateProfileActivity.class);
+//            startActivity(intent);
+//        }else if(id ==  R.id.menu_update_email){
+//            Intent intent = new Intent(second_profile.this, UpdateEmailActivity.class);
+//            startActivity(intent);
+//        }else if(id ==  R.id.menu_settings){
+//            Toast.makeText(this, "menu settings", Toast.LENGTH_SHORT).show();
+//        }else if(id ==  R.id.menu_change_password){
+//            Intent intent = new Intent(second_profile.this, ChangePasswordActivity.class);
+//            startActivity(intent);
+//        }else if(id ==  R.id.menu_delete_profile){
+//            Intent intent = new Intent(second_profile.this, DeleteProfileActivity.class);
+//            startActivity(intent);
+//        }else if(id ==  R.id.menu_logout){
+//            authProfile.signOut();
+//
+//            Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(second_profile.this, SignIn_or_SignUp.class);
+//            signOut();
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
+//            finish();
+//        }else {
+//            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
     private void signOut(){
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference =
@@ -243,7 +296,9 @@ binding.showPosts.setOnClickListener(new View.OnClickListener() {
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
         binding.imageViewProfileDp.setImageBitmap(bitmap);
 
-
+        int base64Length = preferenceManager.getString(Constants.KEY_IMAGE).length();
+        Log.d("Base64Length", "Length: " + base64Length);
+        Log.d("ImageSize", "Width: " + bitmap.getWidth() + ", Height: " + bitmap.getHeight());
 
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         String userId = preferenceManager.getString(Constants.KEY_USER_ID);
@@ -258,14 +313,14 @@ binding.showPosts.setOnClickListener(new View.OnClickListener() {
 
                         if (totalRating != null && ratingCount != null && ratingCount > 0) {
                             double average = (double) totalRating / ratingCount;
-                            binding.showRat.setText(String.format(Locale.getDefault(), "Rating: %.1f ★", average));
+                            binding.showRat.setText(String.format(Locale.getDefault(), "%.1f ★", average));
                         } else {
-                            binding.showRat.setText("Rating: N/A");
+                            binding.showRat.setText("N/A");
                         }
                     }
                 })
                 .addOnFailureListener(e -> {
-                    binding.showRat.setText("Rating: N/A");
+                    binding.showRat.setText("N/A");
                 });
     }
 

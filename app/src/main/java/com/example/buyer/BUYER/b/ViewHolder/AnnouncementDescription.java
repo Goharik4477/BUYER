@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.buyer.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,10 +34,10 @@ import com.example.buyer.BUYER.b.utilities.PreferenceManager;
 import com.hbb20.CountryCodePicker;
 
 public class AnnouncementDescription extends AppCompatActivity {
-    private String FirstCountryNew, SecondCountyNew, DescriptionNew, addressNew, priceNew,PriceNewService, linkNew, id, until;
+    private String FirstCountryNew,weight,  SecondCountyNew, DescriptionNew, addressNew, priceNew,PriceNewService, linkNew, id, until;
     DatePicker datePicker;
 
-    private EditText Category, FirstCountry, SecondCounty, Description, address, price, link, priceForService, EditUntil;
+    private EditText Category, FirstCountry, SecondCounty, Description, address, price, link, priceForService, EditUntil, EditWeight;
     private Button Public, select;
 
     private PreferenceManager preferenceManager;
@@ -52,17 +55,23 @@ public class AnnouncementDescription extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_announcement_description);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
         getSupportActionBar().hide();
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
 
         datePicker = findViewById(R.id.datePicker);
+        EditWeight = findViewById(R.id.weight);
 
         select = findViewById(R.id.select);
         EditUntil = findViewById(R.id.editUntil);
         FStoreDatabase = FirebaseFirestore.getInstance();
-        preferenceManager = new PreferenceManager(getApplicationContext());
+
         Category = findViewById(R.id.Category);
         FirstCountry = findViewById(R.id.firstCounty);
         SecondCounty = findViewById(R.id.SecondCountry);
@@ -134,7 +143,8 @@ public class AnnouncementDescription extends AppCompatActivity {
             post.setUntil(until);
             post.setPostedBy(FirebaseAuth.getInstance().getCurrentUser().getEmail());
             post.setPostedAt(new Date().getTime());
-            post.setPostId(postId); // сохраняем postId
+            post.setPostId(postId);
+            post.setWeight(weight);
 
             postsRef.child(postId).setValue(post)
                     .addOnSuccessListener(aVoid -> {
@@ -158,6 +168,7 @@ public class AnnouncementDescription extends AppCompatActivity {
         linkNew = link.getText().toString();
         PriceNewService = priceForService.getText().toString();
         until = EditUntil.getText().toString();
+        weight = EditWeight.getText().toString();
 
         if (TextUtils.isEmpty(DescriptionNew)) {
             Toast.makeText(this, "Add a description", Toast.LENGTH_SHORT).show();

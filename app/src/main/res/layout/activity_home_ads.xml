@@ -8,83 +8,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.buyer.BUYER.b.home_ads">
 
-<!--    <ScrollView-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent">-->
-<!---->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/_10sdp">-->
-<!---->
-<!--            <com.makeramen.roundedimageview.RoundedImageView-->
-<!--                android:id="@+id/imageProfile"-->
-<!--                android:layout_width="@dimen/_35sdp"-->
-<!--                android:layout_height="@dimen/_35sdp"-->
-<!--                android:layout_marginTop="24dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:background="@drawable/baseline_account_circle_24"-->
-<!--                android:scaleType="center"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:riv_oval="true" />-->
-<!---->
-<!--            <TextView-->
-<!--                android:id="@+id/textName"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="@dimen/_80sdp"-->
-<!--                android:layout_marginEnd="@dimen/_80sdp"-->
-<!--                android:ellipsize="end"-->
-<!--                android:gravity="center"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="@dimen/_14ssp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/imageProfile"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/imageProfile" />-->
-<!---->
-<!--            <TextView-->
-<!--                android:id="@+id/textHome"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="@dimen/_10sdp"-->
-<!--                android:ellipsize="end"-->
-<!--                android:gravity="left"-->
-<!---->
-<!--                android:text="Home"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="@dimen/_20ssp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/textName"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/textName" />-->
-<!---->
-<!---->
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/dashboard"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginTop="@dimen/_50ssp"-->
-<!--                android:clipToPadding="false"-->
-<!--                android:orientation="vertical"-->
-<!--                android:overScrollMode="never"-->
-<!--                android:padding="@dimen/_20sdp"-->
-<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/textHome"-->
-<!--                app:layout_constraintVertical_bias="0.0"-->
-<!--                tools:ignore="NotSibling"-->
-<!--                tools:layout_editor_absoluteX="0dp" />-->
-<!---->
-<!---->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!---->
-<!---->
-<!---->
-<!--</ScrollView>-->
 
 
     <com.makeramen.roundedimageview.RoundedImageView
@@ -97,30 +20,11 @@
         android:scaleType="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:riv_oval="true" />
+        app:riv_oval="true"
+     />
 
-    <ImageView
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:background="@drawable/category"
-        android:id="@+id/search"
-        app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
-        android:layout_margin="@dimen/_10ssp"
-        app:layout_constraintEnd_toStartOf="@+id/imageProfile"
-        app:layout_constraintTop_toTopOf="@+id/imageProfile" />
 
-    <Button
-        android:id="@+id/clearFilterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:padding="@dimen/_2sdp"
-        android:layout_gravity="center"
-        android:layout_marginEnd="5px"
-        android:backgroundTint="@color/w"
-        android:text="Clear"
-        android:textColor="@color/blue1"
-        app:layout_constraintBottom_toBottomOf="@+id/textHome"
-        app:layout_constraintEnd_toStartOf="@+id/search" />
+
 
     <TextView
         android:id="@+id/textHome"
@@ -140,13 +44,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageProfile"
         app:layout_constraintVertical_bias="0.6" />
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerViewCategories"
+        android:padding="@dimen/_8sdp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/_10sdp"
+      app:layout_constraintTop_toBottomOf="@+id/textHome"/>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dashboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:layout_marginTop="@dimen/_50ssp"
+        android:layout_marginTop="@dimen/_100sdp"
         android:layout_marginBottom="@dimen/_60ssp"
         android:clipToPadding="false"
         android:orientation="vertical"
@@ -158,9 +73,26 @@
         android:paddingEnd="@dimen/_5sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@+id/textHome"
+        app:layout_constraintTop_toBottomOf="@+id/fabCategory"
         app:layout_constraintVertical_bias="0.412"
         tools:layout_editor_absoluteX="0dp" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fabCategory"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:contentDescription="filters"
+        android:src="@drawable/category"
+
+        android:backgroundTint="@color/blue3"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white"/>
+
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -84,6 +84,17 @@
                 />
 
             <TextView
+                android:id="@+id/productWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="weight"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
                 android:id="@+id/productLink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,20 +104,20 @@
                 android:textSize="@dimen/_15ssp"
                 android:textColor="@color/white"
                 />
+
+
             <TextView
-                android:background="@drawable/oval_login_background"
                 android:id="@+id/ProductDescription"
-                android:textSize="@dimen/_15ssp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/oval_login_background"
                 android:padding="@dimen/_10ssp"
                 android:text="Description"
                 android:textColor="@color/blue1"
-               />
-
+                android:textSize="@dimen/_15ssp" />
 
             <TextView
                 android:id="@+id/ProductPrice"

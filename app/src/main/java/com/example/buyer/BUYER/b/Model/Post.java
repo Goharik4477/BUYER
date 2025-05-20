@@ -7,7 +7,11 @@ public class Post  implements Serializable{
 
 
     private String postedBy;
-    private  String postDescription, FirsCountry, SecondCountry, Address, Link, Price, category, username, priceForService, userId, until  ;
+    private String weight;
+    private  String postDescription,
+            FirsCountry,
+            SecondCountry,
+            Address, Link, Price, category, username, priceForService, userId, until  ;
     private long postedAt;
     private int PostMessage;
 
@@ -19,24 +23,47 @@ public class Post  implements Serializable{
 
 
 
-    public Post(String postId, String postedBy,
-                String postDescription, String firsCountry, String secondCountry, String address, String link,
-                String price, long postedAt, String category, String username, String priceForService, String userId, String Until) {
+    public Post(String postId,
+                String postedBy,
+                String postDescription,
+                String firsCountry,
+                String secondCountry,
+                String address,
+                String link,
+                String price,
+                long postedAt,
+                String category,
+                String username,
+                String priceForService,
+                String userId,
+                String Until,
+                String weight)
+    {
         this.postId = postId;
         this.postedBy = postedBy;
         this.postDescription = postDescription;
-        FirsCountry = firsCountry;
-        SecondCountry = secondCountry;
-        Address = address;
-        Link = link;
+        this.FirsCountry = firsCountry;
+        this.SecondCountry = secondCountry;
+        this.Address = address;
+        this.weight = weight;
+        this.Link = link;
         this.until = Until;
         this.priceForService =priceForService;
         this.username = username;
-        Price = price;
+        this.Price = price;
         this.userId = userId;
         this.postedAt = postedAt;
         this.category = category;
     }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
     public String getUntil() {
         return until;
     }

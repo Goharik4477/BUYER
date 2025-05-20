@@ -5,11 +5,14 @@
     <color name="blue1">#0C625B</color>
     <color name="grey">#4B4D4D</color>
     <color name="red">#4E031C</color>
+    <color name="red2">#810413</color>
     <color name="green">#009688</color>
     <color name="blue2">#80096D65</color>
     <color name="blue3">#033C37</color>
     <color name="gray">#878383</color>
     <color name="blue4">#98ADA8</color>
     <color name="w">#50FDFFFE</color>
+    <color name="wh">#87FDFFFE</color>
     <color name="m">#00FDFFFE</color>
+    <color name="m2">#C5033C37</color>
 </resources>
