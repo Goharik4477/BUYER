@@ -13,6 +13,7 @@ public class Post  implements Serializable{
             SecondCountry,
             Address, Link, Price, category, username, priceForService, userId, until  ;
     private long postedAt;
+    private boolean approved = false;
     private int PostMessage;
 
 
@@ -54,6 +55,14 @@ public class Post  implements Serializable{
         this.userId = userId;
         this.postedAt = postedAt;
         this.category = category;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public String getWeight() {

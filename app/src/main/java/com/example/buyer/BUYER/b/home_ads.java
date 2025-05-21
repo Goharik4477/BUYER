@@ -148,7 +148,22 @@ public class home_ads extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Post post = dataSnapshot.getValue(Post.class);
 
-                        if (post != null && post.getCategory() != null) {
+//                        if (post != null && post.getCategory() != null) {
+//                            String cleanCategory = post.getCategory().replace("Category: ", "");
+//                            String from = post.getFirsCountry();
+//                            String to = post.getSecondCountry();
+//
+//                            boolean categoryMatches = filterCategory == null || cleanCategory.equals(filterCategory);
+//                            boolean fromMatches = countryFrom == null || from.equals(countryFrom);
+//                            boolean toMatches = countryTo == null || to.equals(countryTo);
+//
+//                            if (categoryMatches && fromMatches && toMatches) {
+//                                postList.add(post);
+//                            }
+//                        }
+
+
+                        if (post != null && post.getCategory() != null && post.isApproved()) {
                             String cleanCategory = post.getCategory().replace("Category: ", "");
                             String from = post.getFirsCountry();
                             String to = post.getSecondCountry();

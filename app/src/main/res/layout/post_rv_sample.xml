@@ -40,6 +40,7 @@ android:background="@color/blue1"
                     android:textSize="@dimen/_18ssp"
                     android:textStyle="bold" />
 
+
                 <TextView
                     android:id="@+id/ServicePrice"
                     android:layout_width="match_parent"
@@ -110,6 +111,9 @@ android:background="@color/blue1"
 
 
 
+
+
+
                     <TextView
                         android:id="@+id/buttonDelete"
                         android:layout_width="wrap_content"
@@ -136,7 +140,7 @@ android:background="@color/blue1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:background="@drawable/more_b"
+                        android:background="@drawable/posts_b"
                         android:paddingTop="@dimen/_5sdp"
                         android:paddingBottom="@dimen/_5sdp"
                         android:text="more"
@@ -155,11 +159,28 @@ android:background="@color/blue1"
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/buttonApprove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/more_b"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:paddingStart="@dimen/_10ssp"
+                android:paddingEnd="@dimen/_10ssp"
+                android:textColor="@color/white"
+                android:text="Approve"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
 
+                />
 
 
         </LinearLayout>
 
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

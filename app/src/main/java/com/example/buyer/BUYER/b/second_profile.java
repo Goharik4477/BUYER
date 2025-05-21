@@ -101,6 +101,9 @@ binding.icPost.setOnClickListener(new View.OnClickListener() {
 });
 
 
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("goharik4477@gmail.com")) {
+            startActivity(new Intent(this, ModeratorActivity.class));
+        }
 
         TextViewWelcome = findViewById(R.id.textView_show_welcome);
         TextViewFFullName = findViewById(R.id.show_full_name);

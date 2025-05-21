@@ -81,6 +81,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingBottom="@dimen/_10sdp"
 
         android:padding="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_35sdp"
@@ -91,6 +92,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="@dimen/_100sdp"
+
             >
 
 
@@ -126,7 +129,7 @@
                         android:layout_marginEnd="@dimen/_25ssp"
                         android:layout_toEndOf="@+id/ic_profile"
                         android:text="Username "
-                        android:textSize="25dp" />
+                        android:textSize="@dimen/_20ssp" />
                 <ImageView
                     android:id="@+id/edit_username"
                     android:layout_width="35dp"
@@ -163,7 +166,7 @@
 
                         android:layout_toEndOf="@+id/ic_email"
                         android:hint="email "
-                        android:textSize="25dp" />
+                        android:textSize="@dimen/_20ssp" />
 
                     <ImageView
                         android:id="@+id/edit_email"
@@ -203,7 +206,7 @@
                         android:text="Change password"
                         android:layout_toEndOf="@+id/ic_pas"
 
-                        android:textSize="25dp" />
+                        android:textSize="@dimen/_20ssp" />
                     <ImageView
                         android:id="@+id/change_password"
                         android:layout_width="35dp"
@@ -339,166 +342,6 @@
 
 
 
-
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linley"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/oval_login_background"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:layout_editor_absoluteX="0dp">-->
-
-
-<!--    -->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/_40ssp"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <com.makeramen.roundedimageview.RoundedImageView-->
-
-<!--                android:id="@+id/imageView_profile_dp"-->
-<!--                android:layout_width="@dimen/_40sdp"-->
-<!--                android:layout_height="@dimen/_40sdp"-->
-<!--                android:layout_gravity="left"-->
-<!--                android:layout_marginStart="@dimen/_10ssp"-->
-<!--                android:layout_marginTop="80dp"-->
-<!--                android:background="@drawable/baseline_account_circle_24"-->
-<!--                android:padding="@dimen/_6sdp"-->
-<!--                android:scaleType="center"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:riv_oval="true" />-->
-<!--&lt;!&ndash;            <ImageView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="@dimen/_15sdp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/ChangeCoverPhoto"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="@dimen/_15sdp"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:background="@drawable/outline_image_24"/>&ndash;&gt;-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginBottom="15dp"-->
-<!--                android:layout_marginEnd="@dimen/_50ssp"-->
-<!--                android:hint="Username"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
-<!--                android:textColor="@color/blue1"-->
-<!--                android:textSize="40dp" />-->
-
-
-<!--        </LinearLayout>-->
-
-
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_margin="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:background="@drawable/oval_login_background"-->
-<!--            android:padding="15dp">-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/ic_profile"-->
-<!--                android:layout_width="35dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:backgroundTint="@color/grey"-->
-<!--                android:background="@drawable/baseline_account_circle_24" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/show_full_name"-->
-<!--                android:layout_width="221dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:layout_alignParentTop="true"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_marginStart="25dp"-->
-<!--                android:layout_toEndOf="@+id/ic_profile"-->
-<!--                android:hint="username "-->
-<!--                android:textSize="25dp" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/ic_email"-->
-<!--                android:layout_width="35dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:layout_below="@id/ic_profile"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:backgroundTint="@color/grey"-->
-<!--                android:background="@drawable/baseline_email_24" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/show_email"-->
-<!--                android:layout_width="221dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:layout_below="@+id/show_full_name"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_marginStart="25dp"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:layout_toEndOf="@+id/ic_email"-->
-<!--                android:hint="email "-->
-<!--                android:textSize="25dp" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/ic_post"-->
-<!--                android:layout_width="35dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:layout_below="@id/ic_email"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:backgroundTint="@color/grey"-->
-<!--                android:background="@drawable/outline_feed_24" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/show_posts"-->
-<!--                android:layout_width="221dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:layout_below="@+id/show_email"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_marginStart="25dp"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:layout_toEndOf="@+id/ic_post"-->
-<!--                android:hint="posts "-->
-<!--                android:textSize="25dp" />-->
-
-
-<!--            <ImageView-->
-<!--                android:id="@+id/ic_rat"-->
-<!--                android:layout_width="35dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:layout_below="@id/ic_post"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:backgroundTint="@color/grey"-->
-<!--                android:background="@drawable/baseline_auto_awesome_24" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/show_rat"-->
-<!--                android:layout_width="221dp"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:layout_below="@+id/show_posts"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_marginStart="25dp"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:layout_toEndOf="@+id/ic_rat"-->
-<!--                android:hint="rating "-->
-<!--                android:textSize="25dp" />-->
-
-
-<!--        </RelativeLayout>-->
-
-
-
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progressbaruser"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="-300dp"-->
-<!--            android:elevation="10dp"-->
-<!--            android:visibility="gone" />-->
-
-<!--    </LinearLayout>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

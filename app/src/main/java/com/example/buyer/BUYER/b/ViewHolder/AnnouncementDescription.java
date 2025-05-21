@@ -145,12 +145,13 @@ public class AnnouncementDescription extends AppCompatActivity {
             post.setPostedAt(new Date().getTime());
             post.setPostId(postId);
             post.setWeight(weight);
+            post.setApproved(false);
 
             postsRef.child(postId).setValue(post)
                     .addOnSuccessListener(aVoid -> {
                         Intent intent = new Intent(this, home_ads.class);
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(), "Post published", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "wait for post approval", Toast.LENGTH_SHORT).show();
                         finish();
                     })
                     .addOnFailureListener(e -> {

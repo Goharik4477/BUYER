@@ -44,14 +44,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageProfile"
         app:layout_constraintVertical_bias="0.6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/textHome"
+        android:layout_height="wrap_content"
+android:paddingBottom="@dimen/_50sdp"
+        android:orientation="vertical">
     <androidx.recyclerview.widget.RecyclerView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerViewCategories"
-        android:padding="@dimen/_8sdp"
+        android:padding="@dimen/_5sdp"
         android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/_10sdp"
+
       app:layout_constraintTop_toBottomOf="@+id/textHome"/>
 
 
@@ -61,22 +68,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:layout_marginTop="@dimen/_100sdp"
         android:layout_marginBottom="@dimen/_60ssp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
         android:paddingStart="@dimen/_5sdp"
         android:paddingBottom="@dimen/_50ssp"
-
         android:paddingTop="@dimen/_10ssp"
         android:paddingEnd="@dimen/_5sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@+id/fabCategory"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewCategories"
         app:layout_constraintVertical_bias="0.412"
         tools:layout_editor_absoluteX="0dp" />
-
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
