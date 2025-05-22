@@ -4,18 +4,15 @@
         android:title=""
         android:icon="@drawable/outline_add_comment_24"
         android:id="@+id/menu_bottom_messenger"/>
-<!--    <item-->
-<!--        android:title=""-->
-<!--        android:icon="@drawable/baseline_notifications_none_24"-->
-<!--        android:id="@+id/menu_bottom_notification"/>-->
-    <item
-        android:title=""
-        android:id="@+id/menu_bottom_new_ad"
-        android:icon="@drawable/baseline_add_circle_outline_24"/>
     <item
         android:title=""
         android:id="@+id/menu_bottom_home"
         android:icon="@drawable/baseline_home_24"/>
+    <item
+        android:title=""
+        android:id="@+id/menu_bottom_new_ad"
+        android:icon="@drawable/outline_feed_24"/>
+
     <item
         android:title=""
         android:icon="@drawable/baseline_account_circle_24"

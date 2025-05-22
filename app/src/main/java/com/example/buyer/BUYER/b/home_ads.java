@@ -37,7 +37,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 
 
-
 public class home_ads extends AppCompatActivity {
     private ActivityHomeAdsBinding binding;
     RecyclerView dashboardRV;
@@ -46,8 +45,22 @@ public class home_ads extends AppCompatActivity {
     FirebaseAuth auth;
     private String countryFrom = null;
     private String countryTo = null;
+
+
+
+
+    private String minPriceStr = null;
+    private int minPrice = 0;
+    private String maxWeightStr = null;
+    private int maxWeight = 0;
+
+
     private PreferenceManager preferenceManager;
     private String filterCategory = null;
+
+
+
+    private String sortBy = null;  // "new_first", "old_first", "price_low_high", "price_high_low"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +72,7 @@ public class home_ads extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         getSupportActionBar().hide();
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.menu_bottom_home);
@@ -98,37 +112,27 @@ public class home_ads extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
+        minPriceStr = getIntent().getStringExtra("minPrice");
+        minPrice = parsePrice(minPriceStr);
+
+        maxWeightStr = getIntent().getStringExtra("maxWeight");
+        maxWeight = parsePrice(maxWeightStr);
         filterCategory = getIntent().getStringExtra("Category");
         countryFrom = getIntent().getStringExtra("countryFrom");
         countryTo = getIntent().getStringExtra("countryTo");
+        sortBy = getIntent().getStringExtra("sortBy");
 
-        Log.d("FILTERS", "Category: " + filterCategory + ", From: " + countryFrom + ", To: " + countryTo);
+        Log.d("FILTERS", "Category: " + filterCategory + ", From: " + countryFrom + ", To: " + countryTo + ", Sort: " + sortBy);
 
-
-        binding.fabCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(home_ads.this, FilterActivity.class);
-                startActivityForResult(intent, 100);
-            }
+        binding.fabCategory.setOnClickListener(view -> {
+            Intent intent = new Intent(home_ads.this, FilterActivity.class);
+            startActivityForResult(intent, 100);
         });
-
-
-
-
-
 
         loadData();
     }
 
-    private void loadUserDetails() {
-        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        binding.imageProfile.setImageBitmap(bitmap);
-    }
-
     private void loadData() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
 
         if (currentUser != null) {
@@ -141,50 +145,52 @@ public class home_ads extends AppCompatActivity {
             dashboardRV.setNestedScrollingEnabled(false);
             dashboardRV.setAdapter(postAdapter);
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
+
             database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    postList.clear();
+
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Post post = dataSnapshot.getValue(Post.class);
-
-//                        if (post != null && post.getCategory() != null) {
-//                            String cleanCategory = post.getCategory().replace("Category: ", "");
-//                            String from = post.getFirsCountry();
-//                            String to = post.getSecondCountry();
-//
-//                            boolean categoryMatches = filterCategory == null || cleanCategory.equals(filterCategory);
-//                            boolean fromMatches = countryFrom == null || from.equals(countryFrom);
-//                            boolean toMatches = countryTo == null || to.equals(countryTo);
-//
-//                            if (categoryMatches && fromMatches && toMatches) {
-//                                postList.add(post);
-//                            }
-//                        }
-
 
                         if (post != null && post.getCategory() != null && post.isApproved()) {
                             String cleanCategory = post.getCategory().replace("Category: ", "");
                             String from = post.getFirsCountry();
                             String to = post.getSecondCountry();
 
-                            boolean categoryMatches = filterCategory == null || cleanCategory.equals(filterCategory);
-                            boolean fromMatches = countryFrom == null || from.equals(countryFrom);
-                            boolean toMatches = countryTo == null || to.equals(countryTo);
+                            boolean categoryMatches = filterCategory == null || filterCategory.equals(cleanCategory);
+                            boolean fromMatches = countryFrom == null || countryFrom.equals(from);
+                            boolean toMatches = countryTo == null || countryTo.equals(to);
+                            int weight = parsePrice(post.getWeight());
+                            boolean weightMatches = maxWeight == 0 || weight <= maxWeight;
+                            int price = parsePrice(post.getPriceForService());
 
-                            if (categoryMatches && fromMatches && toMatches) {
+                            boolean priceMatches = price >= minPrice;
+                            Log.d("FILTER", "Checking post: " + post.getPriceForService() + " >= " + minPrice);
+                            if (categoryMatches && fromMatches && toMatches && priceMatches && weightMatches) {
                                 postList.add(post);
                             }
                         }
-
-//                        if (post.getCategory() != null) {
-//                            String cleanCategory = post.getCategory().replace("Category: ", "");
-//
-//                            if (filterCategory == null || cleanCategory.equals(filterCategory)) {
-//                                postList.add(post);
-//                            }
-//                        }
                     }
+                    if (sortBy != null) {
+                        switch (sortBy) {
+                            case "new_first":
+
+                                postList.sort((p1, p2) -> Long.compare(p2.getPostedAt(), p1.getPostedAt()));
+                                break;
+                            case "old_first":
+                                postList.sort((p1, p2) -> Long.compare(p1.getPostedAt(), p2.getPostedAt()));
+                                break;
+                            case "price_low_high":
+                                postList.sort((p1, p2) -> Double.compare(parsePrice(p1.getPriceForService()),parsePrice( p2.getPriceForService())));
+                                break;
+                            case "price_high_low":
+                                postList.sort((p1, p2) -> Double.compare(parsePrice( p2.getPriceForService()), parsePrice(p1.getPriceForService())));
+                                break;
+                        }
+                    }
+
                     postAdapter.notifyDataSetChanged();
                 }
 
@@ -209,10 +215,31 @@ public class home_ads extends AppCompatActivity {
             filterCategory = data.getStringExtra("category");
             countryFrom = data.getStringExtra("fromCountry");
             countryTo = data.getStringExtra("toCountry");
+            sortBy = data.getStringExtra("sortBy");
+            minPriceStr = data.getStringExtra("minPrice");
+            minPrice = parsePrice(minPriceStr);
+            maxWeightStr = data.getStringExtra("maxWeight");
+            maxWeight = parsePrice(maxWeightStr);
 
-            Log.d("FILTERS", "Category: " + filterCategory + ", From: " + countryFrom + ", To: " + countryTo);
+            Log.d("FILTERS", "Category: " + filterCategory + ", From: " + countryFrom + ", To: " + countryTo + ", Sort: " + sortBy);
 
             loadData();
         }
+    }
+
+    private int parsePrice(String priceStr) {
+        if (priceStr == null) return 0;
+        try {
+
+            String cleaned = priceStr.replaceAll("[^\\d]", "");
+            return Integer.parseInt(cleaned);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+    private void loadUserDetails() {
+        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        binding.imageProfile.setImageBitmap(bitmap);
     }
 }

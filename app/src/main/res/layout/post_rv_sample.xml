@@ -91,15 +91,30 @@ android:background="@color/blue1"
 
                 android:orientation="horizontal"
                 android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CATEGORY"
+        android:id="@+id/post_category"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:textColor="@color/white"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CATEGORY"
-                    android:id="@+id/post_category"
-                    android:textSize="@dimen/_12ssp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="weight"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/post_weight"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:textColor="@color/white"/>
+</LinearLayout>
+
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

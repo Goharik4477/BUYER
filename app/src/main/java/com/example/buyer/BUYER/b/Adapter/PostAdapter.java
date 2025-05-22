@@ -70,14 +70,38 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>  {
         holder.binding.postCategory.setText(model.getCategory());
         holder.binding.textNameDash.setText(model.getUsername());
         holder.binding.ServicePrice.setText(model.getPriceForService() + "$");
+        holder.binding.postWeight.setText(model.getWeight()+ " kg");
+
+
+
 
         holder.binding.buttonMore.setOnClickListener(v -> {
-            Intent intent = new Intent(context, PostDetailActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("post", model);
-            context.startActivity(intent);
+            if (auth.getCurrentUser() == null) return;
 
+            String userId = auth.getCurrentUser().getUid();
+            String postId = model.getPostId();
+
+            if (postId != null) {
+                FirebaseDatabase.getInstance().getReference()
+                        .child("viewHistory")
+                        .child(userId)
+                        .child(postId)
+                        .setValue(true)
+                        .addOnSuccessListener(unused -> {
+                            // Successfully saved to history, now open details
+                            Intent intent = new Intent(context, PostDetailActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("post", model);
+                            context.startActivity(intent);
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(context, "Ошибка сохранения истории: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+            } else {
+                Toast.makeText(context, "postId не найден", Toast.LENGTH_SHORT).show();
+            }
         });
+
 
         //new
         if (moderationMode) {

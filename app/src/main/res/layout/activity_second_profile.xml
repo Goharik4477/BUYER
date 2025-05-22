@@ -218,45 +218,45 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_10ssp"
-                    android:background="@drawable/oval_login_background"
-                    android:layout_marginBottom="@dimen/_15ssp"
-                android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="@dimen/_10ssp"-->
+<!--                    android:background="@drawable/oval_login_background"-->
+<!--                    android:layout_marginBottom="@dimen/_15ssp"-->
+<!--                android:orientation="horizontal">-->
 
-                    <ImageView
-                        android:id="@+id/ic_post"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_below="@id/ic_pas"
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ic_post"-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:layout_below="@id/ic_pas"-->
 
-                        android:backgroundTint="@color/grey"
-                        android:background="@drawable/outline_feed_24" />
+<!--                        android:backgroundTint="@color/grey"-->
+<!--                        android:background="@drawable/outline_feed_24" />-->
 
-                    <TextView
-                        android:id="@+id/show_posts"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/change_password"
-                        android:layout_marginEnd="@dimen/_25ssp"
-                        android:layout_marginStart="25dp"
+<!--                    <TextView-->
+<!--                        android:id="@+id/show_posts"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/change_password"-->
+<!--                        android:layout_marginEnd="@dimen/_25ssp"-->
+<!--                        android:layout_marginStart="25dp"-->
 
-                        android:layout_toEndOf="@+id/ic_post"
-                        android:hint="posts "
-                        android:textSize="25dp" />
+<!--                        android:layout_toEndOf="@+id/ic_post"-->
+<!--                        android:hint="posts "-->
+<!--                        android:textSize="25dp" />-->
 
-                    <ImageView
-                        android:id="@+id/edit_posts"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="-25dp"
-                        android:layout_toEndOf="@+id/show_posts"
-                        android:background="@drawable/baseline_arrow_right_24"
-                        android:backgroundTint="@color/gray" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/edit_posts"-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:layout_marginStart="-25dp"-->
+<!--                        android:layout_toEndOf="@+id/show_posts"-->
+<!--                        android:background="@drawable/baseline_arrow_right_24"-->
+<!--                        android:backgroundTint="@color/gray" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -270,7 +270,7 @@
                         android:id="@+id/log_out"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:layout_below="@id/ic_post"
+                        android:layout_below="@id/show_change"
 
                         android:backgroundTint="@color/green"
                         android:background="@drawable/outline_logout_24" />
@@ -279,7 +279,7 @@
                         android:id="@+id/log_out_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/show_posts"
+                        android:layout_below="@+id/change_password"
                         android:layout_marginEnd="@dimen/_25ssp"
                         android:layout_marginStart="25dp"
                         android:text="Logout"

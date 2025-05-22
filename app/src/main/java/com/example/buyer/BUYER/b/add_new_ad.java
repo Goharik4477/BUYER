@@ -4,35 +4,51 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.buyer.BUYER.b.Adapter.PostAdapter;
+import com.example.buyer.BUYER.b.Model.Post;
 import com.example.buyer.R;
+import com.example.buyer.databinding.ActivityAddNewAdBinding;
+import com.example.buyer.databinding.ActivitySecondProfileBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import com.example.buyer.BUYER.b.ViewHolder.RulesForPublishingAnnouncements;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class add_new_ad extends AppCompatActivity {
-    Button add;
-  //  private Button submitButton;
-  //  private EditText phone_txt;
-    private FirebaseAuth mAuth;
- //   private CountryCodePicker ccp;
+
+    FloatingActionButton add;
+    TextView posts, his;
+    ImageView show, history;
+
+    FirebaseDatabase database;
 
 
-
-
+    private FirebaseAuth authProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +57,7 @@ public class add_new_ad extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.menu_bottom_new_ad);
         getSupportActionBar().hide();
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.menu_bottom_home) {
                 startActivity(new Intent(getApplicationContext(), home_ads.class));
@@ -59,30 +76,44 @@ public class add_new_ad extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;}
-//            }   else if (item.getItemId() == R.id.menu_bottom_notification) {
-//                startActivity(new Intent(getApplicationContext(), notifications.class));
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                finish();
-//                return true;}
+
             return false;
         });
-        mAuth = FirebaseAuth.getInstance();
-//        submitButton = findViewById(R.id.submit_btn);
-//        phone_txt = findViewById(R.id.phone_no);
-//        ccp = findViewById(R.id.ccp);
-//        ccp.registerCarrierNumberEditText(phone_txt);
-//
-//        submitButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(TextUtils.isEmpty(phone_txt.getText().toString().trim())){
-//                    Toast.makeText(add_new_ad.this, "Please enter phone number", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    String  getNo =ccp.getFullNumberWithPlus().replace(" ", "");
-//                    Authentication(getNo);
-//                }
-//            }
-//        });
+        database = FirebaseDatabase.getInstance();
+        authProfile = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = authProfile.getCurrentUser();
+        countUserPosts(firebaseUser.getUid());
+his = findViewById(R.id.show_history);
+his.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(add_new_ad.this, UsersPosts.class));
+    }
+});
+show = findViewById(R.id.edit);
+show.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(add_new_ad.this, UsersPosts.class));
+    }
+});
+
+history = findViewById(R.id.show_his);
+history.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(add_new_ad.this, ViewHistoryActivity.class));
+    }
+});
+
+
+       posts = findViewById(R.id.show_posts);
+       posts.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(add_new_ad.this, UsersPosts.class));
+           }
+       });
 
 
 
@@ -97,44 +128,29 @@ public class add_new_ad extends AppCompatActivity {
             }
         });
 
-    }
-    private void Authentication(String no){
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                no, 60, TimeUnit.SECONDS, this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                    @Override
-                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                        Toast.makeText(add_new_ad.this, "Completed", Toast.LENGTH_SHORT).show();
-                        signInWithPhoneAuthCredential(phoneAuthCredential);
-                    }
 
-                    @Override
-                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                        super.onCodeSent(s, forceResendingToken);
-
-                    }
-
-                    @Override
-                    public void onVerificationFailed(@NonNull FirebaseException e) {
-                        Toast.makeText(add_new_ad.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
 
     }
-private void signInWithPhoneAuthCredential(PhoneAuthCredential credential){
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+    private void countUserPosts(String userId) {
+        FirebaseDatabase.getInstance().getReference("posts")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Intent intent = new Intent(getApplicationContext(), RulesForPublishingAnnouncements.class);
-                            startActivity(intent);
-                            Toast.makeText(add_new_ad.this, "Successfully", Toast.LENGTH_SHORT).show();
-                        } else{
-                            Toast.makeText(add_new_ad.this, "Failed", Toast.LENGTH_SHORT).show();
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        int count = 0;
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Post post = dataSnapshot.getValue(Post.class);
+                            if (post != null && userId.equals(post.getUserId())) {
+                                count++;
+                            }
                         }
+                        posts.setText("Posts: " + count);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(add_new_ad.this, "Failed to load posts count", Toast.LENGTH_SHORT).show();
                     }
                 });
-        }
+    }
 
 }

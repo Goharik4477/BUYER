@@ -52,8 +52,7 @@ public class second_profile extends AppCompatActivity {
     private ProgressBar progressBar;
     private String fullName, email;
     private PreferenceManager preferenceManager;
-    private ImageView imageView;
-    FirebaseStorage storage;
+
     FirebaseDatabase database;
      private ActivitySecondProfileBinding binding;
 
@@ -92,14 +91,6 @@ getSupportActionBar().hide();
             return false;
         });
 
-binding.icPost.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(second_profile.this, UsersPosts.class);
-        startActivity(intent);
-    }
-});
-
 
         if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("goharik4477@gmail.com")) {
             startActivity(new Intent(this, ModeratorActivity.class));
@@ -109,17 +100,10 @@ binding.icPost.setOnClickListener(new View.OnClickListener() {
         TextViewFFullName = findViewById(R.id.show_full_name);
         TextViewEmail = findViewById(R.id.show_email);
         progressBar = findViewById(R.id.progressbaruser);
-        TextViewPosts = findViewById(R.id.show_posts);
-binding.editPosts.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(second_profile.this, UsersPosts.class);
-        startActivity(intent);
-    }
-});
+
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
-        countUserPosts(firebaseUser.getUid());
+
         if (firebaseUser == null){
             Toast.makeText(this, "Something went wrong! User's details are not available at the moment",
                     Toast.LENGTH_LONG).show();
@@ -182,27 +166,6 @@ binding.editPosts.setOnClickListener(new View.OnClickListener() {
 
     }
 
-    private void countUserPosts(String userId) {
-        FirebaseDatabase.getInstance().getReference("posts")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        int count = 0;
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            Post post = dataSnapshot.getValue(Post.class);
-                            if (post != null && userId.equals(post.getUserId())) {
-                                count++;
-                            }
-                        }
-                        TextViewPosts.setText("Posts: " + count);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(second_profile.this, "Failed to load posts count", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
 
     private void showUserProfile(FirebaseUser firebaseUser) {
         String userID = firebaseUser.getUid();
@@ -234,51 +197,6 @@ binding.editPosts.setOnClickListener(new View.OnClickListener() {
             }
         });
     }
-//
-//   @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        //inflate manu
-//        getMenuInflater().inflate(R.menu.common_menu,menu);
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if(id == R.id.menu_refresh){
-//            startActivity(getIntent());
-//            finish();
-//            overridePendingTransition(0,0);
-//        } else if(id ==  R.id.menu_update_profile){
-//            Intent intent = new Intent(second_profile.this, UpdateProfileActivity.class);
-//            startActivity(intent);
-//        }else if(id ==  R.id.menu_update_email){
-//            Intent intent = new Intent(second_profile.this, UpdateEmailActivity.class);
-//            startActivity(intent);
-//        }else if(id ==  R.id.menu_settings){
-//            Toast.makeText(this, "menu settings", Toast.LENGTH_SHORT).show();
-//        }else if(id ==  R.id.menu_change_password){
-//            Intent intent = new Intent(second_profile.this, ChangePasswordActivity.class);
-//            startActivity(intent);
-//        }else if(id ==  R.id.menu_delete_profile){
-//            Intent intent = new Intent(second_profile.this, DeleteProfileActivity.class);
-//            startActivity(intent);
-//        }else if(id ==  R.id.menu_logout){
-//            authProfile.signOut();
-//
-//            Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(second_profile.this, SignIn_or_SignUp.class);
-//            signOut();
-//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(intent);
-//            finish();
-//        }else {
-//            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
     private void signOut(){
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         DocumentReference documentReference =

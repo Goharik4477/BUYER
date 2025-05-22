@@ -60,7 +60,7 @@ back = findViewById(R.id.back);
 back.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(UsersPosts.this, second_profile.class);
+        Intent intent = new Intent(UsersPosts.this, add_new_ad.class);
         startActivity(intent);
         finish();
     }

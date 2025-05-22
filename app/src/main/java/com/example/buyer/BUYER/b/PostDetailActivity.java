@@ -46,22 +46,14 @@ public class PostDetailActivity extends AppCompatActivity {
             binding.textAddress.setText(post.getAddress());
             binding.textLink.setText(post.getLink());
 
-            String bind = "this";
+
 
             String postedByEmail = post.getPostedBy();
 
             if(postedByEmail != null && !postedByEmail.equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
                 binding.newChat.setVisibility(View.VISIBLE);
 
-                binding.back.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(PostDetailActivity.this, home_ads.class);
 
-                        startActivity(intent);
-                        finish();
-                    }
-                });
 
             }
 

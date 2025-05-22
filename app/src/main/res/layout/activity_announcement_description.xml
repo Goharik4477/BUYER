@@ -52,7 +52,7 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Destination country"
+    android:text="Country of destination"
     android:textSize="20dp"
     android:textColor="@color/green"
     android:textStyle="bold"
@@ -94,7 +94,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Origin country"
+            android:text="Country of origin"
             android:textSize="20dp"
             android:textColor="@color/green"
             android:textStyle="bold"
