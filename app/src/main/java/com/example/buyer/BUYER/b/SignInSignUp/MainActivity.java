@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         buyerText.setVisibility(View.GONE);
         buyerText.setAlpha(0f);
 
-        // Старт анимации после layout'а
         mainLayout.post(this::startAnimationSequence);
     }
 
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                     .translationX(-dpToPx(90))
                                     .setDuration(600)
                                     .withEndAction(() -> {
-                                        // Пауза 3 секунды, затем переход
+
                                         new Handler().postDelayed(() -> {
                                             if (firebaseUser == null) {
                                                 startActivity(new Intent(MainActivity.this, SignIn_or_SignUp.class));
@@ -120,43 +119,3 @@ public class MainActivity extends AppCompatActivity {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 }
-
-//
-//public class MainActivity extends AppCompatActivity {
-//private FirebaseAuth authProfile;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_main);
-//        getSupportActionBar().hide();
-//
-//        authProfile = FirebaseAuth.getInstance();
-//        FirebaseUser firebaseUser = authProfile.getCurrentUser();
-//
-//
-//
-//
-//         if (firebaseUser == null){
-//             new Handler().postDelayed(new Runnable() {
-//                 @Override
-//                 public void run() {
-//                     Intent intent = new Intent(MainActivity.this, SignIn_or_SignUp.class);
-//                     startActivity(intent);
-//                     finish();
-//                 }
-//             },3000);
-//        }else {
-//                new Handler().postDelayed(new Runnable() {
-//                 @Override
-//                 public void run() {
-//                     startActivity(new Intent(MainActivity.this, home_ads.class));
-//                     finish();
-//                 }
-//             },3000);
-//         }
-//
-//
-//
-//    }
-//}

@@ -23,13 +23,14 @@
 
  <ListView
      android:padding="@dimen/_10ssp"
+
      android:id="@+id/customListView"
      android:layout_width="match_parent"
      android:layout_height="match_parent"
      android:layout_below="@+id/textView3"
      android:layout_marginTop="20dp"
      android:divider="@color/blue1"
-     android:listSelector="@color/green"
+     android:listSelector="@color/blue4"
      android:dividerHeight="1dp" />
 
 </RelativeLayout>

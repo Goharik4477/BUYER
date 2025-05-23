@@ -82,11 +82,7 @@ private ActivityMessengerBinding binding;
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
                 return true;}
-//            }else if (item.getItemId() == R.id.menu_bottom_notification) {
-//                startActivity(new Intent(getApplicationContext(), notifications.class));
-//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-//                finish();
-//                return true;}
+
             return false;
         });
 
@@ -117,7 +113,7 @@ private ActivityMessengerBinding binding;
     }
 
    private void loadUserDetails(){
-     //binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
+
        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
          binding.imageProfile.setImageBitmap(bitmap);

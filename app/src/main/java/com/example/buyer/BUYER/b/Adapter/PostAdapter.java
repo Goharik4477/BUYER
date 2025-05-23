@@ -15,7 +15,7 @@ import com.example.buyer.BUYER.b.Model.Post;
 import com.example.buyer.BUYER.b.PostDetailActivity;
 import com.example.buyer.BUYER.b.adapters.SearchActivity;
 import com.example.buyer.R;
-import com.example.buyer.databinding.DashboardRvSampleBinding;
+
 import com.example.buyer.databinding.PostRvSampleBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -88,7 +88,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>  {
                         .child(postId)
                         .setValue(true)
                         .addOnSuccessListener(unused -> {
-                            // Successfully saved to history, now open details
+
                             Intent intent = new Intent(context, PostDetailActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("post", model);

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-
+android:background="@color/blue2"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -54,7 +54,7 @@
     android:layout_height="wrap_content"
     android:text="Country of destination"
     android:textSize="20dp"
-    android:textColor="@color/green"
+    android:textColor="@color/m2"
     android:textStyle="bold"
     />
             <com.hbb20.CountryCodePicker
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:text="Country of origin"
             android:textSize="20dp"
-            android:textColor="@color/green"
+            android:textColor="@color/m2"
             android:textStyle="bold"
             />
 
@@ -139,8 +139,7 @@
             android:layout_height="wrap_content"
             android:text="Description"
             android:textSize="20dp"
-
-            android:textColor="@color/green"
+            android:textColor="@color/m2"
             android:textStyle="bold"
             />
         <EditText
@@ -170,7 +169,7 @@
             android:layout_height="wrap_content"
             android:text="Place of purchase of the product"
             android:textSize="20dp"
-            android:textColor="@color/green"
+            android:textColor="@color/m2"
             android:textStyle="bold"
             />
         <EditText
@@ -200,7 +199,7 @@
                 android:layout_height="wrap_content"
                 android:text="Weight of the product (kg)"
                 android:textSize="20dp"
-                android:textColor="@color/green"
+                android:textColor="@color/m2"
                 android:textStyle="bold"
                 />
             <EditText
@@ -234,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:text="Approximate price of Product   ($)"
                 android:textSize="20dp"
-                android:textColor="@color/green"
+                android:textColor="@color/m2"
                 android:textStyle="bold"
                 />
             <EditText
@@ -262,7 +261,7 @@
                 android:layout_height="wrap_content"
                 android:text="Price for Service   ($)"
                 android:textSize="20dp"
-                android:textColor="@color/green"
+                android:textColor="@color/m2"
                 android:textStyle="bold"
                 />
             <EditText
@@ -291,7 +290,7 @@
                 android:layout_height="wrap_content"
                 android:text="Until"
                 android:textSize="20dp"
-                android:textColor="@color/green"
+                android:textColor="@color/m2"
                 android:textStyle="bold"
                 />
             <DatePicker
@@ -339,7 +338,7 @@
                 android:layout_height="wrap_content"
                 android:text="Product link"
                 android:textSize="20dp"
-                android:textColor="@color/green"
+                android:textColor="@color/m2"
                 android:textStyle="bold"
                 />
             <EditText

@@ -87,7 +87,7 @@ his = findViewById(R.id.show_history);
 his.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(add_new_ad.this, UsersPosts.class));
+        startActivity(new Intent(add_new_ad.this, ViewHistoryActivity.class));
     }
 });
 show = findViewById(R.id.edit);

@@ -29,7 +29,7 @@
         android:layout_below="@+id/textView4"
         android:layout_marginTop="20dp"
         android:divider="@color/blue1"
-        android:listSelector="@color/green"
+        android:listSelector="@color/blue4"
         android:dividerHeight="1dp" />
 
 </RelativeLayout>

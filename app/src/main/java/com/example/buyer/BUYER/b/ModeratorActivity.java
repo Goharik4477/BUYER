@@ -1,6 +1,9 @@
 package com.example.buyer.BUYER.b;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +30,7 @@ public class ModeratorActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<Post> pendingPosts;
     private PostAdapter adapter;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,15 @@ public class ModeratorActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         loadPendingPosts();
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ModeratorActivity.this, second_profile.class));
+            }
+        });
+
     }
 
     private void loadPendingPosts() {

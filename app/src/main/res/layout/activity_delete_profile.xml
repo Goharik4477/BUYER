@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:background="@color/white"
+            android:background="@drawable/posts_b"
             android:layout_margin="15dp">
             <TextView
                 android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="15dp"
                 android:textAlignment="center"
-                android:textColor="@color/blue1"/>
+                android:textColor="@color/blue3"/>
 
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_below="@+id/textView_delete_user_head"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:textColor="@color/blue1"
+                android:textColor="@color/m2"
                 android:textStyle="bold"
                 android:textColorHint="#888888"
                 android:layout_marginBottom="1dp" />
@@ -80,7 +80,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/posts_b"
             android:layout_margin="15dp"
             android:padding="15dp">
 
@@ -91,7 +91,7 @@
                 android:text="Your profile is not authenticated/verified yet!"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:textColor="@color/blue1"
+                android:textColor="@color/blue3"
                 android:textStyle="bold"
                 android:textColorHint="#888888"
                 android:layout_marginBottom="1dp" />

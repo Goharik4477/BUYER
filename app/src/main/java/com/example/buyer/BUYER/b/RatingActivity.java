@@ -1,6 +1,7 @@
 package com.example.buyer.BUYER.b;
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class RatingActivity extends AppCompatActivity {
     private Button buttonSubmitRating, completeButton;
     private FirebaseFirestore database;
     private String ratedUserId;
+    Layout linear;
+
     private TextView textUserName;
     private String currentUserId;
     private DocumentReference transactionRef;
@@ -50,8 +53,9 @@ public class RatingActivity extends AppCompatActivity {
         currentUserId = new PreferenceManager(getApplicationContext())
                 .getString(Constants.KEY_USER_ID);
 
+
         textUserName.setText("Rate " + userName);
-        buttonSubmitRating.setEnabled(false); // По умолчанию отключена
+        buttonSubmitRating.setEnabled(false);
 
         String transactionId = generateTransactionId(currentUserId, ratedUserId);
         transactionRef = database.collection("transactions").document(transactionId);
@@ -151,67 +155,3 @@ public class RatingActivity extends AppCompatActivity {
         return user1.compareTo(user2) < 0 ? user1 + "_" + user2 : user2 + "_" + user1;
     }
 }
-//
-//public class RatingActivity extends AppCompatActivity {
-//    private RatingBar ratingBar;
-//    private Button buttonSubmitRating, Complete;
-//    private FirebaseFirestore database;
-//    private String ratedUserId;
-//    private TextView textUserName;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_rating);
-//
-//        ratingBar = findViewById(R.id.ratingBar);
-//        buttonSubmitRating = findViewById(R.id.buttonSubmitRating);
-//        textUserName = findViewById(R.id.textUserName);
-//        Complete = findViewById(R.id.complete);
-//
-//        database = FirebaseFirestore.getInstance();
-//
-//        ratedUserId = getIntent().getStringExtra("userId");
-//        String userName = getIntent().getStringExtra("userName");
-//
-//        textUserName.setText("Rate " + userName);
-//
-//        buttonSubmitRating.setOnClickListener(v -> submitRating());
-//    }
-//
-//    private void submitRating() {
-//        float rating = ratingBar.getRating();
-//
-//        String senderId = new PreferenceManager(getApplicationContext())
-//                .getString(Constants.KEY_USER_ID); // текущий пользователь
-//
-//        String docId = senderId + "_" + ratedUserId;
-//
-//        DocumentReference ratingRef = database.collection("ratings").document(docId);
-//
-//
-//        ratingRef.get().addOnSuccessListener(documentSnapshot -> {
-//            if (documentSnapshot.exists()) {
-//                Toast.makeText(this, "You already rated this user.", Toast.LENGTH_SHORT).show();
-//            } else {
-//
-//                ratingRef.set(new HashMap<String, Object>() {{
-//                    put("senderId", senderId);
-//                    put("receiverId", ratedUserId);
-//                    put("rating", rating);
-//                }}).addOnSuccessListener(unused -> {
-//
-//                    DocumentReference userRef = database.collection("users").document(ratedUserId);
-//                    userRef.update("totalRating", FieldValue.increment(rating),
-//                                    "ratingCount", FieldValue.increment(1))
-//                            .addOnSuccessListener(aVoid -> {
-//                                Toast.makeText(this, "Thank you for rating!", Toast.LENGTH_SHORT).show();
-//                                finish();
-//                            });
-//                }).addOnFailureListener(e ->
-//                        Toast.makeText(this, "Failed to record rating", Toast.LENGTH_SHORT).show());
-//            }
-//        });
-//    }
-//
-//}

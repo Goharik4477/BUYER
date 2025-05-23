@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@drawable/gradient_background"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +15,7 @@
         android:layout_marginTop="150dp"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
-        android:background="@color/white">
+        android:background="@drawable/posts_b">
 
         <TextView
             android:id="@+id/textView_update_profile_head"
@@ -25,7 +26,7 @@
             android:text="You can update your profile details now!"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/blue1"
+            android:textColor="@color/blue3"
             android:textStyle="bold" />
 
         <EditText

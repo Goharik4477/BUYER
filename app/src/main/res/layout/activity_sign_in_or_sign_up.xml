@@ -65,7 +65,15 @@
         android:text="Sign up"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
-
+    <Button
+        android:id="@+id/buttonTest"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#009688"
+        android:text="Test User"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
 
 

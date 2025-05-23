@@ -147,17 +147,7 @@
             android:layout_marginEnd="25dp"
             android:layout_marginTop="50dp"/>
 
-        <Button
-            android:id="@+id/TestUser2"
-            android:layout_width="285dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
 
-            android:backgroundTint="#009688"
-
-            android:text="ttesttuuser2@gmail.com"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewSignup"

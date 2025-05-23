@@ -26,18 +26,14 @@
         <activity
             android:name=".BUYER.b.PostDetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".BUYER.b.post_full_screen"
-            android:exported="false" />
+
         <activity
             android:name=".BUYER.b.RatingActivity"
             android:exported="false" />
         <activity
             android:name=".BUYER.b.adapters.SearchActivity"
             android:exported="false" />
-        <activity
-            android:name=".BUYER.b.Chat.ChatMain"
-            android:exported="false" />
+
         <activity
             android:name=".BUYER.b.filterTo"
             android:exported="false" />
@@ -53,12 +49,8 @@
         <activity
             android:name=".BUYER.b.UsersPosts"
             android:exported="false" />
-        <activity
-            android:name=".BUYER.b.CommentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BUYER.b.notifications"
-            android:exported="false" />
+
+
         <activity
             android:name=".BUYER.b.home_ads"
             android:exported="false" />
@@ -75,9 +67,7 @@
         <activity
             android:name=".BUYER.b.ViewHolder.AnnouncementDescription"
             android:exported="false" />
-        <activity
-            android:name=".BUYER.b.ViewHolder.CustomListView"
-            android:exported="false" />
+
         <activity
             android:name=".BUYER.b.ViewHolder.SelectCategory"
             android:exported="false" />
@@ -111,9 +101,7 @@
         <activity
             android:name=".BUYER.b.SignInSignUp.UserProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".BUYER.b.paypal"
-            android:exported="false" />
+
         <activity
             android:name=".BUYER.b.UserProfileSetting.CreateNewPassword"
             android:exported="false" />

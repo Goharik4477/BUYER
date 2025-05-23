@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buyer.BUYER.b.Adapter.PostAdapter;
-import com.example.buyer.BUYER.b.Chat.ChatMain;
+
 import com.example.buyer.BUYER.b.Model.Post;
 import com.example.buyer.BUYER.b.SignInSignUp.SignIn;
 import com.example.buyer.BUYER.b.ViewHolder.RulesForPublishingAnnouncements;

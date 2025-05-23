@@ -96,20 +96,6 @@ preferenceManager = new PreferenceManager(getApplicationContext());
             }
         });
 
-        test2 = findViewById(R.id.TestUser2);
-
-
-
-        test2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editTextLoginEmail.setText("ttesttuuser2@gmail.com");
-                editTextLoginPwd.setText("12345678");
-
-
-            }
-        });
-
 
 
 
@@ -152,10 +138,9 @@ preferenceManager = new PreferenceManager(getApplicationContext());
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    //Get instance of  the current user
+
                     FirebaseUser firebaseUser = authProfile.getCurrentUser();
 
-                    // check if email is verified before user can access their profile
                     if (firebaseUser.isEmailVerified()){
                         Toast.makeText(SignIn.this, "You logged in now", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignIn.this, UserProfileActivity.class));
@@ -189,7 +174,7 @@ preferenceManager = new PreferenceManager(getApplicationContext());
 
 
     private void showAlertDialog() {
-        //set up alert
+
         AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
         builder.setTitle("Email not verified ");
         builder.setMessage("Please verify your email now. You can not login without email verification. ");
@@ -204,12 +189,11 @@ preferenceManager = new PreferenceManager(getApplicationContext());
             }
         });
 
-        //create alertdialog
+
 
         AlertDialog alertDialog = builder.create();
 
 
-        // show alertdialog
 
         alertDialog.show();
 
