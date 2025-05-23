@@ -152,7 +152,10 @@
         android:padding="@dimen/_8sdp"
         android:src="@drawable/ic_send"
         app:tint="@color/white" />
+
+
 </FrameLayout>
+
 
     <EditText
 

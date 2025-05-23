@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -132,32 +134,75 @@ public class ChatActivity extends BaseActivity {
         database = FirebaseFirestore.getInstance();
     }
 
+//    private void sendMessage() {
+//        HashMap<String, Object> message = new HashMap<>();
+//        message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+//        message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+//        message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+//        message.put(Constants.KEY_TIMESTAMP, new Date());
+//        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+//
+//        if (conversionId != null) {
+//            updateConversion(binding.inputMessage.getText().toString());
+//        } else {
+//            HashMap<String, Object> conversion = new HashMap<>();
+//            conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+//            conversion.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_NAME));
+//            conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
+//            conversion.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+//            conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.name);
+//            conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
+//            conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
+//            conversion.put(Constants.KEY_TIMESTAMP, new Date());
+//            addConversion(conversion);
+//        }
+//        binding.inputMessage.setText(null);
+//    }
+
     private void sendMessage() {
+        String messageText = binding.inputMessage.getText().toString().trim();
+
+        if (messageText.isEmpty()) {
+            Toast.makeText(this, "Enter your message", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (receiverUser == null || receiverUser.id == null) {
+            Toast.makeText(this, "Error: Recipient not found", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         HashMap<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
-        message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+        message.put(Constants.KEY_MESSAGE, messageText);
         message.put(Constants.KEY_TIMESTAMP, new Date());
-        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
 
-        if (conversionId != null) {
-            updateConversion(binding.inputMessage.getText().toString());
-        } else {
-            HashMap<String, Object> conversion = new HashMap<>();
-            conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
-            conversion.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_NAME));
-            conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
-            conversion.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
-            conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.name);
-            conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
-            conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
-            conversion.put(Constants.KEY_TIMESTAMP, new Date());
-            addConversion(conversion);
-        }
-        binding.inputMessage.setText(null);
+
+        database.collection(Constants.KEY_COLLECTION_CHAT)
+                .add(message)
+                .addOnSuccessListener(documentReference -> {
+                    if (conversionId != null) {
+                        updateConversion(messageText);
+                    } else {
+                        HashMap<String, Object> conversion = new HashMap<>();
+                        conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+                        conversion.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_NAME));
+                        conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
+                        conversion.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+                        conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.name);
+                        conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
+                        conversion.put(Constants.KEY_LAST_MESSAGE, messageText);
+                        conversion.put(Constants.KEY_TIMESTAMP, new Date());
+                        addConversion(conversion);
+                    }
+                    binding.inputMessage.setText(null);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error sending: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Log.e("ChatActivity", "Error sending: ", e);
+                });
     }
-
-
     private void listenAvailabilityOfReceiver() {
         database.collection(Constants.KEY_COLLECTION_USERS).document(
                 receiverUser.id
@@ -299,4 +344,6 @@ public class ChatActivity extends BaseActivity {
 
     }
 }
+
+
 
