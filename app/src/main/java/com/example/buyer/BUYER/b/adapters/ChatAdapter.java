@@ -1,7 +1,10 @@
 package com.example.buyer.BUYER.b.adapters;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,7 @@ public class ChatAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final List<ChatMessage> chatMessages;
     private final Bitmap receiverProfileImage;
     private final String senderId;
+
 
     public static  final int VIEW_TYPE_SENT = 1;
     public static final int VIEW_TYPE_RECEIVED = 2;
@@ -50,6 +54,8 @@ public class ChatAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }else {
     ((ReceivedMessageViewHolder ) holder).setData(chatMessages.get(position), receiverProfileImage);
         }
+
+
     }
 
     @Override
@@ -73,8 +79,21 @@ public class ChatAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
             super(itemConteinerSentMessageBinding.getRoot());
             binding =itemConteinerSentMessageBinding;
         }
+//        void setData(ChatMessage chatMessage){
+//            binding.textMessage.setText(chatMessage.message);
+//            binding.textDateTime.setText(chatMessage.dateTime);
+//        }
+
         void setData(ChatMessage chatMessage){
-            binding.textMessage.setText(chatMessage.message);
+            if (chatMessage.image != null && !chatMessage.image.isEmpty()) {
+                binding.imageMessage.setImageBitmap(getBitmapFromEncodedString(chatMessage.image));
+                binding.imageMessage.setVisibility(View.VISIBLE);
+                binding.textMessage.setVisibility(View.GONE);
+            } else {
+                binding.textMessage.setText(chatMessage.message);
+                binding.textMessage.setVisibility(View.VISIBLE);
+                binding.imageMessage.setVisibility(View.GONE);
+            }
             binding.textDateTime.setText(chatMessage.dateTime);
         }
     }
@@ -85,10 +104,32 @@ public class ChatAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
             super(itemConteinerReceivedMessageBinding.getRoot());
             binding =itemConteinerReceivedMessageBinding;
         }
-        void setData(ChatMessage chatMessage, Bitmap receiverProfileImage){
-            binding.textMessage.setText(chatMessage.message);
-            binding.textDateTime.setText(chatMessage.dateTime);
-            binding.imageProfile.setImageBitmap(receiverProfileImage);
-        }
+//        void setData(ChatMessage chatMessage, Bitmap receiverProfileImage){
+//            binding.textMessage.setText(chatMessage.message);
+//            binding.textDateTime.setText(chatMessage.dateTime);
+//            binding.imageProfile.setImageBitmap(receiverProfileImage);
+//        }
+void setData(ChatMessage chatMessage, Bitmap receiverProfileImage){
+    if (chatMessage.image != null && !chatMessage.image.isEmpty()) {
+        binding.imageMessage.setImageBitmap(getBitmapFromEncodedString(chatMessage.image));
+        binding.imageMessage.setVisibility(View.VISIBLE);
+        binding.textMessage.setVisibility(View.GONE);
+    } else {
+        binding.textMessage.setText(chatMessage.message);
+        binding.textMessage.setVisibility(View.VISIBLE);
+        binding.imageMessage.setVisibility(View.GONE);
+    }
+    binding.textDateTime.setText(chatMessage.dateTime);
+    binding.imageProfile.setImageBitmap(receiverProfileImage);
+}
+
+
+    }
+
+    private static Bitmap getBitmapFromEncodedString(String encodedImage) {
+
+        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
     }
 }

@@ -3,8 +3,10 @@ package com.example.buyer.BUYER.b;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +36,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
+import org.jetbrains.annotations.Nullable;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,6 +58,8 @@ public class ChatActivity extends BaseActivity {
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private User receiverUser;
+    private static final int REQUEST_CODE_PICK_IMAGE = 101;
+    private Bitmap selectedImageBitmap;
     private Boolean isReceiverAvailable = false;
     private String conversionId = null;
 
@@ -70,9 +78,9 @@ public class ChatActivity extends BaseActivity {
         });
         getSupportActionBar().hide();
 
-
-        setListeners();
         loadReceiverDetails();
+        setListeners();
+
         init();
         listenMessages();
 
@@ -134,30 +142,6 @@ public class ChatActivity extends BaseActivity {
         database = FirebaseFirestore.getInstance();
     }
 
-//    private void sendMessage() {
-//        HashMap<String, Object> message = new HashMap<>();
-//        message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
-//        message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
-//        message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
-//        message.put(Constants.KEY_TIMESTAMP, new Date());
-//        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
-//
-//        if (conversionId != null) {
-//            updateConversion(binding.inputMessage.getText().toString());
-//        } else {
-//            HashMap<String, Object> conversion = new HashMap<>();
-//            conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
-//            conversion.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_NAME));
-//            conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
-//            conversion.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
-//            conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.name);
-//            conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
-//            conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
-//            conversion.put(Constants.KEY_TIMESTAMP, new Date());
-//            addConversion(conversion);
-//        }
-//        binding.inputMessage.setText(null);
-//    }
 
     private void sendMessage() {
         String messageText = binding.inputMessage.getText().toString().trim();
@@ -239,7 +223,48 @@ public class ChatActivity extends BaseActivity {
                 .whereEqualTo(Constants.KEY_SENDER_ID, receiverUser.id)
                 .whereEqualTo(Constants.KEY_RECEIVER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
                 .addSnapshotListener(eventListener);
+
     }
+
+//    private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
+//        if (error != null) {
+//            return;
+//        }
+//        if (value != null) {
+//            int count = chatMessages.size();
+//            for (DocumentChange documentChange : value.getDocumentChanges()) {
+//                if (documentChange.getType() == DocumentChange.Type.ADDED) {
+//                    ChatMessage chatMessage = new ChatMessage();
+//                    chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+//                    chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
+//                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
+//                    chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
+//                    chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+//                    chatMessages.add(chatMessage);
+//                }
+//
+//
+//            }
+//            Collections.sort(chatMessages, (obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
+//            if (count == 0) {
+//                chatAdapter.notifyDataSetChanged();
+//            } else {
+//                chatAdapter.notifyItemRangeChanged(chatMessages.size(), chatMessages.size());
+//                binding.chatRecyclerView.smoothScrollToPosition(chatMessages.size() - 1);
+//            }
+//
+//
+//            if (chatMessages.size() >= 2) {
+//                binding.imageInfo.setEnabled(true);
+//            }
+//            binding.chatRecyclerView.setVisibility(View.VISIBLE);
+//        }
+//        binding.progressBar.setVisibility(View.GONE);
+//        if (conversionId == null) {
+//            checkForConversion();
+//        }
+//    };
+
 
     private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
         if (error != null) {
@@ -253,13 +278,13 @@ public class ChatActivity extends BaseActivity {
                     chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                     chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
                     chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
+                    chatMessage.image = documentChange.getDocument().getString("image");
                     chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
                     chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
                     chatMessages.add(chatMessage);
                 }
-
-
             }
+
             Collections.sort(chatMessages, (obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
             if (count == 0) {
                 chatAdapter.notifyDataSetChanged();
@@ -267,7 +292,6 @@ public class ChatActivity extends BaseActivity {
                 chatAdapter.notifyItemRangeChanged(chatMessages.size(), chatMessages.size());
                 binding.chatRecyclerView.smoothScrollToPosition(chatMessages.size() - 1);
             }
-
 
             if (chatMessages.size() >= 2) {
                 binding.imageInfo.setEnabled(true);
@@ -279,6 +303,7 @@ public class ChatActivity extends BaseActivity {
             checkForConversion();
         }
     };
+
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {
         byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
@@ -294,6 +319,11 @@ public class ChatActivity extends BaseActivity {
     private void setListeners() {
         binding.ImageBack.setOnClickListener(v -> onBackPressed());
         binding.LayoutSend.setOnClickListener(v -> sendMessage());
+        binding.imageSendPhoto.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);
+        });
     }
 
     private String getReadableDateTime(Date date) {
@@ -343,7 +373,64 @@ public class ChatActivity extends BaseActivity {
         listenAvailabilityOfReceiver();
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            Uri imageUri = data.getData();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                selectedImageBitmap = BitmapFactory.decodeStream(inputStream);
+
+                sendImage(selectedImageBitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void sendImage(Bitmap bitmap) {
+        String encodedImage = encodeImage(bitmap);
+
+        HashMap<String, Object> message = new HashMap<>();
+        message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+        message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+        message.put(Constants.KEY_MESSAGE, ""); // если нужно, можно добавить описание
+        message.put("image", encodedImage);
+        message.put(Constants.KEY_TIMESTAMP, new Date());
+
+        database.collection(Constants.KEY_COLLECTION_CHAT)
+                .add(message)
+                .addOnSuccessListener(documentReference -> {
+                    if (conversionId != null) {
+                        updateConversion("[Image]");
+                    } else {
+                        HashMap<String, Object> conversion = new HashMap<>();
+                        conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+                        conversion.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_NAME));
+                        conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
+                        conversion.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+                        conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.name);
+                        conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
+                        conversion.put(Constants.KEY_LAST_MESSAGE, "[Image]");
+                        conversion.put(Constants.KEY_TIMESTAMP, new Date());
+                        addConversion(conversion);
+                    }
+                })
+                .addOnFailureListener(e -> Toast.makeText(this, "Image send failed", Toast.LENGTH_SHORT).show());
+    }
+
+    private String encodeImage(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream); // сжатие до 50%
+        byte[] bytes = stream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
 }
+
+
 
 
 
