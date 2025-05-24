@@ -79,10 +79,7 @@ public class ChatAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
             super(itemConteinerSentMessageBinding.getRoot());
             binding =itemConteinerSentMessageBinding;
         }
-//        void setData(ChatMessage chatMessage){
-//            binding.textMessage.setText(chatMessage.message);
-//            binding.textDateTime.setText(chatMessage.dateTime);
-//        }
+
 
         void setData(ChatMessage chatMessage){
             if (chatMessage.image != null && !chatMessage.image.isEmpty()) {
@@ -104,11 +101,7 @@ public class ChatAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder>{
             super(itemConteinerReceivedMessageBinding.getRoot());
             binding =itemConteinerReceivedMessageBinding;
         }
-//        void setData(ChatMessage chatMessage, Bitmap receiverProfileImage){
-//            binding.textMessage.setText(chatMessage.message);
-//            binding.textDateTime.setText(chatMessage.dateTime);
-//            binding.imageProfile.setImageBitmap(receiverProfileImage);
-//        }
+
 void setData(ChatMessage chatMessage, Bitmap receiverProfileImage){
     if (chatMessage.image != null && !chatMessage.image.isEmpty()) {
         binding.imageMessage.setImageBitmap(getBitmapFromEncodedString(chatMessage.image));

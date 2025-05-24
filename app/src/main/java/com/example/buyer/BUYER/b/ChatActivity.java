@@ -226,44 +226,6 @@ public class ChatActivity extends BaseActivity {
 
     }
 
-//    private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
-//        if (error != null) {
-//            return;
-//        }
-//        if (value != null) {
-//            int count = chatMessages.size();
-//            for (DocumentChange documentChange : value.getDocumentChanges()) {
-//                if (documentChange.getType() == DocumentChange.Type.ADDED) {
-//                    ChatMessage chatMessage = new ChatMessage();
-//                    chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
-//                    chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
-//                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
-//                    chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
-//                    chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
-//                    chatMessages.add(chatMessage);
-//                }
-//
-//
-//            }
-//            Collections.sort(chatMessages, (obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
-//            if (count == 0) {
-//                chatAdapter.notifyDataSetChanged();
-//            } else {
-//                chatAdapter.notifyItemRangeChanged(chatMessages.size(), chatMessages.size());
-//                binding.chatRecyclerView.smoothScrollToPosition(chatMessages.size() - 1);
-//            }
-//
-//
-//            if (chatMessages.size() >= 2) {
-//                binding.imageInfo.setEnabled(true);
-//            }
-//            binding.chatRecyclerView.setVisibility(View.VISIBLE);
-//        }
-//        binding.progressBar.setVisibility(View.GONE);
-//        if (conversionId == null) {
-//            checkForConversion();
-//        }
-//    };
 
 
     private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
@@ -397,7 +359,7 @@ public class ChatActivity extends BaseActivity {
         HashMap<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
-        message.put(Constants.KEY_MESSAGE, ""); // если нужно, можно добавить описание
+        message.put(Constants.KEY_MESSAGE, "");
         message.put("image", encodedImage);
         message.put(Constants.KEY_TIMESTAMP, new Date());
 
@@ -424,7 +386,7 @@ public class ChatActivity extends BaseActivity {
 
     private String encodeImage(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream); // сжатие до 50%
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
         byte[] bytes = stream.toByteArray();
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
